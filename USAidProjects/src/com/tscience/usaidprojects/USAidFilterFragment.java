@@ -14,8 +14,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckedTextView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
 
 
@@ -55,6 +57,21 @@ public class USAidFilterFragment extends Fragment {
         expListView.setAdapter(listAdapter);
         
         expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        
+        expListView.setOnChildClickListener(new OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                
+                CheckedTextView checkbox = (CheckedTextView)v.findViewById(R.id.lblListItem);
+                checkbox.toggle();
+                
+                // TODO update group
+                
+                return true;
+            }
+            
+        });
         
         return rootView;
     }

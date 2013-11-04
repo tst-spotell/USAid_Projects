@@ -10,7 +10,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
@@ -57,31 +56,58 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         
-        final String childText = (String) getChild(groupPosition, childPosition);
+        View currentView = convertView;
         
-        if (convertView == null) {
+        // if the view has not been created create it
+        if (currentView == null) {
+            
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.usaid_list_item, null);
-        }
- 
-        final CheckedTextView txtListChild = (CheckedTextView) convertView
-                .findViewById(R.id.lblListItem);
- 
-        txtListChild.setText(childText);
-        
-        txtListChild.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                
-                txtListChild.toggle();
-                
-            }
+            currentView = infalInflater.inflate(R.layout.usaid_list_item, null);
             
-        });
+            // create the tag we are using
+            currentView.setTag(new USAidProjectsViewHolder());
+            
+        }
         
-        return convertView;
+        USAidProjectsViewHolder usaidViewHolder = (USAidProjectsViewHolder) currentView.getTag();
+        
+        // load the holder if empty
+        if (usaidViewHolder.checkedTextView == null) {
+            
+            usaidViewHolder.checkedTextView = (CheckedTextView) currentView.findViewById(R.id.lblListItem);
+            
+        }
+        
+        final String childText = (String) getChild(groupPosition, childPosition);
+        
+        usaidViewHolder.checkedTextView.setText(childText);
+        
+        // TODO do checked by arrays
+        
+//        if (convertView == null) {
+//            LayoutInflater infalInflater = (LayoutInflater) this._context
+//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            convertView = infalInflater.inflate(R.layout.usaid_list_item, null);
+//        }
+ 
+//        CheckedTextView txtListChild = (CheckedTextView) convertView
+//                .findViewById(R.id.lblListItem);
+// 
+//        txtListChild.setText(childText);
+        
+//        txtListChild.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                
+//                txtListChild.toggle();
+//                
+//            }
+//            
+//        });
+        
+        return currentView;
         
     }
 
@@ -158,5 +184,17 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+    
+    /**
+     * Static class for view holder pattern.
+     * 
+     * @author spotell at t-sciences.com
+     *
+     */
+    static class USAidProjectsViewHolder {
+        
+        CheckedTextView checkedTextView;
+        
+    } // end SearchResultsViewHolder
 
-}
+} // end USAidExpandableListAdapter
