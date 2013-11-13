@@ -2,7 +2,7 @@ package com.tscience.usaidprojects;
 
 import java.util.Locale;
 
-import android.app.ActionBar;
+import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,9 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.maps.*;
 
+@SuppressLint("NewApi")
 public class USAidMainActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
 
     /**
@@ -32,13 +37,14 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
      */
     ViewPager mViewPager;
 
+    @SuppressLint({ "InlinedApi", "NewApi" })
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usaid_main);
 
         // Set up the action bar.
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = this.getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
@@ -70,18 +76,31 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         }
     }
 
+//    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+//        // When the given tab is selected, switch to the corresponding page in
+//        // the ViewPager.
+//        mViewPager.setCurrentItem(tab.getPosition());
+//    }
+//
+//    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+//
+//    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+
     @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
+    protected void onResume() {
+        
+        // check for Google Play services
+        int checkPlayService = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        
+        if (checkPlayService != ConnectionResult.SUCCESS) {
+            
+            // if not there or disabled display error and go get it
+            GooglePlayServicesUtil.getErrorDialog(checkPlayService, this, 0);
+            
+        }
+        
+        super.onResume();
     }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the sections/tabs/pages.
@@ -106,7 +125,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-                    
+                    Fragment fragmentMap = new USAidMapFragment();
+                    return fragmentMap;
                     
                 }
                 
@@ -174,6 +194,36 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+    }
+
+    /* (non-Javadoc)
+     * @see com.actionbarsherlock.app.ActionBar.TabListener#onTabSelected(com.actionbarsherlock.app.ActionBar.Tab, android.support.v4.app.FragmentTransaction)
+     */
+    @Override
+    public void onTabSelected(Tab tab, android.support.v4.app.FragmentTransaction ft) {
+        
+        // When the given tab is selected, switch to the corresponding page in
+        // the ViewPager.
+        mViewPager.setCurrentItem(tab.getPosition());
+        
+    }
+
+    /* (non-Javadoc)
+     * @see com.actionbarsherlock.app.ActionBar.TabListener#onTabUnselected(com.actionbarsherlock.app.ActionBar.Tab, android.support.v4.app.FragmentTransaction)
+     */
+    @Override
+    public void onTabUnselected(Tab tab, android.support.v4.app.FragmentTransaction ft) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (non-Javadoc)
+     * @see com.actionbarsherlock.app.ActionBar.TabListener#onTabReselected(com.actionbarsherlock.app.ActionBar.Tab, android.support.v4.app.FragmentTransaction)
+     */
+    @Override
+    public void onTabReselected(Tab tab, android.support.v4.app.FragmentTransaction ft) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
