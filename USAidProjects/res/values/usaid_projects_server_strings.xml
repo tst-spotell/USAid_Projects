@@ -18,4 +18,71 @@
     <!-- web link to this project -->
     <string name="usaid_web_project_detail">http://map.usaid.gov/ProjectDetail?id=</string>
     
+    <!-- flag names -->
+    <string name="usaid_flag_afghanistan">afghanistan</string>
+    <string name="usaid_flag_albania">albania</string>
+    <string name="usaid_flag_angola">angola</string>
+    <string name="usaid_flag_armenia">armenia</string>
+    <string name="usaid_flag_bangladesh">bangladesh</string>
+    <string name="usaid_action_filter_country_bosnia">bosnia</string>
+    <string name="usaid_flag_brazil">brazil</string>
+    <string name="usaid_flag_burma">burma</string>
+    <string name="usaid_flag_burundi">burundi</string>
+    <string name="usaid_flag_cambodia">cambodia</string>
+    <string name="usaid_flag_chad">chad</string>
+    <string name="usaid_flag_colombia">colombia</string>
+    <string name="usaid_flag_dominican_republic">dominican_republic</string>
+    <string name="usaid_flag_congo">democratic_republic_of_the_congo</string>
+    <string name="usaid_flag_ecuador">ecuador</string>
+    <string name="usaid_flag_egypt">egypt</string>
+    <string name="usaid_flag_el_salvador">el_salvador</string>
+    <string name="usaid_flag_ethiopia">ethiopia</string>
+    <string name="usaid_flag_gambia">gambia</string>
+    <string name="usaid_flag_georgia">georgia</string>
+    <string name="usaid_flag_ghana">ghana</string>
+    <string name="usaid_flag_guatemala">guatemala</string>
+    <string name="usaid_flag_haiti">haiti</string>
+    <string name="usaid_flag_india">india</string>
+    <string name="usaid_flag_indonesia">indonesia</string>
+    <string name="usaid_flag_iraq">iraq</string>
+    <string name="usaid_flag_kazakhstan">kazakhstan</string>
+    <string name="usaid_flag_kenya">kenya</string>
+    <string name="usaid_flag_kosovo">kosovo</string>
+    <string name="usaid_flag_kyrgyzstan">kyrgyzstan</string>
+    <string name="usaid_flag_lebanon">lebanon</string>
+    <string name="usaid_flag_liberia">liberia</string>
+    <string name="usaid_flag_libya">libya</string>
+    <string name="usaid_flag_mali">mali</string>
+    <string name="usaid_flag_mauritania">mauritania</string>
+    <string name="usaid_flag_mexico">mexico</string>
+    <string name="usaid_flag_montenegro">montenegro</string>
+    <string name="usaid_flag_morocco">morocco</string>
+    <string name="usaid_flag_mozambique">mozambique</string>
+    <string name="usaid_flag_nepal">nepal</string>
+    <string name="usaid_flag_nicaragua">nicaragua</string>
+    <string name="usaid_flag_niger">niger</string>
+    <string name="usaid_flag_nigeria">nigeria</string>
+    <string name="usaid_flag_pakistan">pakistan</string>
+    <string name="usaid_flag_paraguay">paraguay</string>
+    <string name="usaid_flag_peru">peru</string>
+    <string name="usaid_flag_philippines">philippines</string>
+    <string name="usaid_flag_rwanda">rwanda</string>
+    <string name="usaid_flag_senegal">Senegal</string>
+    <string name="usaid_flag_serbia">serbia</string>
+    <string name="usaid_flag_africa">south_africa</string>
+    <string name="usaid_flag_south_sudan">south_sudan</string>
+    <string name="usaid_flag_sri_lanka">sri_lanka</string>
+    <string name="usaid_flag_sudan">sudan</string>
+    <string name="usaid_flag_tajikistan">tajikistan</string>
+    <string name="usaid_flag_tanzania">tanzania</string>
+    <string name="usaid_flag_timor_leste">timor_leste</string>
+    <string name="usaid_flag_turkmenistan">turkmenistan</string>
+    <string name="usaid_flag_uganda">uganda</string>
+    <string name="usaid_flag_ukraine">ukraine</string>
+    <string name="usaid_flag_uzbekistan">uzbekistan</string>
+    <string name="usaid_flag_vietnam">vietnam</string>
+    <string name="usaid_flag_gaza">west_bank_and_gaza</string>
+    <string name="usaid_flag_yemen">yemen</string>
+    <string name="usaid_flag_zimbabwe">zimbabwe</string>
+    
 </resources>
