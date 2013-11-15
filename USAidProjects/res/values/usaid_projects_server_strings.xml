@@ -24,6 +24,7 @@
     <string name="usaid_flag_angola">angola</string>
     <string name="usaid_flag_armenia">armenia</string>
     <string name="usaid_flag_bangladesh">bangladesh</string>
+    <string name="usaid_flag_belarus">belarus</string>          <!-- new -->
     <string name="usaid_flag_brazil">brazil</string>
     <string name="usaid_flag_burma">burma</string>
     <string name="usaid_flag_cambodia">cambodia</string>
@@ -50,6 +51,7 @@
     <string name="usaid_flag_mali">mali</string>
     <string name="usaid_flag_mauritania">mauritania</string>
     <string name="usaid_flag_mexico">mexico</string>
+    <string name="usaid_flag_moldova">moldova</string>          <!-- new -->
     <string name="usaid_flag_montenegro">montenegro</string>
     <string name="usaid_flag_morocco">morocco</string>
     <string name="usaid_flag_mozambique">mozambique</string>

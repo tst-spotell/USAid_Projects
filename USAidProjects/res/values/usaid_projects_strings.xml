@@ -14,6 +14,7 @@
     <string name="usaid_action_filter_country_angola">Angola</string>
     <string name="usaid_action_filter_country_armenia">Armenia</string>
     <string name="usaid_action_filter_country_bangladesh">Bangladesh</string>
+    <string name="usaid_action_filter_country_belarus">Belarus</string>         <!-- new -->
     <string name="usaid_action_filter_country_brazil">Brazil</string>
     <string name="usaid_action_filter_country_burma">Burma</string>
     <string name="usaid_action_filter_country_cambodia">Cambodia</string>
@@ -40,6 +41,7 @@
     <string name="usaid_action_filter_country_mali">Mali</string>
     <string name="usaid_action_filter_country_mauritania">Mauritania</string>
     <string name="usaid_action_filter_country_mexico">Mexico</string>
+    <string name="usaid_action_filter_country_moldova">Moldova</string>
     <string name="usaid_action_filter_country_montenegro">Montenegro</string>
     <string name="usaid_action_filter_country_morocco">Morocco</string>
     <string name="usaid_action_filter_country_mozambique">Mozambique</string>
