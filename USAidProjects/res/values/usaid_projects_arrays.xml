@@ -42,12 +42,9 @@
     <string-array name="usaid_filter_region_europe">
         <item>@string/usaid_action_filter_country_albania</item>
         <item>@string/usaid_action_filter_country_armenia</item>
-        <item>@string/usaid_action_filter_country_bosnia</item>
         <item>@string/usaid_action_filter_country_georgia</item>
-        <item>@string/usaid_action_filter_country_kosovo</item>
         <item>@string/usaid_action_filter_country_montenegro</item>
         <item>@string/usaid_action_filter_country_serbia</item>
-        <item>@string/usaid_action_filter_country_ukraine</item>
     </string-array>
     
     <string-array name="usaid_filter_region_latin">
@@ -70,16 +67,13 @@
         <item>@string/usaid_action_filter_country_lebanon</item>
         <item>@string/usaid_action_filter_country_morocco</item>
         <item>@string/usaid_action_filter_country_gaza</item>
-        <item>@string/usaid_action_filter_country_yemen</item>
     </string-array>
     
     <string-array name="usaid_filter_region_africa">
         <item>@string/usaid_action_filter_country_angola</item>
-        <item>@string/usaid_action_filter_country_burundi</item>
         <item>@string/usaid_action_filter_country_chad</item>
         <item>@string/usaid_action_filter_country_congo</item>
         <item>@string/usaid_action_filter_country_ethiopia</item>
-        <item>@string/usaid_action_filter_country_gambia</item>
         <item>@string/usaid_action_filter_country_ghana</item>
         <item>@string/usaid_action_filter_country_kenya</item>
         <item>@string/usaid_action_filter_country_liberia</item>

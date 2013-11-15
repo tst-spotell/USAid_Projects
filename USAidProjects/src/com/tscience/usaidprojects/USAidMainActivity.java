@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved.
+ */
 package com.tscience.usaidprojects;
 
 import java.util.Locale;
@@ -74,16 +77,6 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         }
     }
 
-//    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-//        // When the given tab is selected, switch to the corresponding page in
-//        // the ViewPager.
-//        mViewPager.setCurrentItem(tab.getPosition());
-//    }
-//
-//    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
-//
-//    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
-
     @Override
     protected void onResume() {
         
@@ -141,16 +134,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                     
                 }
             }
-//            
-//            // getItem is called to instantiate the fragment for the given page.
-//            // Return a DummySectionFragment (defined as a static inner class
-//            // below) with the page number as its lone argument.
-//            Fragment fragment = new DummySectionFragment();
-//            Bundle args = new Bundle();
-//            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-//            fragment.setArguments(args);
-//            return fragment;
-        }
+
+        } // end getItem
 
         @Override
         public int getCount() {
