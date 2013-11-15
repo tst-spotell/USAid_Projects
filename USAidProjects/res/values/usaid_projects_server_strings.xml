@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT TRANSLATE -->
+<resources>
+
+    <string name="usaid_server_url">http://map.usaid.gov/AidTrackerMapData?r=</string>
+    
+    <string name="usaid_server_snapshot">snapshot</string>
+    <string name="usaid_server_overview">overview</string>
+    
+    <!-- used to get a list of projects by country -->
+    <string name="usaid_server_country_start">projects&#38;c=</string>
+    <!-- put the country name between these two -->
+    <string name="usaid_server_country_end">&#38;v=flag</string>
+    
+    <!-- single project detail just add the project id to the end -->
+    <string name="usaid_server_project_detail">detail&#38;d=</string>
+    
+    <!-- web link to this project -->
+    <string name="usaid_web_project_detail">http://map.usaid.gov/ProjectDetail?id=</string>
+    
+</resources>
