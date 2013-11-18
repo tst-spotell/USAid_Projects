@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved. -->
+<!-- DO NOT TRANSLATE -->
+<resources>
+    
+    <!-- commmon values -->
+    <string name="usaid_projects_attributes_jason_array">attributes</string>
+    <string name="usaid_projects_code_jason_array">code</string>
+    <string name="usaid_projects_country_jason_array">country</string>
+    <string name="usaid_projects_label_jason_array">label</string>
+    <string name="usaid_projects_name_jason_array">name</string>
+    <string name="usaid_projects_parent_jason_array">parent</string>
+    <string name="usaid_projects_total_jason_array">total</string>
+    <string name="usaid_projects_type_jason_array">type</string>
+    <string name="usaid_projects_url_jason_array">url</string>
+    
+    <!-- country -->
+    <string name="usaid_projects_country_id_jason_array">Id</string>
+    <string name="usaid_projects_country_public_name_jason_array">Public_Name__c</string>
+    
+    <!-- detail -->
+    <string name="usaid_projects_detail_end_date_jason_array">End_Date__c</string>
+    <string name="usaid_projects_detail_project_description_jason_array">Project_Description__c</string>
+    <string name="usaid_projects_detail_public_photo_jason_array">Public_Photo__c</string>
+    <string name="usaid_projects_detail_sector_name_jason_array">secName__c</string>
+    <string name="usaid_projects_detail_start_date_jason_array">Start_Date__c</string>
+    
+    <!-- detail wierd (for amount and partner -->
+    <string name="usaid_projects_detail_mechs_jason_array">ImpMechs_Projects__r</string>
+    <string name="usaid_projects_detail_total_size_jason_array">totalSize</string>
+    <string name="usaid_projects_detail_done_jason_array">done</string>
+    <string name="usaid_projects_detail_records_jason_array">records</string>
+    <string name="usaid_projects_detail_imn_jason_array">Implementing_Mechanism_Number__r</string>
+    <string name="usaid_projects_detail_award_amount_jason_array">Award_Amount__c</string>
+    <string name="usaid_projects_detail_partner_name_jason_array">Partner_Name__c</string>
+    
+    <!-- overview -->
+    <string name="usaid_projects_overview_initiatives_jason_array">details</string>
+    
+    <!-- snapshot -->
+    <string name="usaid_projects_snapshot_initiatives_jason_array">initiatives</string>
+    <string name="usaid_projects_snapshot_locations_jason_array">locations</string>
+    <string name="usaid_projects_snapshot_regions_jason_array">regions</string>
+    <string name="usaid_projects_snapshot_sectors_jason_array">sectors</string>
+    <string name="usaid_projects_snapshot_subinitiatives_jason_array">subinitiatives</string>
+    
+</resources>

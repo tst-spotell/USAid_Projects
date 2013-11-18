@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
 
@@ -74,6 +75,15 @@ public class USAidFilterFragment extends Fragment {
         });
         
         return rootView;
+    }
+    
+    /**
+     * Called when there is no network or cached data to display.
+     */
+    public void noCachedData() {
+        
+        Toast.makeText(getActivity(), R.string.usaid_cache_nodata, Toast.LENGTH_LONG).show();
+        
     }
     
     /*

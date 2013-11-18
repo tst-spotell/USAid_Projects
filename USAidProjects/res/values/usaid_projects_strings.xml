@@ -6,6 +6,12 @@
     
     <!-- buttons -->
     <string name="usaid_button_title_locations">Locations</string>
+    <string name="usaid_button_ok">OK</string>
+    <string name="usaid_button_cancel">Cancel</string>
+    
+    <!--  connection  -->
+    <string name="usaid_connection_server">Connecting To Server ...</string>
+    <string name="usaid_cache_nodata">Currently, there is no cached data.</string>
     
     <!-- countries -->
     <string name="usaid_action_filter_country">Country</string>
@@ -71,6 +77,11 @@
     
     <!-- no data -->
     <string name="usaid_no_data">No data available.</string>
+    
+    <!-- json file -->
+    <string name="usaid_json_snapshot_cache_file">jsonSnapshotCacheFile</string>
+    <string name="usaid_json_overview_cache_file">jsonOverviewCacheFile</string>
+    <string name="usaid_json_cache_file_toast">Using cached data.</string>
     
     <!-- regions -->
     <string name="usaid_action_filter_region">Region</string>

@@ -24,7 +24,7 @@ public class USAidProjectsByCountryTask extends USAidProjectsBaseNetworkTask {
     }
     
     
-    
+    // attributes  -- type and url
     // get Public_Name__c and Id
 
 } // end USAidProjectsByCountryTask
