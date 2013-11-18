@@ -5,8 +5,6 @@ package com.tscience.usaidprojects.io;
 
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
-
 
 /**
  * This task gets a project description.
@@ -14,15 +12,25 @@ import android.os.AsyncTask;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsDetailTask extends AsyncTask<String, Void, JSONObject> {
+public class USAidProjectsDetailTask extends USAidProjectsBaseNetworkTask {
 
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#doInBackground(Params[])
-     */
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidProjectsDetailTask";
+
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected void onPostExecute(JSONObject result) {
         // TODO Auto-generated method stub
-        return null;
+        super.onPostExecute(result);
     }
+    
+    
+    
+    // get Public_Name__c
+    // get secName__c
+    // get Start_Date__c
+    // get End_Date__c
+    // get Public_Photo__c
+    // get Project_Description__c
+    // get ImpMechs_Projects__r  -- records -- Implementing_Mechanism_Number__r -- Award_Amount__c and Partner_Name__c
 
 } // end USAidProjectsDetailTask

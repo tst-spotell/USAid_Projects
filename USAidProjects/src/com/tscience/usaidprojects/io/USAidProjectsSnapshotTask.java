@@ -5,7 +5,7 @@ package com.tscience.usaidprojects.io;
 
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
+import android.util.Log;
 
 
 /**
@@ -14,15 +14,23 @@ import android.os.AsyncTask;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsSnapshotTask extends AsyncTask<String, Void, JSONObject> {
+public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
 
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#doInBackground(Params[])
-     */
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidProjectsSnapshotTask";
+
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected void onPostExecute(JSONObject result) {
         // TODO Auto-generated method stub
-        return null;
+        super.onPostExecute(result);
     }
+    
+    
+    
+    // get subinitiatives  -- name   -- label
+    // get sectors  -- name   -- label
+    // get regions  -- name   -- label
+    // get locations (countries) -- url (to country site)  -- parent  (region name) -- name -- label -- code (country code)
+    // get initiatives   -- name   -- label
 
 } // end USAidProjectsSnapshotTask

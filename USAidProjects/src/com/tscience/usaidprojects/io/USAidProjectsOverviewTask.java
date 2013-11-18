@@ -14,15 +14,18 @@ import android.os.AsyncTask;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsOverviewTask extends AsyncTask<String, Void, JSONObject> {
+public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
 
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#doInBackground(Params[])
-     */
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidProjectsOverviewTask";
+    
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected void onPostExecute(JSONObject result) {
         // TODO Auto-generated method stub
-        return null;
+        super.onPostExecute(result);
     }
+    
+    // get total
+    // details  -- loop for total and country to get total for a country
 
 } // end USAidProjectsOverviewTask

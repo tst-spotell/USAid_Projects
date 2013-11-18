@@ -5,8 +5,6 @@ package com.tscience.usaidprojects.io;
 
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
-
 
 /**
  * This task gets the project list for a given country.
@@ -14,15 +12,19 @@ import android.os.AsyncTask;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsByCountryTask extends AsyncTask<String, Void, JSONObject> {
+public class USAidProjectsByCountryTask extends USAidProjectsBaseNetworkTask {
 
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#doInBackground(Params[])
-     */
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidProjectsByCountryTask";
+
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected void onPostExecute(JSONObject result) {
         // TODO Auto-generated method stub
-        return null;
+        super.onPostExecute(result);
     }
+    
+    
+    
+    // get Public_Name__c and Id
 
 } // end USAidProjectsByCountryTask
