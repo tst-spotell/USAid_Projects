@@ -99,8 +99,7 @@ public class USAidFilterFragment extends Fragment {
         listDataHeader= Arrays.asList(res.getStringArray(R.array.usaid_filter_regions));
         
         // Adding child data
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFGHANISTAN), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_afganistan))); // Header, Child data
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_PAKISTAN), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_pakistan)));
+        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFPAK), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_afpak))); // Header, Child data
         listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_ASIA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_asia)));
         listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_EUROPE), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_europe)));
         listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_LATIN_AMERICA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_latin)));

@@ -13,11 +13,8 @@
         <item>@string/usaid_action_filter_region_africa</item>
     </string-array>
     
-    <string-array name="usaid_filter_region_afganistan">
+    <string-array name="usaid_filter_region_afpak">
         <item>@string/usaid_action_filter_country_afghanistan</item>
-    </string-array>
-    
-    <string-array name="usaid_filter_region_pakistan">
         <item>@string/usaid_action_filter_country_pakistan</item>
     </string-array>
     

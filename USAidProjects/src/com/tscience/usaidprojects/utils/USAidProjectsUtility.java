@@ -11,4 +11,17 @@ package com.tscience.usaidprojects.utils;
  */
 public class USAidProjectsUtility {
 
+	/**
+	 * This class takes a parent region string and returns a parent region id.
+	 * 
+	 * @param value	The string value of the parent region.
+	 * 
+	 * @return	The ID value for this parent region.
+	 */
+	public int setParentRegion (String value) {
+		
+		return 0;
+		
+	} // end setParentRegion
+
 } // end USAidProjectsUtility
