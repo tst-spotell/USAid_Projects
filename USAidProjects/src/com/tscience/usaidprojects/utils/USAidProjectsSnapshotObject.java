@@ -30,6 +30,16 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 		return 0;
 	}
 	
+	/**
+	 * Takes the string value of the parent and gens the id as well.
+	 * 
+	 * @param value    The string value of the parent region.
+	 */
+	public void setRegionString(String value) {
+	    parentRegion = value;
+	    parentRegionId = USAidProjectsUtility.setParentRegion(value);
+	}
+	
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		

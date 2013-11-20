@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
+
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -73,6 +76,10 @@ public class USAidFilterFragment extends Fragment {
             }
             
         });
+        
+        // start getting the data
+        USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
+        usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity()));
         
         return rootView;
     }

@@ -27,6 +27,7 @@ public class USAidConstants {
     public static final int USAID_REGION_ASIA = 3;
     public static final int USAID_REGION_LATIN_AMERICA = 4;
     public static final int USAID_REGION_MIDDLE_EAST = 5;
+    public static final int USAID_REGION_OTHER = 6;
     
     
     // type constants (for object type)
