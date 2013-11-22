@@ -48,6 +48,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
     @Override
     protected void onPostExecute(JSONObject result) {
         
+        // create the cache file name prior to super
         cacheFileName = context.getString(R.string.usaid_json_snapshot_cache_file);
         
         super.onPostExecute(result);
@@ -72,7 +73,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         JSONArray subinitiativesData = null;
         
         try {
-            subinitiativesData = result.getJSONArray(context.getString(R.string.usaid_projects_snapshot_subinitiatives_jason_array));
+            subinitiativesData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_subinitiatives_jason_array));
         }
         catch (JSONException e1) {
             e1.printStackTrace();
@@ -81,6 +82,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // get subinitiatives  -- name   -- label
         if (subinitiativesData != null) {
             
             // get the size of the array
@@ -124,7 +126,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         JSONArray sectorsData = null;
         
         try {
-            sectorsData = result.getJSONArray(context.getString(R.string.usaid_projects_snapshot_sectors_jason_array));
+            sectorsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_sectors_jason_array));
         }
         catch (JSONException e1) {
             e1.printStackTrace();
@@ -133,6 +135,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // get sectors  -- name   -- label
         if (sectorsData != null) {
             
             // get the size of the array
@@ -176,7 +179,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         JSONArray regionsData = null;
         
         try {
-            regionsData = result.getJSONArray(context.getString(R.string.usaid_projects_snapshot_regions_jason_array));
+            regionsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_regions_jason_array));
         }
         catch (JSONException e1) {
             e1.printStackTrace();
@@ -185,6 +188,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // get regions  -- name   -- label
         if (regionsData != null) {
             
             // get the size of the array
@@ -228,7 +232,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         JSONArray locationsData = null;
         
         try {
-            locationsData = result.getJSONArray(context.getString(R.string.usaid_projects_snapshot_locations_jason_array));
+            locationsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_locations_jason_array));
         }
         catch (JSONException e1) {
             e1.printStackTrace();
@@ -237,6 +241,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // get locations (countries) -- url (to country site)  -- parent  (region name) -- name -- label -- code (country code)
         if (locationsData != null) {
             
             // get the size of the array
@@ -282,7 +287,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         JSONArray initiativesData = null;
         
         try {
-            initiativesData = result.getJSONArray(context.getString(R.string.usaid_projects_snapshot_initiatives_jason_array));
+            initiativesData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_initiatives_jason_array));
         }
         catch (JSONException e1) {
             e1.printStackTrace();
@@ -291,6 +296,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // get initiatives   -- name   -- label
         if (initiativesData != null) {
             
             // get the size of the array
@@ -330,6 +336,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // TODO send data to fragment
+        
         // turn the progress dialog off
         try {
             progressDialog.dismiss();
@@ -339,11 +347,5 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         context = null;
         
     } // end onPostExecute
-    
-    // get subinitiatives  -- name   -- label
-    // get sectors  -- name   -- label
-    // get regions  -- name   -- label
-    // get locations (countries) -- url (to country site)  -- parent  (region name) -- name -- label -- code (country code)
-    // get initiatives   -- name   -- label
 
 } // end USAidProjectsSnapshotTask

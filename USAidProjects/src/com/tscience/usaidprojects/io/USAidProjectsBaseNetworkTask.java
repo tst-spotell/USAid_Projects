@@ -127,9 +127,12 @@ public class USAidProjectsBaseNetworkTask extends AsyncTask<String, Void, JSONOb
             
             String newString = jsonStringBuilder.toString();
             
-            // TODO must strip off the first and last to characters
-            newString = newString.substring(1, newString.length() - 2);
+            if (newString.startsWith("(")) {
             
+                // must strip off the first and last two characters -- strange wrappers
+                newString = newString.substring(1, newString.length() - 2);
+            
+            }
             
             Log.d(LOG_TAG, "--------------------------------------------------string size " + newString.length());
             Log.d(LOG_TAG, "-------------------------------------------------- " + newString);
