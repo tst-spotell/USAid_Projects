@@ -84,7 +84,7 @@ public class USAidFilterFragment extends Fragment {
         
         // get the count
         USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(this);
-        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
+        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
         
         return rootView;
     }
