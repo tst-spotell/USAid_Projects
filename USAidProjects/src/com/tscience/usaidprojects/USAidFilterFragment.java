@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.tscience.usaidprojects.io.USAidProjectsOverviewTask;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
@@ -79,7 +80,11 @@ public class USAidFilterFragment extends Fragment {
         
         // start getting the data
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
-        usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity()));
+        usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
+        
+        // get the count
+        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(this);
+        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
         
         return rootView;
     }

@@ -13,10 +13,8 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.tscience.usaidprojects.R;
-import com.tscience.usaidprojects.USAidConstants;
 import com.tscience.usaidprojects.USAidFilterFragment;
 import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
-import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 
 
 /**
@@ -90,6 +88,9 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
             int arraySize = overviewData.length();
             Log.d(LOG_TAG, "-----------------------------------------overviewData arraySize: " + arraySize);
             
+            // create the new data object
+            USAidProjectsOverviewObject currentValue = new USAidProjectsOverviewObject();
+            
             // process this data
             // parse the JSONArray and create the USAidProjectsSnapshotObject array
             for (int i = 0; i < arraySize; i++) {
@@ -101,16 +102,46 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
                     
                     jsonObject = overviewData.getJSONObject(i);
                     
-                    // create the new data object
-                    USAidProjectsOverviewObject tempValue = new USAidProjectsOverviewObject();
+                    if (currentValue.countryID != null) {
+                    	
+                    	// get the cuntry id for evaluation
+                    	String tempCountry = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
+                    	int tempCount = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
+                    	
+                    	// is this the country we are currently counting
+                    	if (currentValue.countryID.equalsIgnoreCase(tempCountry)) {
+                    		
+                    		// add the projects to the count
+                    		currentValue.totalProjects += tempCount;
+                    		
+                    	} else {
+                    		
+                    		// save the current value
+                    		// add to the data array
+                            items.add(currentValue);
+                            Log.d(LOG_TAG, "----------------------------country: " + currentValue.countryID + " count: " + currentValue.totalProjects);
+                    		
+                    		// create a new current value
+                            currentValue = new USAidProjectsOverviewObject();
+                    		
+                    		// set the values
+                            currentValue.countryID = tempCountry;
+                            currentValue.totalProjects = tempCount;
+                            // TODO
+                        	currentValue.countryCode = 0;
+                    		
+                    	}
+                    	
+                    	
+                    } else {
                     
-                    tempValue.totalProjects = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
-                    tempValue.countryID = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
-                     // TODO
-                    tempValue.countryCode = 0;
+                    	// set the first value
+                    	currentValue.totalProjects = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
+                    	currentValue.countryID = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
+	                    // TODO
+                    	currentValue.countryCode = 0;
                     
-                    // add to the data array
-                    items.add(tempValue);
+                    }
                     
                 }
                 catch (Exception ignore) {
@@ -124,7 +155,7 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
             
         }
         
-        
+        // TODO send to fragment
         
         // turn the progress dialog off
         try {

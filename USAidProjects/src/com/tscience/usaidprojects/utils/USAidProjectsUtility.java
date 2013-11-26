@@ -51,15 +51,42 @@ public class USAidProjectsUtility {
 	/**
 	 * Convenience method to get the server url for snapshot.
 	 *  
-	 * @param context  The context requesting the url.
+	 * @param context  	The context requesting the url.
+	 * @param value		The filter string.
 	 * 
 	 * @return The string url to the server.
 	 */
-	public static String getUrlSnapshot(Context context) {
+	public static String getUrlSnapshot(Context context, String value) {
 	    
 	    StringBuffer sb = new StringBuffer();
 	    sb.append(context.getString(R.string.usaid_server_url));
 	    sb.append(context.getString(R.string.usaid_server_snapshot));
+	    
+	    if (value != null) {
+	    	sb.append(value);
+	    }
+	    
+	    return sb.toString();
+	    
+	} // end getUrlSnapshot
+	
+	/**
+	 * Convenience method to get the server url for overview.
+	 *  
+	 * @param context   The context requesting the url.
+	 * @param value		The filter string.
+	 * 
+	 * @return The string url to the server.
+	 */
+	public static String getUrlOverview(Context context, String value) {
+	    
+	    StringBuffer sb = new StringBuffer();
+	    sb.append(context.getString(R.string.usaid_server_url));
+	    sb.append(context.getString(R.string.usaid_server_overview));
+	    
+	    if (value != null) {
+	    	sb.append(value);
+	    }
 	    
 	    return sb.toString();
 	    
