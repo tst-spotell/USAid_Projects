@@ -75,7 +75,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             // this tab is selected.
             actionBar.addTab(actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
-    }
+        
+    } // end onCreate
 
     @Override
     protected void onResume() {

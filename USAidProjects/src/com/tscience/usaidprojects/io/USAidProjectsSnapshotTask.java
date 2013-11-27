@@ -337,6 +337,12 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         }
         
         // TODO send data to fragment
+        if (usaidFilterFragmentReference != null) {
+            
+        	USAidFilterFragment usaidFilterFragment = usaidFilterFragmentReference.get();
+        	usaidFilterFragment.prepareListData(items, usingChachedData);
+            
+        }
         
         // turn the progress dialog off
         try {

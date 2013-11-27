@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
@@ -22,14 +22,17 @@ import android.widget.TextView;
  */
 public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     
-    private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
     
+    private LayoutInflater inflater;
+    
     public USAidExpandableListAdapter(Context context, List<String> listDataHeader,
             HashMap<String, List<String>> listChildData) {
-        this._context = context;
+    	
+    	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
@@ -61,51 +64,28 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         // if the view has not been created create it
         if (currentView == null) {
             
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            currentView = infalInflater.inflate(R.layout.usaid_list_item, null);
+            currentView = inflater.inflate(R.layout.usaid_list_item, null);
             
             // create the tag we are using
-            currentView.setTag(new USAidProjectsViewHolder());
+            currentView.setTag(new USAidProjectsFilterViewHolder());
             
         }
         
-        USAidProjectsViewHolder usaidViewHolder = (USAidProjectsViewHolder) currentView.getTag();
+        USAidProjectsFilterViewHolder usaidViewHolder = (USAidProjectsFilterViewHolder) currentView.getTag();
         
         // load the holder if empty
-        if (usaidViewHolder.checkedTextView == null) {
+        if (usaidViewHolder.textView == null) {
             
-            usaidViewHolder.checkedTextView = (CheckedTextView) currentView.findViewById(R.id.lblListItem);
+            usaidViewHolder.textView = (TextView) currentView.findViewById(R.id.lblListItem);
+            usaidViewHolder.checkBox = (CheckBox) currentView.findViewById(R.id.lblCheckbox);
             
         }
         
         final String childText = (String) getChild(groupPosition, childPosition);
         
-        usaidViewHolder.checkedTextView.setText(childText);
+        usaidViewHolder.textView.setText(childText);
         
         // TODO do checked by arrays
-        
-//        if (convertView == null) {
-//            LayoutInflater infalInflater = (LayoutInflater) this._context
-//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            convertView = infalInflater.inflate(R.layout.usaid_list_item, null);
-//        }
- 
-//        CheckedTextView txtListChild = (CheckedTextView) convertView
-//                .findViewById(R.id.lblListItem);
-// 
-//        txtListChild.setText(childText);
-        
-//        txtListChild.setOnClickListener(new OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                
-//                txtListChild.toggle();
-//                
-//            }
-//            
-//        });
         
         return currentView;
         
@@ -156,9 +136,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
 
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.usaid_list_group, null);
+                convertView = inflater.inflate(R.layout.usaid_list_group, null);
             }
      
         TextView lblListHeader = (TextView) convertView
@@ -191,9 +169,10 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      * @author spotell at t-sciences.com
      *
      */
-    static class USAidProjectsViewHolder {
+    static class USAidProjectsFilterViewHolder {
         
-        CheckedTextView checkedTextView;
+        TextView textView;
+        CheckBox checkBox;
         
     } // end SearchResultsViewHolder
 

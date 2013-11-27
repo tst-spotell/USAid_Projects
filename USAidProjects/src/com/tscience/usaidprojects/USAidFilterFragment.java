@@ -10,14 +10,17 @@ import java.util.List;
 
 import com.tscience.usaidprojects.io.USAidProjectsOverviewTask;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
+import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -32,6 +35,9 @@ import android.widget.ListView;
  * @author spotell at t-sciences.com
  */
 public class USAidFilterFragment extends Fragment {
+	
+	/** Log id of this class name. */
+    private static final String LOG_TAG = "USAidFilterFragment";
     
     ExpandableListAdapter listAdapter;
     
@@ -49,34 +55,34 @@ public class USAidFilterFragment extends Fragment {
         
         View rootView = inflater.inflate(R.layout.usaid_filter_layout, container, false);
         
-        // preparing list data
-        prepareListData();
+//        // preparing list data
+//        prepareListData();
         
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.usaid_filter_locations);
         
-        // create the adapter with the data
-        listAdapter = new USAidExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
-        
-        // setting list adapter
-        expListView.setAdapter(listAdapter);
-        
-        expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        
-        expListView.setOnChildClickListener(new OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                
-                CheckedTextView checkbox = (CheckedTextView)v.findViewById(R.id.lblListItem);
-                checkbox.toggle();
-                
-                // TODO update group
-                
-                return true;
-            }
-            
-        });
+//        // create the adapter with the data
+//        listAdapter = new USAidExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+//        
+//        // setting list adapter
+//        expListView.setAdapter(listAdapter);
+//        
+//        expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//        
+//        expListView.setOnChildClickListener(new OnChildClickListener() {
+//
+//            @Override
+//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+//                
+//                CheckedTextView checkbox = (CheckedTextView)v.findViewById(R.id.lblListItem);
+//                checkbox.toggle();
+//                
+//                // TODO update group
+//                
+//                return true;
+//            }
+//            
+//        });
         
         // start getting the data
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
@@ -100,8 +106,11 @@ public class USAidFilterFragment extends Fragment {
     
     /*
      * Populate the list data with our regions and countries.
+     * 
+     * @param value			The array of USAidProjectsSnapshotObject's used to setup the filter display.
+     * @param cachedData    False this is live data or True this is cached data.
      */
-    private void prepareListData() {
+    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, boolean cachedData) {
         
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
@@ -118,6 +127,34 @@ public class USAidFilterFragment extends Fragment {
         listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_MIDDLE_EAST), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_middle_east)));
         listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFRICA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_africa)));
  
+        // create the adapter with the data
+        listAdapter = new USAidExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+        
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
+        
+        expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        
+//        expListView.setOnChildClickListener(new OnChildClickListener() {
+//
+//            @Override
+//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+//                
+//            	Log.d(LOG_TAG, "-----------------------------------------onChildClick");
+////            	USAidProjectsFilterViewHolder usaidViewHolder = (USAidProjectsFilterViewHolder) v.getTag();
+////            	usaidViewHolder.checkedTextView.toggle();
+//                CheckBox checkbox = (CheckBox)v.findViewById(R.id.lblCheckbox);
+//                checkbox.toggle();
+//                
+//                // TODO update group
+//                
+//                return true;
+//            }
+//            
+//        });
+        
+        // redraw with the new data
+        expListView.invalidate();
     } // end prepareListData
 
 } // end USAidFilterFragment

@@ -22,11 +22,11 @@ public class USAidConstants {
     
     // Regional constants
     public static final int USAID_REGION_AFPAK = 0;
-    public static final int USAID_REGION_EUROPE = 1;
-    public static final int USAID_REGION_AFRICA = 2;
-    public static final int USAID_REGION_ASIA = 3;
-    public static final int USAID_REGION_LATIN_AMERICA = 4;
-    public static final int USAID_REGION_MIDDLE_EAST = 5;
+    public static final int USAID_REGION_ASIA = 1;
+    public static final int USAID_REGION_EUROPE = 2;
+    public static final int USAID_REGION_LATIN_AMERICA = 3;
+    public static final int USAID_REGION_MIDDLE_EAST = 4;
+    public static final int USAID_REGION_AFRICA = 5;
     public static final int USAID_REGION_OTHER = 6;
     
     

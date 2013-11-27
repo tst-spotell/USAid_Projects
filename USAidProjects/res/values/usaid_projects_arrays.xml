@@ -4,8 +4,7 @@
     <!-- regions -->
      
     <string-array name="usaid_filter_regions">
-        <item>@string/usaid_action_filter_region_afganistan</item>
-        <item>@string/usaid_action_filter_region_pakistan</item>
+        <item>@string/usaid_action_filter_region_afganistan_pakistan</item>
         <item>@string/usaid_action_filter_region_asia</item>
         <item>@string/usaid_action_filter_region_europe</item>
         <item>@string/usaid_action_filter_region_latin_america</item>

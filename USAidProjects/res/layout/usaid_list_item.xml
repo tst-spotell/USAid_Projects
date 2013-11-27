@@ -10,7 +10,7 @@
         android:paddingTop="12dp"
         android:src="@drawable/kenya"
         android:paddingLeft="72dp" />
- --> 
+ 
     <CheckedTextView
         android:id="@+id/lblListItem"
         android:layout_width="fill_parent"
@@ -23,6 +23,25 @@
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
          />
+-->
+
+	<TextView
+	    android:id="@+id/lblListItem"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:gravity="center_vertical"
+	    android:paddingBottom="5dp"
+	    android:paddingLeft="30dp"
+	    android:paddingTop="5dp"
+	    android:textSize="17sp" />
+	
+	<CheckBox
+	    android:id="@+id/lblCheckbox"
+	    android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true" />
  
 </RelativeLayout>
 
