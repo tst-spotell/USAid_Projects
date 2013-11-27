@@ -5,6 +5,8 @@ package com.tscience.usaidprojects.io;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -178,6 +180,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         
         JSONArray regionsData = null;
         
+        ArrayList<USAidProjectsSnapshotObject> regionArray = new ArrayList<USAidProjectsSnapshotObject>();
+        
         try {
             regionsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_regions_jason_array));
         }
@@ -214,7 +218,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     
                     // add to the data array
-                    items.add(tempValue);
+                    regionArray.add(tempValue);
+//                    items.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -230,6 +235,17 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         
         
         JSONArray locationsData = null;
+        
+        // create the country map
+        HashMap<String, ArrayList<USAidProjectsSnapshotObject>> countryMap = new HashMap<String, ArrayList<USAidProjectsSnapshotObject>>();
+        
+        int numRegions = regionArray.size();
+        
+        for (int i = 0; i < numRegions; i++) {
+            
+            countryMap.put(regionArray.get(i).name, new ArrayList<USAidProjectsSnapshotObject>());
+            
+        }
         
         try {
             locationsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_locations_jason_array));
@@ -270,7 +286,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     tempValue.countryCode = jsonObject.getString(context.getString(R.string.usaid_projects_code_jason_array));
                     
                     // add to the data array
-                    items.add(tempValue);
+                    countryMap.get(tempValue.parentRegion).add(tempValue);
+//                    items.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -340,7 +357,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         if (usaidFilterFragmentReference != null) {
             
         	USAidFilterFragment usaidFilterFragment = usaidFilterFragmentReference.get();
-        	usaidFilterFragment.prepareListData(items, usingChachedData);
+        	usaidFilterFragment.prepareListData(items, regionArray, countryMap, usingChachedData);
             
         }
         

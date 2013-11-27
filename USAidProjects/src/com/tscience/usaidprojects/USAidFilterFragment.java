@@ -43,10 +43,10 @@ public class USAidFilterFragment extends Fragment {
     ExpandableListView expListView;
     
     /** This is the list of headers. */
-    List<String> listDataHeader;
+    ArrayList<USAidProjectsSnapshotObject> listDataHeader;
     
     /** Contains the child drop down list items. */
-    HashMap<String, List<String>> listDataChild;
+    HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listDataChild;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,9 +106,11 @@ public class USAidFilterFragment extends Fragment {
      * Populate the list data with our regions and countries.
      * 
      * @param value			The array of USAidProjectsSnapshotObject's used to setup the filter display.
+     * @param regions       The list of region data.
+     * @param countryMap    The hashmap of countries tied to a region.
      * @param cachedData    False this is live data or True this is cached data.
      */
-    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, boolean cachedData) {
+    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String, ArrayList<USAidProjectsSnapshotObject>> countryMap, boolean cachedData) {
         
         // there was nothing to display
         if ((value == null) && !cachedData) {
@@ -116,20 +118,21 @@ public class USAidFilterFragment extends Fragment {
             return;
         }
         
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+//        listDataHeader = new ArrayList<String>();
+        listDataHeader = regions;
+        listDataChild = countryMap;
  
         // Adding region data
-        Resources res = getActivity().getResources();
-        listDataHeader= Arrays.asList(res.getStringArray(R.array.usaid_filter_regions));
+//        Resources res = getActivity().getResources();
+//        listDataHeader= Arrays.asList(res.getStringArray(R.array.usaid_filter_regions));
         
         // Adding child data
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFPAK), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_afpak))); // Header, Child data
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_ASIA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_asia)));
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_EUROPE), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_europe)));
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_LATIN_AMERICA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_latin)));
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_MIDDLE_EAST), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_middle_east)));
-        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFRICA), Arrays.asList(res.getStringArray(R.array.usaid_filter_region_africa)));
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFPAK).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_afpak))); // Header, Child data
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_ASIA).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_asia)));
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_EUROPE).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_europe)));
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_LATIN_AMERICA).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_latin)));
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_MIDDLE_EAST).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_middle_east)));
+//        listDataChild.put(listDataHeader.get(USAidConstants.USAID_REGION_AFRICA).name, Arrays.asList(res.getStringArray(R.array.usaid_filter_region_africa)));
  
         // create the adapter with the data
         listAdapter = new USAidExpandableListAdapter(getActivity(), listDataHeader, listDataChild);

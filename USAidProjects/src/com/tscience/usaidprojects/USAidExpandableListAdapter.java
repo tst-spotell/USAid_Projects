@@ -3,8 +3,11 @@
  */
 package com.tscience.usaidprojects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -28,14 +31,14 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidExpandableListAdapter";
     
-    private List<String> _listDataHeader; // header titles
+    private ArrayList<USAidProjectsSnapshotObject> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
+    private HashMap<String, ArrayList<USAidProjectsSnapshotObject>> _listDataChild;
     
     private LayoutInflater inflater;
     
-    public USAidExpandableListAdapter(Context context, List<String> listDataHeader,
-            HashMap<String, List<String>> listChildData) {
+    public USAidExpandableListAdapter(Context context, ArrayList<USAidProjectsSnapshotObject> listDataHeader,
+            HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listChildData) {
     	
     	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -48,7 +51,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).get(childPosition);
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition).name).get(childPosition).label;
     }
 
     /* (non-Javadoc)
@@ -103,7 +106,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition).name).size();
     }
 
     /* (non-Javadoc)
@@ -111,7 +114,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getGroup(int groupPosition) {
-        return this._listDataHeader.get(groupPosition);
+        return this._listDataHeader.get(groupPosition).label;
     }
 
     /* (non-Javadoc)
