@@ -20,8 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -112,6 +110,12 @@ public class USAidFilterFragment extends Fragment {
      */
     public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, boolean cachedData) {
         
+        // there was nothing to display
+        if ((value == null) && !cachedData) {
+            noCachedData();
+            return;
+        }
+        
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
  
@@ -135,23 +139,25 @@ public class USAidFilterFragment extends Fragment {
         
         expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         
-//        expListView.setOnChildClickListener(new OnChildClickListener() {
-//
-//            @Override
-//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                
-//            	Log.d(LOG_TAG, "-----------------------------------------onChildClick");
-////            	USAidProjectsFilterViewHolder usaidViewHolder = (USAidProjectsFilterViewHolder) v.getTag();
-////            	usaidViewHolder.checkedTextView.toggle();
+        expListView.setOnChildClickListener(new OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                
+            	Log.d(LOG_TAG, "-----------------------------------------onChildClick");
+//            	USAidProjectsFilterViewHolder usaidViewHolder = (USAidProjectsFilterViewHolder) v.getTag();
+//            	usaidViewHolder.checkedTextView.toggle();
 //                CheckBox checkbox = (CheckBox)v.findViewById(R.id.lblCheckbox);
 //                checkbox.toggle();
-//                
-//                // TODO update group
-//                
-//                return true;
-//            }
-//            
-//        });
+                
+                // TODO change value
+                
+                // TODO update group
+                
+                return true;
+            }
+            
+        });
         
         // redraw with the new data
         expListView.invalidate();

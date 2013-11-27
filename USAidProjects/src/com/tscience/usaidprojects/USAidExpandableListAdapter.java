@@ -8,11 +8,14 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 
@@ -21,6 +24,9 @@ import android.widget.TextView;
  *
  */
 public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
+    
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidExpandableListAdapter";
     
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
@@ -84,6 +90,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         final String childText = (String) getChild(groupPosition, childPosition);
         
         usaidViewHolder.textView.setText(childText);
+        
         
         // TODO do checked by arrays
         

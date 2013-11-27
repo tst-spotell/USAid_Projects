@@ -264,7 +264,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     
                     tempValue.objectType = USAidConstants.USAID_TYPE_LOCATIONS;
                     tempValue.countryUrl = jsonObject.getString(context.getString(R.string.usaid_projects_url_jason_array));
-                    tempValue.setRegionString(jsonObject.getString(context.getString(R.string.usaid_projects_parent_jason_array)));
+                    tempValue.parentRegion = jsonObject.getString(context.getString(R.string.usaid_projects_parent_jason_array));
                     tempValue.name = jsonObject.getString(context.getString(R.string.usaid_projects_name_jason_array));
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     tempValue.countryCode = jsonObject.getString(context.getString(R.string.usaid_projects_code_jason_array));
@@ -336,7 +336,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
-        // TODO send data to fragment
+        // send data to fragment
         if (usaidFilterFragmentReference != null) {
             
         	USAidFilterFragment usaidFilterFragment = usaidFilterFragmentReference.get();

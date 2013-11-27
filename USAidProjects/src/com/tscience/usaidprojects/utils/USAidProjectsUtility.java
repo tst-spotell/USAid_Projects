@@ -91,5 +91,35 @@ public class USAidProjectsUtility {
 	    return sb.toString();
 	    
 	} // end getUrlSnapshot
+	
+	/**
+     * This replaces the space with %20 for search purposes.
+     * 
+     * @param value The string to convert.
+     * @return      The converted string.
+     */
+    public static String convertName(String value) {
+        
+        StringBuffer sb = new StringBuffer(value.length());
+        
+        int len = value.length();
+        
+        char c;
+        
+        for (int i = 0; i < len; i++) {
+            
+            c = value.charAt(i);
+            
+            if (c == ' ') {
+                sb.append("%20");
+            } else {
+                sb.append(c);
+            }
+            
+        }
+        
+        return sb.toString();
+        
+    } // end convertName
 
 } // end USAidProjectsUtility

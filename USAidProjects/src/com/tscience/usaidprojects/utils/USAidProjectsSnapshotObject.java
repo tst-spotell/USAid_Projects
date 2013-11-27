@@ -19,8 +19,8 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 	public String label;
 	public String countryUrl;
 	public String parentRegion;
-	public int parentRegionId;
 	public String countryCode;
+	public boolean selected;
 	
 	// empty constructor
     public USAidProjectsSnapshotObject() {}
@@ -28,16 +28,6 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 	@Override
 	public int describeContents() {
 		return 0;
-	}
-	
-	/**
-	 * Takes the string value of the parent and gens the id as well.
-	 * 
-	 * @param value    The string value of the parent region.
-	 */
-	public void setRegionString(String value) {
-	    parentRegion = value;
-	    parentRegionId = USAidProjectsUtility.setParentRegion(value);
 	}
 	
 	@Override
@@ -48,8 +38,12 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 		dest.writeString(label);
 		dest.writeString(countryUrl);
 		dest.writeString(parentRegion);
-		dest.writeInt(parentRegionId);
 		dest.writeString(countryCode);
+		if (selected) {
+		    dest.writeInt(1);
+		} else {
+		    dest.writeInt(0);
+		}
 		
 	} // end writeToParcel
 	
@@ -71,8 +65,14 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 		label = in.readString();
 		countryUrl = in.readString();
 		parentRegion = in.readString();
-		parentRegionId = in.readInt();
 		countryCode = in.readString();
+		
+		int tempInt = in.readInt();
+		if (tempInt == 0) {
+		    selected = false;
+		} else {
+		    selected = true;
+		}
 		
 	}
 
