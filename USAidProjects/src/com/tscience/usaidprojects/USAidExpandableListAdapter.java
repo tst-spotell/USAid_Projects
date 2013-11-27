@@ -3,12 +3,6 @@
  */
 package com.tscience.usaidprojects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -31,19 +25,16 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidExpandableListAdapter";
     
-    private ArrayList<USAidProjectsSnapshotObject> _listDataHeader; // header titles
+//    private ArrayList<USAidProjectsSnapshotObject> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, ArrayList<USAidProjectsSnapshotObject>> _listDataChild;
+//    private HashMap<String, ArrayList<USAidProjectsSnapshotObject>> _listDataChild;
     
     private LayoutInflater inflater;
     
-    public USAidExpandableListAdapter(Context context, ArrayList<USAidProjectsSnapshotObject> listDataHeader,
-            HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listChildData) {
+    public USAidExpandableListAdapter(Context context) {
     	
     	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        this._listDataHeader = listDataHeader;
-        this._listDataChild = listChildData;
     }
 
     /* (non-Javadoc)
@@ -51,7 +42,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition).name).get(childPosition).label;
+        return USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).label;
     }
 
     /* (non-Javadoc)
@@ -66,7 +57,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, android.view.View, android.view.ViewGroup)
      */
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         
         View currentView = convertView;
         
@@ -94,10 +85,50 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         
         usaidViewHolder.textView.setText(childText);
         
+        // add the check change listener to update the objects
+        usaidViewHolder.checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+                Log.d(LOG_TAG, "-----------------------------------------onCheckedChanged: " + groupPosition + "  " + childPosition);
+                
+                setChildChecked(groupPosition, childPosition, isChecked);
+                
+            }
+            
+        });
         
-        // TODO do checked by arrays
+        usaidViewHolder.checkBox.setChecked(getChildChecked(groupPosition, childPosition));
         
         return currentView;
+        
+    }
+    
+    /**
+     * Get the checked value.
+     * 
+     * @param groupPosition The group position name in the list.
+     * @param childPosition The child position in the list.
+     * 
+     * @return The value of the onjects checked.
+     */
+    private boolean getChildChecked(int groupPosition, int childPosition) {
+        
+        return USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).selected;
+        
+    }
+    
+    /**
+     * This method sets the check value after the checkbox has been selected.
+     * 
+     * @param groupPosition The group position name in the list.
+     * @param childPosition The child position in the list.
+     * @param value         The new checked value.
+     */
+    private void setChildChecked(int groupPosition, int childPosition, boolean value) {
+        
+        USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).selected = value;
         
     }
 
@@ -106,7 +137,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition).name).size();
+        return USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).size();
     }
 
     /* (non-Javadoc)
@@ -114,7 +145,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getGroup(int groupPosition) {
-        return this._listDataHeader.get(groupPosition).label;
+        return USAidFilterFragment.listDataHeader.get(groupPosition).label;
     }
 
     /* (non-Javadoc)
@@ -123,8 +154,8 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public int getGroupCount() {
         
-        if (_listDataHeader != null) {
-            return this._listDataHeader.size();
+        if (USAidFilterFragment.listDataHeader != null) {
+            return USAidFilterFragment.listDataHeader.size();
         }
         
         return 0;

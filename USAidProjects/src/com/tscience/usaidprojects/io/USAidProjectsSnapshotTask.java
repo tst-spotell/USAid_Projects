@@ -5,8 +5,9 @@ package com.tscience.usaidprojects.io;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -301,6 +302,11 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // before we display this lets sort by displayname
+        for (int j = 0; j < numRegions; j++) {
+            Collections.sort(countryMap.get(regionArray.get(j).name), new DisplayNameComparator());
+        }
+        
         JSONArray initiativesData = null;
         
         try {
@@ -370,5 +376,17 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         context = null;
         
     } // end onPostExecute
+    
+    /**
+     * This class sorts data by published date.
+     * 
+     * @author spotell at t-sciences.com
+     *
+     */
+    class DisplayNameComparator implements Comparator<USAidProjectsSnapshotObject> {
+        public int compare(USAidProjectsSnapshotObject object1, USAidProjectsSnapshotObject object2) {
+            return ((object1.label).compareTo(object2.label));
+        }
+    }
 
 } // end USAidProjectsSnapshotTask
