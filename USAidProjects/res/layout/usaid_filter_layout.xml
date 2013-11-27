@@ -6,13 +6,32 @@
     <LinearLayout
         android:id="@+id/usaid_filter_buttons_holder"
         android:layout_width="120dp"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
         
         <Button
             android:id="@+id/usaid_filter_buttons_locations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/usaid_button_title_locations" />
+        
+        <Button
+            android:id="@+id/usaid_filter_buttons_sectors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usaid_button_title_sectors" />
+        
+        <Button
+            android:id="@+id/usaid_filter_buttons_initiatives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usaid_button_title_initiatives" />
+        
+        <Button
+            android:id="@+id/usaid_filter_buttons_dates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usaid_button_title_dates" />
         
     </LinearLayout>
     
@@ -22,5 +41,13 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/usaid_filter_buttons_holder"
         android:text="@string/usaid_no_data" />
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/usaid_filter_buttons_holder"
+        android:layout_below="@id/usaid_filter_locations"
+        android:visibility="gone" />
     
 </RelativeLayout>

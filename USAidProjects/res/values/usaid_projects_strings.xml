@@ -6,6 +6,9 @@
     
     <!-- buttons -->
     <string name="usaid_button_title_locations">Locations</string>
+    <string name="usaid_button_title_sectors">Sectors</string>
+    <string name="usaid_button_title_initiatives">Initiatives</string>
+    <string name="usaid_button_title_dates">Dates</string>
     <string name="usaid_button_ok">OK</string>
     <string name="usaid_button_cancel">Cancel</string>
     

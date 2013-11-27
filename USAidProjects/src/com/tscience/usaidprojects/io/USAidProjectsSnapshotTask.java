@@ -128,6 +128,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         
         JSONArray sectorsData = null;
         
+        ArrayList<USAidProjectsSnapshotObject> sectorArray = new ArrayList<USAidProjectsSnapshotObject>();
+        
         try {
             sectorsData = workingData.getJSONArray(context.getString(R.string.usaid_projects_snapshot_sectors_jason_array));
         }
@@ -164,7 +166,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     
                     // add to the data array
-                    items.add(tempValue);
+                    sectorArray.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -177,6 +179,9 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             sectorsData = null;
             
         }
+        
+        // sort the sector names
+        Collections.sort(sectorArray, new DisplayNameComparator());
         
         
         JSONArray regionsData = null;
@@ -220,7 +225,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     
                     // add to the data array
                     regionArray.add(tempValue);
-//                    items.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -233,6 +237,9 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             regionsData = null;
             
         }
+        
+        // sort the region names
+        Collections.sort(regionArray, new DisplayNameComparator());
         
         
         JSONArray locationsData = null;
@@ -288,7 +295,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     
                     // add to the data array
                     countryMap.get(tempValue.parentRegion).add(tempValue);
-//                    items.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -363,7 +369,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         if (usaidFilterFragmentReference != null) {
             
         	USAidFilterFragment usaidFilterFragment = usaidFilterFragmentReference.get();
-        	usaidFilterFragment.prepareListData(items, regionArray, countryMap, usingChachedData);
+        	usaidFilterFragment.prepareListData(items, regionArray, countryMap, sectorArray, usingChachedData);
             
         }
         

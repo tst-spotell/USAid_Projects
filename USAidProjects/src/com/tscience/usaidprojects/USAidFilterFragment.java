@@ -43,39 +43,16 @@ public class USAidFilterFragment extends Fragment {
     /** Contains the child drop down list items. */
     public static HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listDataChild;
     
+    /** List of the sector headings. */
+    public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
         View rootView = inflater.inflate(R.layout.usaid_filter_layout, container, false);
         
-//        // preparing list data
-//        prepareListData();
-        
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.usaid_filter_locations);
-        
-//        // create the adapter with the data
-//        listAdapter = new USAidExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
-//        
-//        // setting list adapter
-//        expListView.setAdapter(listAdapter);
-//        
-//        expListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-//        
-//        expListView.setOnChildClickListener(new OnChildClickListener() {
-//
-//            @Override
-//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                
-//                CheckedTextView checkbox = (CheckedTextView)v.findViewById(R.id.lblListItem);
-//                checkbox.toggle();
-//                
-//                // TODO update group
-//                
-//                return true;
-//            }
-//            
-//        });
         
         // start getting the data
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
@@ -103,9 +80,11 @@ public class USAidFilterFragment extends Fragment {
      * @param value			The array of USAidProjectsSnapshotObject's used to setup the filter display.
      * @param regions       The list of region data.
      * @param countryMap    The hashmap of countries tied to a region.
+     * @param sectors       The list of sector data.
      * @param cachedData    False this is live data or True this is cached data.
      */
-    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String, ArrayList<USAidProjectsSnapshotObject>> countryMap, boolean cachedData) {
+    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String,
+            ArrayList<USAidProjectsSnapshotObject>> countryMap, ArrayList<USAidProjectsSnapshotObject> sectors, boolean cachedData) {
         
         // there was nothing to display
         if ((value == null) && !cachedData) {
@@ -126,6 +105,9 @@ public class USAidFilterFragment extends Fragment {
         
         // redraw with the new data
         expListView.invalidate();
+        
+        sectorDataHeader = sectors;
+        
     } // end prepareListData
 
 } // end USAidFilterFragment
