@@ -158,104 +158,112 @@ public class USAidProjectsBaseNetworkTask extends AsyncTask<String, Void, JSONOb
     @Override
     protected void onPostExecute(JSONObject result) {
         
-        // null most likely caused by connection error
-        if (result == null) {
-            
-            Log.d(LOG_TAG, "---------------------------------- no results from server");
-            
-            // use cache if available
-            InputStream in = null;
-            
-            try {
+        // save the results
+        workingData = result;
+        
+        // check the cache file if one is named
+        if (cacheFileName != null) {
+        
+            // null most likely caused by connection error
+            if (result == null) {
                 
-                in = new BufferedInputStream(context.openFileInput(cacheFileName));
+                Log.d(LOG_TAG, "---------------------------------- no results from server");
                 
-                // string buffer to store results
-                StringBuffer sb = new StringBuffer();
+                // use cache if available
+                InputStream in = null;
                 
-                int bufferSize = 8192;
-                
-                // byte array to store input
-                byte[] contents = new byte[bufferSize];
-                
-                int numBytes = 0;
-                
-                while (in.available() > 0) {
+                try {
                     
-                    Log.d(LOG_TAG, "---------------------------------- in.available(): " + in.available());
+                    in = new BufferedInputStream(context.openFileInput(cacheFileName));
                     
-                    // read the buffer full
-                    numBytes = in.read(contents, numBytes, bufferSize);
+                    // string buffer to store results
+                    StringBuffer sb = new StringBuffer();
                     
-                    Log.d(LOG_TAG, "---------------------------------- numBytes: " + numBytes);
+                    int bufferSize = 8192;
                     
-                    // add to the string buffer
-                    sb.append(new String(contents));
+                    // byte array to store input
+                    byte[] contents = new byte[bufferSize];
                     
-                    // reset
-                    numBytes = 0;
-                    contents = new byte[bufferSize];
+                    int numBytes = 0;
+                    
+                    while (in.available() > 0) {
+                        
+                        Log.d(LOG_TAG, "---------------------------------- in.available(): " + in.available());
+                        
+                        // read the buffer full
+                        numBytes = in.read(contents, numBytes, bufferSize);
+                        
+                        Log.d(LOG_TAG, "---------------------------------- numBytes: " + numBytes);
+                        
+                        // add to the string buffer
+                        sb.append(new String(contents));
+                        
+                        // reset
+                        numBytes = 0;
+                        contents = new byte[bufferSize];
+                        
+                    }
+                    
+                    workingData = new JSONObject(sb.toString());
+                    
+                    usingChachedData = true;
+                    
+                }
+                catch (Exception ignore) {
+                    
+                    workingData = null;
+                    
+                    // turn the progress dialog off
+                    try {
+                        progressDialog.dismiss();
+                    } catch (Exception ignoreAgain) {}
+                    
+                    ignore.printStackTrace();
+                    return;
+                }
+                
+            } else {
+                
+                // was the task canceled
+                if (this.isCancelled()) {
+                    workingData = null;
+                    return;
+                }
+                
+                // cache the json object
+                workingData = result;
+                
+                // if the file already exists delete it
+                File file = new File(context.getFilesDir(), cacheFileName);
+                
+                if (file.length() > 0) {
+                    
+                    file.delete();
                     
                 }
                 
-                workingData = new JSONObject(sb.toString());
-                
-                usingChachedData = true;
-                
-            }
-            catch (Exception ignore) {
-                
-                workingData = null;
-                
-                // turn the progress dialog off
+                String string = result.toString();
+                FileOutputStream outputStream;
+    
+                // write the json object
                 try {
-                    progressDialog.dismiss();
-                } catch (Exception ignoreAgain) {}
+                    outputStream = context.openFileOutput(cacheFileName, Context.MODE_PRIVATE);
+                    outputStream.write(string.getBytes());
+                    outputStream.close();
+                } catch (Exception e) {
+                    
+                    // turn the progress dialog off
+                    try {
+                        progressDialog.dismiss();
+                    } catch (Exception ignoreAgain) {}
+                    
+                    e.printStackTrace();
+                    return;
+                }
                 
-                ignore.printStackTrace();
-                return;
-            }
-            
-        } else {
-            
-            // was the task canceled
-            if (this.isCancelled()) {
-                workingData = null;
-                return;
-            }
-            
-            // cache the json object
-            workingData = result;
-            
-            // if the file already exists delete it
-            File file = new File(context.getFilesDir(), cacheFileName);
-            
-            if (file.length() > 0) {
-                
-                file.delete();
-                
-            }
-            
-            String string = result.toString();
-            FileOutputStream outputStream;
-
-            // write the json object
-            try {
-                outputStream = context.openFileOutput(cacheFileName, Context.MODE_PRIVATE);
-                outputStream.write(string.getBytes());
-                outputStream.close();
-            } catch (Exception e) {
-                
-                // turn the progress dialog off
-                try {
-                    progressDialog.dismiss();
-                } catch (Exception ignoreAgain) {}
-                
-                e.printStackTrace();
-                return;
-            }
-            
-        } // end cache data
+            } // end cache data
+        
+        } // end null cacheFileName
         
     } // end onPostExecute
 

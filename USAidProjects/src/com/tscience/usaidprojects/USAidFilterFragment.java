@@ -173,6 +173,19 @@ public class USAidFilterFragment extends SherlockFragment {
         
     }
     
+    
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+        
+        USAidMainActivity.countryQuery = makeFilterQuery();
+        USAidMainActivity.countryQueryResults = null;
+        
+        Log.d(LOG_TAG, "---------------------------------------------- countryQuery: " + USAidMainActivity.countryQuery);
+        
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -275,9 +288,69 @@ public class USAidFilterFragment extends SherlockFragment {
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
         usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
         
-        // get the count
-        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(this);
-        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
+//        // get the count
+//        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(getActivity(), getString(R.string.usaid_json_overview_cache_file));
+//        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
+        
+    }
+    
+    private String makeFilterQuery() {
+        
+        StringBuffer result = new StringBuffer();
+        result.append(getString(R.string.usaid_server_url));
+        result.append(getString(R.string.usaid_server_overview));
+        result.append(getString(R.string.usaid_server_flag));
+        result.append(getString(R.string.usaid_server_country_start));
+        
+        // get the countries
+        if ((listDataHeader != null) && (listDataChild != null)) {
+            
+            int numRegions = listDataHeader.size();
+            
+            try {
+                
+                boolean firstTime = true;
+            
+                for (int i = 0; i < numRegions; i++) {
+                    
+                    ArrayList<USAidProjectsSnapshotObject> temp = listDataChild.get(listDataHeader.get(i).name);
+                    
+                    int tempArraySize = temp.size();
+                    
+                    for (int j = 0; j < tempArraySize; j++) {
+                        
+                        if (temp.get(j).selected) {
+                            
+                            if (!firstTime) {
+                                
+                                // add the spacer between items
+                                result.append(getString(R.string.usaid_server_spacer));
+                                
+                            } else {
+                                
+                                firstTime = false;
+                                
+                            }
+                            
+                            // if checked add the country name
+                            result.append(USAidProjectsUtility.convertName(temp.get(j).name));
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+            
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance listDataChild");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        
+        }
+        
+        return result.toString();
         
     }
 

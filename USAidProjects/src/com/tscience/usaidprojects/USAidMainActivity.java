@@ -3,6 +3,7 @@
  */
 package com.tscience.usaidprojects;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -23,6 +24,7 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
 
 @SuppressLint("NewApi")
 public class USAidMainActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
@@ -41,6 +43,10 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    
+    public static String countryQuery;
+    
+    public static ArrayList<USAidProjectsOverviewObject> countryQueryResults;
 
     @SuppressLint({ "InlinedApi", "NewApi" })
     @Override
@@ -126,6 +132,13 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                     
                     Fragment fragmentMap = new USAidMapFragment();
                     return fragmentMap;
+                    
+                }
+                
+                case 2: {
+                    
+                    Fragment fragmentCountry = new USAidCountryListFragment();
+                    return fragmentCountry;
                     
                 }
                 
