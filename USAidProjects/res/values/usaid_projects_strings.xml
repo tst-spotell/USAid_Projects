@@ -87,6 +87,11 @@
     <string name="usaid_json_overview_cache_file">jsonOverviewCacheFile</string>
     <string name="usaid_json_cache_file_toast">Using cached data.</string>
     
+    <!-- menu -->
+    <string name="action_about">About</string>
+    <string name="usaid_action_filter_reload">Reload</string>
+    <string name="usaid_action_filter_reset">Reset</string>
+    
     <!-- regions -->
     <string name="usaid_action_filter_region">Region</string>
     <string name="usaid_action_filter_region_afganistan_pakistan">AFGHANISTAN AND PAKISTAN</string>

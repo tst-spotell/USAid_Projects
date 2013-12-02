@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,9 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 @SuppressLint("NewApi")
 public class USAidMainActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
+    
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidMainActivity";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the sections. We use a
@@ -64,6 +68,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             @Override
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
+                Log.d(LOG_TAG, "-------------------------------------------SimpleOnPageChangeListener");
             }
         });
 
@@ -105,6 +110,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
 
         @Override
         public Fragment getItem(int position) {
+            
+            Log.d(LOG_TAG, "-------------------------------------------getItem: " + position);
             
             switch (position) {
                 

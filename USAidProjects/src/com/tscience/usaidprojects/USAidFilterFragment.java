@@ -6,13 +6,17 @@ package com.tscience.usaidprojects;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.tscience.usaidprojects.io.USAidProjectsOverviewTask;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +31,7 @@ import android.widget.ListView;
  * 
  * @author spotell at t-sciences.com
  */
-public class USAidFilterFragment extends Fragment {
+public class USAidFilterFragment extends SherlockFragment {
 	
 	/** Log id of this class name. */
     private static final String LOG_TAG = "USAidFilterFragment";
@@ -47,20 +51,172 @@ public class USAidFilterFragment extends Fragment {
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
     
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        Log.d(LOG_TAG, "---------------------------------------------- onCreate");
+        
+        setHasOptionsMenu(true);
+        
+        // get the data if available
+        if (savedInstanceState != null) {
+            Log.d(LOG_TAG, "---------------------------------------------- savedInstanceState not null");
+            
+            try {
+                listDataHeader = savedInstanceState.getParcelableArrayList(USAidConstants.USAID_BUNDLE_HEADER_DATA);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no listDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            // get the country arrays
+            if (listDataHeader != null) {
+                
+                int numRegions = listDataHeader.size();
+                
+                try {
+                    
+                    if (listDataChild == null) {
+                        listDataChild = new HashMap<String, ArrayList<USAidProjectsSnapshotObject>>();
+                    }
+                
+                    for (int i = 0; i < numRegions; i++) {
+                        
+                        ArrayList<USAidProjectsSnapshotObject> temp = savedInstanceState.getParcelableArrayList(listDataHeader.get(i).name);
+                        
+                        listDataChild.put(listDataHeader.get(i).name, temp);
+                        
+                    }
+                
+                }
+                catch (Exception ignore) {
+                    Log.e(LOG_TAG, "---------------------------------------------- saveinstance listDataChild");
+                    Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+                }
+            
+            }
+            
+            try {
+                sectorDataHeader = savedInstanceState.getParcelableArrayList(USAidConstants.USAID_BUNDLE_SECTOR_DATA);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no sectorDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+        }
+        
+    } // end onCreate
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        
+        Log.d(LOG_TAG, "---------------------------------------------- onSaveInstanceState");
+        
+        // save the data
+        if (listDataHeader != null) {
+            try {
+                outState.putParcelableArrayList(USAidConstants.USAID_BUNDLE_HEADER_DATA, listDataHeader);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance listDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
+        
+        // save the country arrays
+        if (listDataChild != null) {
+            
+            int numRegions = listDataHeader.size();
+            
+            try {
+            
+                for (int i = 0; i < numRegions; i++) {
+                    outState.putParcelableArrayList(listDataHeader.get(i).name, listDataChild.get(listDataHeader.get(i).name));
+                }
+            
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance listDataChild");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        
+        }
+        
+        
+        if (sectorDataHeader != null) {
+            try {
+                outState.putParcelableArrayList(USAidConstants.USAID_BUNDLE_SECTOR_DATA, sectorDataHeader);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance sectorDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
+        
+        super.onSaveInstanceState(outState);
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        
+        if (listDataHeader == null) {
+            
+            loadTheData();
+            
+        } else {
+            // load the list
+            prepareListData(new ArrayList<USAidProjectsSnapshotObject>(), listDataHeader, listDataChild, sectorDataHeader, false);
+        }
+        
+    }
+    
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        
+        inflater.inflate(R.menu.usaid_main, menu);
+        
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        
+        int currentItemId = item.getItemId();
+        
+        if (currentItemId == R.id.action_filter_reset) {
+            
+            // TODO
+            
+            return true;
+            
+        }  else if (currentItemId == R.id.action_filter_reload) {
+            
+            loadTheData();
+            
+            return true;
+            
+        }  else if (currentItemId == R.id.action_about) {
+            
+            // TODO
+            
+            return true;
+            
+        }
+        
+        return false;
+        
+    } // end onOptionsItemSelected
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
         View rootView = inflater.inflate(R.layout.usaid_filter_layout, container, false);
         
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.usaid_filter_locations);
-        
-        // start getting the data
-        USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
-        usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
-        
-        // get the count
-        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(this);
-        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
         
         return rootView;
     }
@@ -109,5 +265,20 @@ public class USAidFilterFragment extends Fragment {
         sectorDataHeader = sectors;
         
     } // end prepareListData
+    
+    /**
+     * Used to load the initial data and reload the data.
+     */
+    private void loadTheData() {
+        
+        // start getting the data
+        USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
+        usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
+        
+        // get the count
+        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(this);
+        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
+        
+    }
 
 } // end USAidFilterFragment

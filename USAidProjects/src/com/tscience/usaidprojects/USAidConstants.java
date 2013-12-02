@@ -11,6 +11,10 @@ package com.tscience.usaidprojects;
  *
  */
 public class USAidConstants {
+    
+    // bundle data
+    public static final String USAID_BUNDLE_HEADER_DATA = "header";
+    public static final String USAID_BUNDLE_SECTOR_DATA = "sector";
 	
 	// regions
 	public static final String USAID_REGION_TEXT_AFPAK = "AFPAK"; 	// AFGHANISTAN & PAKISTAN
