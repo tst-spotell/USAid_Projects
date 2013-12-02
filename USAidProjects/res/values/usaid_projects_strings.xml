@@ -3,6 +3,7 @@
 
     <string name="app_name">USAid Projects</string>
     <string name="action_settings">Settings</string>
+    <string name="usaid_image">image</string>
     
     <!-- buttons -->
     <string name="usaid_button_title_locations">Locations</string>
