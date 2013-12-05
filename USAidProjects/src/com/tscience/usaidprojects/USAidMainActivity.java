@@ -42,11 +42,19 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    ViewPager mViewPager;
+    static ViewPager mViewPager;
     
     public static String countryQuery;
     
     public static ArrayList<USAidProjectsOverviewObject> countryQueryResults;
+    
+    private static USAidMapFragment usaidMapFragment;
+    
+    private static USAidCountryListFragment usaidCountryListFragment;
+    
+    public interface OnCountryQueryUpdate {
+        public void updateCountryData();
+    }
 
     @SuppressLint({ "InlinedApi", "NewApi" })
     @Override
@@ -104,6 +112,29 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         super.onResume();
     }
+    
+    public static void setCountryQueryResults(ArrayList<USAidProjectsOverviewObject> value) {
+        
+        countryQueryResults = value;
+        
+        // TODO let fragment know results are available
+        int currentTabId = mViewPager.getCurrentItem();
+        
+        Log.d(LOG_TAG, "-------------------------------------------currentTabId: " + currentTabId);
+        
+        // TODO find the fragment
+        if (currentTabId == 1) {
+            
+            usaidMapFragment.updateData();
+            
+        } else if (currentTabId == 2) {
+            
+            usaidCountryListFragment.setTheListData();
+            
+        }
+        
+        
+    } // end setCountryQueryResults
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the sections/tabs/pages.
@@ -130,15 +161,15 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-                    Fragment fragmentMap = new USAidMapFragment();
-                    return fragmentMap;
+                    usaidMapFragment = new USAidMapFragment();
+                    return usaidMapFragment;
                     
                 }
                 
                 case 2: {
                     
-                    Fragment fragmentCountry = new USAidCountryListFragment();
-                    return fragmentCountry;
+                    usaidCountryListFragment = new USAidCountryListFragment();
+                    return usaidCountryListFragment;
                     
                 }
                 

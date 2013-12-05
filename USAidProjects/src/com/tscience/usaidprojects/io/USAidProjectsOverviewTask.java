@@ -159,8 +159,8 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
             
         }
         
-        // TODO send to activity
-        USAidMainActivity.countryQueryResults = items;
+        // send to activity
+        USAidMainActivity.setCountryQueryResults(items);
         
         // turn the progress dialog off
         try {

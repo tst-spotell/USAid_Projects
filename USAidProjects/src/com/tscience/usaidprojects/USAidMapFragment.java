@@ -97,5 +97,9 @@ public class USAidMapFragment extends Fragment {
         if (null != mMapView)
             mMapView.onLowMemory();
     }
+    
+    public void updateData() {
+        
+    }
 
 } // end USAidMapFragment
