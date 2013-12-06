@@ -10,7 +10,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;

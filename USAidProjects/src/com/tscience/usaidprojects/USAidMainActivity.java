@@ -48,7 +48,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
     public static ArrayList<USAidProjectsOverviewObject> countryQueryResults;
     
-    public static USAidFilterFragment usaidFilterFragment;
+//    public static USAidFilterFragment usaidFilterFragment;
     
     private static USAidMapFragment usaidMapFragment;
     
@@ -126,15 +126,20 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         Log.d(LOG_TAG, "-------------------------------------------currentTabId: " + currentTabId);
         
-        // TODO find the fragment
-        if (currentTabId == 1) {
-            
-            usaidMapFragment.updateData();
-            
-        } else if (currentTabId == 2) {
-            
-            usaidCountryListFragment.setTheListData();
-            
+        try {
+            // find the fragment
+            if (currentTabId == 1) {
+                
+                usaidMapFragment.updateData();
+                
+            } else if (currentTabId == 2) {
+                
+                usaidCountryListFragment.setTheListData();
+                
+            }
+        }
+        catch (Exception ignore) {
+            Log.d(LOG_TAG, "-------------------------------------------setCountryQueryResults: " + ignore.toString());
         }
         
     } // end setCountryQueryResults
@@ -157,8 +162,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 0: {
                     
-                    usaidFilterFragment = new USAidFilterFragment();
-                    return usaidFilterFragment;
+                    Fragment fragment = new USAidFilterFragment();
+                    return fragment;
                     
                 }
                 
