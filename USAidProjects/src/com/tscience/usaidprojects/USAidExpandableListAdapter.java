@@ -130,6 +130,9 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         
         USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).selected = value;
         
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
+        USAidMainActivity.countryQueryResults = null;
+        
     }
 
     /* (non-Javadoc)

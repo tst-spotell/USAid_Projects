@@ -69,6 +69,8 @@ public class USAidCountryListFragment extends SherlockListFragment {
      */
     public void setTheListData() {
         
+        Log.d(LOG_TAG, "-------------------------------- setTheListData");
+        
         // create a new list adapter
         myCountryListAdapter = new USAidCountryListAdapter(getActivity(), R.layout.usaid_country_item, USAidMainActivity.countryQueryResults);
         

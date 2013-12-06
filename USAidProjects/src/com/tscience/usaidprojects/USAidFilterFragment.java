@@ -50,6 +50,8 @@ public class USAidFilterFragment extends SherlockFragment {
     /** List of the sector headings. */
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
     
+    public static USAidFilterFragment usaidFilterFragment;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,8 @@ public class USAidFilterFragment extends SherlockFragment {
         Log.d(LOG_TAG, "---------------------------------------------- onCreate");
         
         setHasOptionsMenu(true);
+        
+        usaidFilterFragment = this;
         
         // get the data if available
         if (savedInstanceState != null) {
@@ -172,19 +176,6 @@ public class USAidFilterFragment extends SherlockFragment {
         }
         
     }
-    
-    
-    
-    @Override
-    public void onPause() {
-        super.onPause();
-        
-        USAidMainActivity.countryQuery = makeFilterQuery();
-        USAidMainActivity.countryQueryResults = null;
-        
-        Log.d(LOG_TAG, "---------------------------------------------- countryQuery: " + USAidMainActivity.countryQuery);
-        
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -233,6 +224,15 @@ public class USAidFilterFragment extends SherlockFragment {
         
         return rootView;
     }
+    
+//    public void makeQuery() {
+//        
+//        USAidMainActivity.countryQuery = makeFilterQuery();
+//        USAidMainActivity.countryQueryResults = null;
+//        
+//        Log.d(LOG_TAG, "---------------------------------------------- countryQuery: " + USAidMainActivity.countryQuery);
+//        
+//    }
     
     /**
      * Called when there is no network or cached data to display.
@@ -294,13 +294,13 @@ public class USAidFilterFragment extends SherlockFragment {
         
     }
     
-    private String makeFilterQuery() {
+    public static String makeFilterQuery() {
         
         StringBuffer result = new StringBuffer();
-        result.append(getString(R.string.usaid_server_url));
-        result.append(getString(R.string.usaid_server_overview));
-        result.append(getString(R.string.usaid_server_flag));
-        result.append(getString(R.string.usaid_server_country_start));
+        result.append(usaidFilterFragment.getString(R.string.usaid_server_url));
+        result.append(usaidFilterFragment.getString(R.string.usaid_server_overview));
+        result.append(usaidFilterFragment.getString(R.string.usaid_server_flag));
+        result.append(usaidFilterFragment.getString(R.string.usaid_server_country_start));
         
         // get the countries
         if ((listDataHeader != null) && (listDataChild != null)) {
@@ -324,7 +324,7 @@ public class USAidFilterFragment extends SherlockFragment {
                             if (!firstTime) {
                                 
                                 // add the spacer between items
-                                result.append(getString(R.string.usaid_server_spacer));
+                                result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
                                 
                             } else {
                                 
@@ -349,6 +349,8 @@ public class USAidFilterFragment extends SherlockFragment {
             }
         
         }
+        
+        Log.e(LOG_TAG, "---------------------------------------------- makeFilterQuery complete");
         
         return result.toString();
         

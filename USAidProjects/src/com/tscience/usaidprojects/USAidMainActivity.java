@@ -48,6 +48,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
     public static ArrayList<USAidProjectsOverviewObject> countryQueryResults;
     
+    public static USAidFilterFragment usaidFilterFragment;
+    
     private static USAidMapFragment usaidMapFragment;
     
     private static USAidCountryListFragment usaidCountryListFragment;
@@ -81,8 +83,10 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
 
             @Override
             public void onPageSelected(int position) {
+                
                 actionBar.setSelectedNavigationItem(position);
                 Log.d(LOG_TAG, "-------------------------------------------SimpleOnPageChangeListener");
+                
             }
         });
 
@@ -117,7 +121,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         countryQueryResults = value;
         
-        // TODO let fragment know results are available
+        // let fragment know results are available
         int currentTabId = mViewPager.getCurrentItem();
         
         Log.d(LOG_TAG, "-------------------------------------------currentTabId: " + currentTabId);
@@ -132,7 +136,6 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             usaidCountryListFragment.setTheListData();
             
         }
-        
         
     } // end setCountryQueryResults
 
@@ -154,8 +157,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 0: {
                     
-                    Fragment fragment = new USAidFilterFragment();
-                    return fragment;
+                    usaidFilterFragment = new USAidFilterFragment();
+                    return usaidFilterFragment;
                     
                 }
                 

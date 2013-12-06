@@ -95,8 +95,11 @@ public class USAidProjectsBaseNetworkTask extends AsyncTask<String, Void, JSONOb
                 
             } else {
                 // no values passed in we are done
+                Log.d(LOG_TAG, "--------------------------------------------------no values passed in");
                 return null;
             }
+            
+            Log.d(LOG_TAG, "--------------------------------------------------urlString " + urlString);
             
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(urlString);
