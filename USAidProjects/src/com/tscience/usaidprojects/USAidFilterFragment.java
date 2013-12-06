@@ -10,7 +10,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.tscience.usaidprojects.io.USAidProjectsOverviewTask;
+import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
@@ -289,7 +289,7 @@ public class USAidFilterFragment extends SherlockFragment {
         usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
         
 //        // get the count
-//        USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(getActivity(), getString(R.string.usaid_json_overview_cache_file));
+//        USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), getString(R.string.usaid_json_overview_cache_file));
 //        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
         
     }

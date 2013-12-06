@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
-import com.tscience.usaidprojects.io.USAidProjectsOverviewTask;
+import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
 
 /**
@@ -51,7 +51,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
         if (USAidMainActivity.countryQueryResults == null) {
             
             // get the count
-            USAidProjectsOverviewTask usaidProjectsOverviewTask = new USAidProjectsOverviewTask(getActivity(), null);
+            USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), null);
             usaidProjectsOverviewTask.execute(USAidMainActivity.countryQuery);
             
         } else {

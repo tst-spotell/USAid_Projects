@@ -23,10 +23,10 @@ import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
+public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
 
     /** Log id of this class name. */
-    private static final String LOG_TAG = "USAidProjectsOverviewTask";
+    private static final String LOG_TAG = "USAidProjectsCountryTask";
     
     
     /**
@@ -34,7 +34,7 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
      * 
      * @param value The launching fragment.
      */
-    public USAidProjectsOverviewTask(Context value, String cacheFileName) {
+    public USAidProjectsCountryTask(Context value, String cacheFileName) {
         
         context = value;
         
@@ -175,4 +175,4 @@ public class USAidProjectsOverviewTask extends USAidProjectsBaseNetworkTask {
     // get total
     // details  -- loop for total and country to get total for a country
 
-} // end USAidProjectsOverviewTask
+} // end USAidProjectsCountryTask
