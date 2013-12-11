@@ -14,7 +14,7 @@ import android.util.Log;
 
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidMainActivity;
-import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
 
 /**
@@ -60,7 +60,7 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
         
         // now parse the json use workingData
         // create the array of data objects
-        ArrayList<USAidProjectsOverviewObject> items = new ArrayList<USAidProjectsOverviewObject>();
+        ArrayList<USAidProjectsCountryObject> items = new ArrayList<USAidProjectsCountryObject>();
         
         // now parse the json use workingData
         JSONArray overviewData = null;
@@ -94,7 +94,7 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
                 try {
                     
                     // create the new data object
-                    USAidProjectsOverviewObject currentValue = new USAidProjectsOverviewObject();
+                    USAidProjectsCountryObject currentValue = new USAidProjectsCountryObject();
                     
                     jsonObject = overviewData.getJSONObject(i);
                     
@@ -118,7 +118,7 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
 //                            Log.d(LOG_TAG, "----------------------------country: " + currentValue.countryID + " count: " + currentValue.totalProjects);
 //                    		
 //                    		// create a new current value
-//                            currentValue = new USAidProjectsOverviewObject();
+//                            currentValue = new USAidProjectsCountryObject();
 //                    		
 //                    		// set the values
 //                            currentValue.countryID = tempCountry;

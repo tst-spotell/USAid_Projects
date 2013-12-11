@@ -13,14 +13,14 @@ import android.os.Parcelable;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidProjectsOverviewObject implements Parcelable {
+public class USAidProjectsCountryObject implements Parcelable {
 
     public int totalProjects;
     public String countryID;
     public int countryCode;
     
     // empty constructor
-    public USAidProjectsOverviewObject() {}
+    public USAidProjectsCountryObject() {}
     
     /* (non-Javadoc)
      * @see android.os.Parcelable#describeContents()
@@ -39,4 +39,4 @@ public class USAidProjectsOverviewObject implements Parcelable {
 
     }
 
-} // end USAidProjectsOverviewObject
+} // end USAidProjectsCountryObject

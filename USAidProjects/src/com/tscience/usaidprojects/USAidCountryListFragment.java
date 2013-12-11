@@ -13,12 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
-import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
 /**
  * This is the fragment for displaying country search results.
@@ -43,6 +44,19 @@ public class USAidCountryListFragment extends SherlockListFragment {
         return listView;
         
     } // end onCreateView
+    
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        
+        // get the data object
+        USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
+        
+        
+        
+    }
+
+
 
     @Override
     public void onResume() {
@@ -87,13 +101,13 @@ public class USAidCountryListFragment extends SherlockListFragment {
      * 
      * @author spotell at t-sciences.com
      */
-    private class USAidCountryListAdapter extends ArrayAdapter<USAidProjectsOverviewObject> {
+    private class USAidCountryListAdapter extends ArrayAdapter<USAidProjectsCountryObject> {
         
-        ArrayList<USAidProjectsOverviewObject> items;
+        ArrayList<USAidProjectsCountryObject> items;
         
         private LayoutInflater inflater;
         
-        public USAidCountryListAdapter (Context context, int textViewResourceId, ArrayList<USAidProjectsOverviewObject> value) {
+        public USAidCountryListAdapter (Context context, int textViewResourceId, ArrayList<USAidProjectsCountryObject> value) {
             super(context, textViewResourceId, value);
             
             items = value;
@@ -148,7 +162,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
         ImageView flagImageView;
         TextView countryNameView;
         
-        USAidProjectsOverviewObject usaidDataObject;
+        USAidProjectsCountryObject usaidDataObject;
         
     }
 

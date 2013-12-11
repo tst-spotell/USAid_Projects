@@ -24,7 +24,7 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.tscience.usaidprojects.utils.USAidProjectsOverviewObject;
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
 @SuppressLint("NewApi")
 public class USAidMainActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
@@ -46,7 +46,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
     public static String countryQuery;
     
-    public static ArrayList<USAidProjectsOverviewObject> countryQueryResults;
+    public static ArrayList<USAidProjectsCountryObject> countryQueryResults;
     
 //    public static USAidFilterFragment usaidFilterFragment;
     
@@ -117,7 +117,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         super.onResume();
     }
     
-    public static void setCountryQueryResults(ArrayList<USAidProjectsOverviewObject> value) {
+    public static void setCountryQueryResults(ArrayList<USAidProjectsCountryObject> value) {
         
         countryQueryResults = value;
         
