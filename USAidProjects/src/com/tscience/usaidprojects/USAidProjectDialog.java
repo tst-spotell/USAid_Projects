@@ -3,11 +3,14 @@
  */
 package com.tscience.usaidprojects;
 
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
+import android.view.View;
 
 /**
  * This is the fragment for displaying single project data.
@@ -15,6 +18,8 @@ import android.view.LayoutInflater;
  * @author spotell at t-sciences.com
  */
 public class USAidProjectDialog extends DialogFragment {
+    
+    USAidProjectsCountryObject currentCountry;
 	
 	/**
      * Create a single instance of this dialog.
@@ -36,7 +41,8 @@ public class USAidProjectDialog extends DialogFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// TODO get the current project data from the bundle
+		// get the current project data from the bundle
+		currentCountry = (USAidProjectsCountryObject) this.getArguments().get(USAidConstants.USAID_BUNDLE_DATA_OBJECT);
 		
 	}
 
@@ -48,7 +54,10 @@ public class USAidProjectDialog extends DialogFragment {
     	// Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         
-        // TODO
+        // Pass null as the parent view because its going in the dialog layout
+        View projectView = inflater.inflate(R.layout.usaid_project_view, null);
+        
+        builder.setView(projectView);
         
         Dialog d = builder.create();
         d.setCanceledOnTouchOutside(false);

@@ -92,6 +92,13 @@
     <string name="usaid_action_filter_reload">Reload</string>
     <string name="usaid_action_filter_reset">Reset</string>
     
+    <!-- project -->
+    <string name="project_dialog_start_date">Start:</string>
+    <string name="project_dialog_end_date">End:</string>
+    <string name="project_dialog_sector">Sector</string>
+    <string name="project_dialog_primary_partner">Primary Partner</string>
+    <string name="project_dialog_obligated">Obligated</string>
+    
     <!-- regions -->
     <string name="usaid_action_filter_region">Region</string>
     <string name="usaid_action_filter_region_afganistan_pakistan">AFGHANISTAN AND PAKISTAN</string>

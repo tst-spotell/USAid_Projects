@@ -1,0 +1,108 @@
+<!-- Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+            android:id="@+id/dialog_project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    </HorizontalScrollView>
+    
+    <ImageView
+        android:id="@+id/dialog_project_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll_view"
+        android:contentDescription="@string/usaid_image" />
+    
+    <TextView
+        android:id="@+id/dialog_project_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/dialog_project_image"
+        android:layout_alignTop="@id/dialog_project_image"
+        android:text="@string/project_dialog_start_date" />
+    
+    <TextView
+        android:id="@+id/dialog_project_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/dialog_project_start"
+        android:layout_alignTop="@id/dialog_project_start"  />
+    
+    <TextView
+        android:id="@+id/dialog_project_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_start"
+        android:layout_alignLeft="@id/dialog_project_start"
+        android:text="@string/project_dialog_end_date" />
+    
+    <TextView
+        android:id="@+id/dialog_project_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/dialog_project_end"
+        android:layout_alignTop="@id/dialog_project_end"  />
+    
+    <TextView
+        android:id="@+id/dialog_project_sector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_end"
+        android:layout_alignLeft="@id/dialog_project_end"
+        android:text="@string/project_dialog_sector" />
+    
+    <TextView
+        android:id="@+id/dialog_project_sector_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_sector"
+        android:layout_alignLeft="@id/dialog_project_sector" />
+    
+    <TextView
+        android:id="@+id/dialog_project_primary_partner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_sector_data"
+        android:layout_alignLeft="@id/dialog_project_image"
+        android:text="@string/project_dialog_primary_partner" />
+    
+    <TextView
+        android:id="@+id/dialog_project_primary_partner_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_primary_partner"
+        android:layout_alignLeft="@id/dialog_project_primary_partner" />
+    
+    <TextView
+        android:id="@+id/dialog_project_obligated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_sector_data"
+        android:layout_toRightOf="@id/dialog_project_primary_partner"
+        android:text="@string/project_dialog_obligated" />
+    
+    <TextView
+        android:id="@+id/dialog_project_obligated_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_project_obligated"
+        android:layout_alignLeft="@id/dialog_project_obligated" />
+    
+    <TextView
+        android:id="@+id/dialog_project_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dialog_project_sector"
+        android:layout_alignLeft="@id/dialog_project_sector" />"
+    
+</RelativeLayout>
