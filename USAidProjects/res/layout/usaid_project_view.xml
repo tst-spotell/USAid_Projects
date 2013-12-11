@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/gray" >"
     
     <HorizontalScrollView
         android:id="@+id/scroll_view"
@@ -12,7 +13,8 @@
         <TextView
             android:id="@+id/dialog_project_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="4dp" />
         
     </HorizontalScrollView>
     
@@ -21,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll_view"
+        android:paddingLeft="8dp"
+        android:src="@drawable/usaidlogo"
         android:contentDescription="@string/usaid_image" />
     
     <TextView
@@ -29,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dialog_project_image"
         android:layout_alignTop="@id/dialog_project_image"
+        android:paddingLeft="32dp"
         android:text="@string/project_dialog_start_date" />
     
     <TextView
@@ -44,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_start"
         android:layout_alignLeft="@id/dialog_project_start"
+        android:paddingLeft="32dp"
         android:text="@string/project_dialog_end_date" />
     
     <TextView
@@ -59,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_end"
         android:layout_alignLeft="@id/dialog_project_end"
+        android:paddingLeft="32dp"
         android:text="@string/project_dialog_sector" />
     
     <TextView
@@ -66,7 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_sector"
-        android:layout_alignLeft="@id/dialog_project_sector" />
+        android:layout_alignLeft="@id/dialog_project_sector"
+        android:paddingLeft="32dp" />
     
     <TextView
         android:id="@+id/dialog_project_primary_partner"
@@ -74,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_sector_data"
         android:layout_alignLeft="@id/dialog_project_image"
+        android:paddingLeft="8dp"
         android:text="@string/project_dialog_primary_partner" />
     
     <TextView
@@ -81,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_primary_partner"
+        android:paddingLeft="8dp"
         android:layout_alignLeft="@id/dialog_project_primary_partner" />
     
     <TextView
@@ -88,7 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_sector_data"
-        android:layout_toRightOf="@id/dialog_project_primary_partner"
+        android:layout_alignParentRight="true"
+        android:paddingRight="16dp"
         android:text="@string/project_dialog_obligated" />
     
     <TextView
@@ -102,7 +113,9 @@
         android:id="@+id/dialog_project_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/dialog_project_sector"
-        android:layout_alignLeft="@id/dialog_project_sector" />"
+        android:layout_below="@id/dialog_project_primary_partner_data"
+        android:layout_alignLeft="@id/dialog_project_primary_partner_data"
+        android:padding="8dp"
+        android:background="@color/white" />"
     
 </RelativeLayout>
