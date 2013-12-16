@@ -35,8 +35,30 @@ public class USAidProjectsCountryObject implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        // TODO Auto-generated method stub
+        
+        dest.writeInt(totalProjects);
+        dest.writeString(countryID);
+        dest.writeInt(countryCode);
 
+    }
+    
+    public static final Parcelable.Creator<USAidProjectsCountryObject> CREATOR = new Parcelable.Creator<USAidProjectsCountryObject>() {
+        public USAidProjectsCountryObject createFromParcel(Parcel in) {
+            return new USAidProjectsCountryObject(in);
+        }
+        
+        public USAidProjectsCountryObject[] newArray(int size) {
+            return new USAidProjectsCountryObject[size];
+        }
+    };
+    
+    /* Reconstruct the object from the Parcelable data. */
+    private USAidProjectsCountryObject(Parcel in) {
+        
+        totalProjects = in.readInt();
+        countryID = in.readString();
+        countryCode = in.readInt();
+        
     }
 
 } // end USAidProjectsCountryObject

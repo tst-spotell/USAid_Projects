@@ -52,12 +52,14 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // get the data object
         USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
         
-        // make the new bundle
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, usaidProjectsCountryObject);
+        // TODO get a list of projects by country
         
-        USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
-        usaidProjectDialog.show(getActivity().getSupportFragmentManager(), "project");
+//        // make the new bundle
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, usaidProjectsCountryObject);
+//        
+//        USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
+//        usaidProjectDialog.show(getActivity().getSupportFragmentManager(), "project");
         
     }
 

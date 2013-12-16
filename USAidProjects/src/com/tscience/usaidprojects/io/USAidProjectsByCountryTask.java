@@ -3,7 +3,13 @@
  */
 package com.tscience.usaidprojects.io;
 
+import java.util.ArrayList;
+
 import org.json.JSONObject;
+
+import com.tscience.usaidprojects.utils.USAidProjectsListObject;
+
+import android.util.Log;
 
 
 /**
@@ -19,9 +25,23 @@ public class USAidProjectsByCountryTask extends USAidProjectsBaseNetworkTask {
 
     @Override
     protected void onPostExecute(JSONObject result) {
-        // TODO Auto-generated method stub
         super.onPostExecute(result);
-    }
+        
+        if (workingData == null) {
+            
+            Log.d(LOG_TAG, "-----------------------------------------no working data");
+            
+            return;
+            
+        } // end no data
+        
+        Log.d(LOG_TAG, "----------------------------------------- we have working data");
+        
+        // now parse the json use workingData
+        // create the array of data objects
+        ArrayList<USAidProjectsListObject> items = new ArrayList<USAidProjectsListObject>();
+        
+    } // end onPostExecute
     
     
     // attributes  -- type and url
