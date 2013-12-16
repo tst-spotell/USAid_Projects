@@ -14,8 +14,11 @@ import android.os.Parcelable;
  */
 public class USAidProjectsListObject implements Parcelable {
     
-    public String countryName;
-    public String countryID;
+    public String projectName;
+    public String projectID;
+    
+    /** Empty public constructor. */
+    public USAidProjectsListObject() {}
 
     /* (non-Javadoc)
      * @see android.os.Parcelable#describeContents()
@@ -31,8 +34,8 @@ public class USAidProjectsListObject implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         
-        dest.writeString(countryName);
-        dest.writeString(countryID);
+        dest.writeString(projectName);
+        dest.writeString(projectID);
         
     }
     
@@ -49,8 +52,8 @@ public class USAidProjectsListObject implements Parcelable {
     /* Reconstruct the object from the Parcelable data. */
     private USAidProjectsListObject(Parcel in) {
         
-        countryName = in.readString();
-        countryID = in.readString();
+        projectName = in.readString();
+        projectID = in.readString();
         
     }
 

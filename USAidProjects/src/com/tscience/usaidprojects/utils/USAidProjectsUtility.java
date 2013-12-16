@@ -97,6 +97,28 @@ public class USAidProjectsUtility {
 	} // end getUrlSnapshot
 	
 	/**
+	 * Convenience method to get the server url for projects by country.
+	 * 
+	 * @param context      The context requesting the url.
+	 * @param countryName  The name of the country to get the projects for.
+	 * 
+	 * @return The string url to the server.
+	 */
+	public static String getUrlProjectsByCountry(Context context, String countryName) {
+	    
+	    StringBuffer sb = new StringBuffer();
+	    
+	    sb.append(context.getString(R.string.usaid_server_url));
+	    sb.append(context.getString(R.string.usaid_server_projects));
+	    sb.append(context.getString(R.string.usaid_server_country_start));
+	    sb.append(countryName);
+	    sb.append(context.getString(R.string.usaid_server_flag));
+	    
+	    return sb.toString();
+	    
+	}
+	
+	/**
      * This replaces the space with %20 for search purposes.
      * 
      * @param value The string to convert.

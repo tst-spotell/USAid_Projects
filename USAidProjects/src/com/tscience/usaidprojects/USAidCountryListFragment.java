@@ -18,8 +18,10 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
+import com.tscience.usaidprojects.io.USAidProjectsByCountryTask;
 import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 /**
  * This is the fragment for displaying country search results.
@@ -52,7 +54,9 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // get the data object
         USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
         
-        // TODO get a list of projects by country
+        // get a list of projects by country
+        USAidProjectsByCountryTask usaidProjectsByCountryTask = new USAidProjectsByCountryTask(getActivity());
+        usaidProjectsByCountryTask.execute(USAidProjectsUtility.getUrlProjectsByCountry(getActivity(), usaidProjectsCountryObject.countryID));
         
 //        // make the new bundle
 //        Bundle bundle = new Bundle();
@@ -159,8 +163,6 @@ public class USAidCountryListFragment extends SherlockListFragment {
             return currentView;
             
         } // end getView
-        
-        
         
     } // end USAidCountryListAdapter
     

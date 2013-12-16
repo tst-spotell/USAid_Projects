@@ -30,7 +30,7 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
     
     
     /**
-     * Public constructor with weak reference to the fragment that launched it.
+     * Public constructor.
      * 
      * @param value The launching fragment.
      */
