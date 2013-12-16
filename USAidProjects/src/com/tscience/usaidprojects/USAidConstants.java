@@ -13,6 +13,7 @@ package com.tscience.usaidprojects;
 public class USAidConstants {
     
     // bundle data
+    public static final String USAID_BUNDLE_COUNTRY_DATA = "country";
     public static final String USAID_BUNDLE_DATA_OBJECT = "usaid_data";
     public static final String USAID_BUNDLE_HEADER_DATA = "header";
     public static final String USAID_BUNDLE_SECTOR_DATA = "sector";

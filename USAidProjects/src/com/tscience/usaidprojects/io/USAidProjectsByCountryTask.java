@@ -3,15 +3,16 @@
  */
 package com.tscience.usaidprojects.io;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.tscience.usaidprojects.R;
+import com.tscience.usaidprojects.USAidCountryProjectsListFragment;
 import com.tscience.usaidprojects.utils.USAidProjectsListObject;
 
-import android.content.Context;
 import android.util.Log;
 
 
@@ -26,14 +27,19 @@ public class USAidProjectsByCountryTask extends USAidProjectsJSONArrayBaseTask {
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidProjectsByCountryTask";
     
+    // weak reference to check and make sure fragment is still there
+    private final WeakReference<USAidCountryProjectsListFragment> usaidCountryProjectsListFragmentReference;
+    
     /**
      * Public constructor.
      * 
      * @param value The launching fragment.
      */
-    public USAidProjectsByCountryTask(Context value) {
+    public USAidProjectsByCountryTask(USAidCountryProjectsListFragment value) {
         
-        context = value;
+        usaidCountryProjectsListFragmentReference = new WeakReference<USAidCountryProjectsListFragment>(value);
+        
+        context = value.getActivity();
         
     }
 
@@ -88,6 +94,12 @@ public class USAidProjectsByCountryTask extends USAidProjectsJSONArrayBaseTask {
         } // end for loop
         
         // TODO do something with the data
+        if (usaidCountryProjectsListFragmentReference != null) {
+            
+            USAidCountryProjectsListFragment usaidCountryProjectsListFragment = usaidCountryProjectsListFragmentReference.get();
+            usaidCountryProjectsListFragment.prepareListData(items);
+            
+        }
         
         // turn the progress dialog off
         try {

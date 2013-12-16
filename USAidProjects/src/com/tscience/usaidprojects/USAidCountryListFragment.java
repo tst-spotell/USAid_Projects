@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +43,6 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // layout the view
         View listView = inflater.inflate(R.layout.usaid_country_layout, container, false);
         
-        // TODO load data from country list
-        
         return listView;
         
     } // end onCreateView
@@ -54,9 +54,19 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // get the data object
         USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
         
-        // get a list of projects by country
-        USAidProjectsByCountryTask usaidProjectsByCountryTask = new USAidProjectsByCountryTask(getActivity());
-        usaidProjectsByCountryTask.execute(USAidProjectsUtility.getUrlProjectsByCountry(getActivity(), usaidProjectsCountryObject.countryID));
+        // Create new fragment and transaction
+        USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
+        newFragment.countryName = usaidProjectsCountryObject.countryID;
+        
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+    
+        // Commit the transaction
+        transaction.commit();
         
 //        // make the new bundle
 //        Bundle bundle = new Bundle();
