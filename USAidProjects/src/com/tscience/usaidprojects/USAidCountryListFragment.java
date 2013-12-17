@@ -54,26 +54,19 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // get the data object
         USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
         
-        // Create new fragment and transaction
-        USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
-        newFragment.countryName = usaidProjectsCountryObject.countryID;
-        
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.fragment_container, newFragment);
-        transaction.addToBackStack(null);
-    
-        // Commit the transaction
-        transaction.commit();
-        
-//        // make the new bundle
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, usaidProjectsCountryObject);
+        // TODO Create new fragment and transaction
+//        USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
+//        newFragment.countryName = usaidProjectsCountryObject.countryID;
 //        
-//        USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
-//        usaidProjectDialog.show(getActivity().getSupportFragmentManager(), "project");
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        
+//        // Replace whatever is in the fragment_container view with this fragment,
+//        // and add the transaction to the back stack
+//        transaction.replace(R.id.fragment_container, newFragment);
+//        transaction.addToBackStack(null);
+//    
+//        // Commit the transaction
+//        transaction.commit();
         
     }
 

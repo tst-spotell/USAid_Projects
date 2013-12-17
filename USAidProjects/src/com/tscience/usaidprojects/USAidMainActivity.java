@@ -14,10 +14,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -50,9 +46,9 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
 //    public static USAidFilterFragment usaidFilterFragment;
     
-    private static USAidMapFragment usaidMapFragment;
-    
-    private static USAidCountryListFragment usaidCountryListFragment;
+//    private static USAidMapFragment usaidMapFragment;
+//    
+//    private static USAidCountryListFragment usaidCountryListFragment;
     
     public interface OnCountryQueryUpdate {
         public void updateCountryData();
@@ -100,6 +96,26 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         }
         
     } // end onCreate
+    
+    
+
+    @Override
+    public void onBackPressed() {
+        
+        if (mViewPager.getCurrentItem() == 1) {
+            
+            // TODO handle back within the stack
+            
+        } else if (mViewPager.getCurrentItem() == 2) {
+            
+            // TODO handle back within the stack
+            
+        }
+        
+        super.onBackPressed();
+    }
+
+
 
     @Override
     protected void onResume() {
@@ -130,11 +146,14 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             // find the fragment
             if (currentTabId == 1) {
                 
-                usaidMapFragment.updateData();
+               
+//   TODO             usaidMapFragment.updateData();
                 
             } else if (currentTabId == 2) {
                 
-                usaidCountryListFragment.setTheListData();
+                
+                
+//   TODO                usaidCountryListFragment.setTheListData();
                 
             }
         }
@@ -169,31 +188,37 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-                    usaidMapFragment = new USAidMapFragment();
-                    return usaidMapFragment;
+                    USAidWrapperFragment usaidWrapperFragment = new USAidWrapperFragment();
+                    
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, USAidConstants.USAID_TYPE_MAP);
+                    usaidWrapperFragment.setArguments(bundle);
+                    
+                    return usaidWrapperFragment;
+                    
+//                    usaidMapFragment = new USAidMapFragment();
+//                    return usaidMapFragment;
                     
                 }
                 
                 case 2: {
                     
-                    usaidCountryListFragment = new USAidCountryListFragment();
-                    return usaidCountryListFragment;
+                    USAidWrapperFragment usaidWrapperFragment = new USAidWrapperFragment();
+                    
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, USAidConstants.USAID_TYPE_LIST);
+                    usaidWrapperFragment.setArguments(bundle);
+                    
+                    return usaidWrapperFragment;
+                    
+//                    usaidCountryListFragment = new USAidCountryListFragment();
+//                    return usaidCountryListFragment;
                     
                 }
                 
-                default: {
-                    
-                    // getItem is called to instantiate the fragment for the given page.
-                    // Return a DummySectionFragment (defined as a static inner class
-                    // below) with the page number as its lone argument.
-                    Fragment fragment = new DummySectionFragment();
-                    Bundle args = new Bundle();
-                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-                    fragment.setArguments(args);
-                    return fragment;   
-                    
-                }
             }
+            
+            return null;
 
         } // end getItem
 
@@ -216,28 +241,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             }
             return null;
         }
-    }
-
-    /**
-     * A dummy fragment representing a section of the app, but that simply displays dummy text.
-     */
-    public static class DummySectionFragment extends Fragment {
-
-        /**
-         * The fragment argument representing the section number for this fragment.
-         */
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        public DummySectionFragment() {}
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_usaid_main_dummy, container, false);
-            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
+        
+    } // end getItem
 
     /* (non-Javadoc)
      * @see com.actionbarsherlock.app.ActionBar.TabListener#onTabSelected(com.actionbarsherlock.app.ActionBar.Tab, android.support.v4.app.FragmentTransaction)

@@ -17,6 +17,11 @@ public class USAidConstants {
     public static final String USAID_BUNDLE_DATA_OBJECT = "usaid_data";
     public static final String USAID_BUNDLE_HEADER_DATA = "header";
     public static final String USAID_BUNDLE_SECTOR_DATA = "sector";
+    public static final String USAID_BUNDLE_FRAGMENT_TYPE = "fragment";
+    
+    // fragment types
+    public static final int USAID_TYPE_MAP = 1;
+    public static final int USAID_TYPE_LIST = 2;
     
 	// regions
 	public static final String USAID_REGION_TEXT_AFPAK = "AFPAK"; 	// AFGHANISTAN & PAKISTAN

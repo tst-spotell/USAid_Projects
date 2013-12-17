@@ -3,6 +3,7 @@
  */
 package com.tscience.usaidprojects;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -10,7 +11,6 @@ import com.google.android.gms.maps.MapsInitializer;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +22,7 @@ import android.view.ViewGroup;
  *
  */
 @SuppressLint("NewApi")
-public class USAidMapFragment extends Fragment {
+public class USAidMapFragment extends SherlockFragment {
     
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidMainFragment";
@@ -60,7 +60,7 @@ public class USAidMapFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+//        setRetainInstance(true);
     }
 
     /*
