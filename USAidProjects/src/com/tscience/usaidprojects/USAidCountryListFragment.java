@@ -54,21 +54,23 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // get the data object
         USAidProjectsCountryObject usaidProjectsCountryObject = USAidMainActivity.countryQueryResults.get(position);
         
-        // TODO Create new fragment and transaction
-//        USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
-//        newFragment.countryName = usaidProjectsCountryObject.countryID;
-//        
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//        
-//        // Replace whatever is in the fragment_container view with this fragment,
-//        // and add the transaction to the back stack
-//        transaction.replace(R.id.fragment_container, newFragment);
-//        transaction.addToBackStack(null);
-//    
-//        // Commit the transaction
-//        transaction.commit();
+        // Create new fragment and transaction
+        USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
+        newFragment.countryName = usaidProjectsCountryObject.countryID;
         
-    }
+        USAidMainActivity.countryUSAidWrapperFragment.
+        
+        getChildFragmentManager().beginTransaction()
+        
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        .replace(R.id.fragment_container, newFragment, USAidConstants.USAID_FRAGMENT_NAME_PROJECTS)
+        .addToBackStack(null)
+    
+        // Commit the transaction
+        .commit();
+        
+    } // R.id.fragment_container
 
 
 
@@ -111,7 +113,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
     } // end setTheListData
     
     /**
-     * This is the array adapter class used for our custom view.
+     * This is the array adapter class used to display our custom view.
      * 
      * @author spotell at t-sciences.com
      */

@@ -31,7 +31,7 @@ public class USAidWrapperFragment extends SherlockFragment {
             
             getChildFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment_container, usaidMapFragment)
+                .add(R.id.fragment_container, usaidMapFragment, USAidConstants.USAID_FRAGMENT_NAME_MAP)
                 .addToBackStack(null)
                 .commit();
             
@@ -43,7 +43,7 @@ public class USAidWrapperFragment extends SherlockFragment {
             
             getChildFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment_container, usaidCountryListFragment)
+                .add(R.id.fragment_container, usaidCountryListFragment, USAidConstants.USAID_FRAGMENT_NAME_COUNTRY)
                 .addToBackStack(null)
                 .commit();
             
@@ -56,7 +56,5 @@ public class USAidWrapperFragment extends SherlockFragment {
         // There has to be a view with id `container` inside `wrapper.xml`
         return inflater.inflate(R.layout.usaid_fragment_container, container, false);
     }
-    
-    
 
 } // end USAidWrapperFragment

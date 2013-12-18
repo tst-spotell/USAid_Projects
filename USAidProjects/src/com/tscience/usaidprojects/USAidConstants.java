@@ -19,6 +19,11 @@ public class USAidConstants {
     public static final String USAID_BUNDLE_SECTOR_DATA = "sector";
     public static final String USAID_BUNDLE_FRAGMENT_TYPE = "fragment";
     
+    // fragment names
+    public static final String USAID_FRAGMENT_NAME_MAP = "map";
+    public static final String USAID_FRAGMENT_NAME_COUNTRY = "country";
+    public static final String USAID_FRAGMENT_NAME_PROJECTS = "projects";
+    
     // fragment types
     public static final int USAID_TYPE_MAP = 1;
     public static final int USAID_TYPE_LIST = 2;
