@@ -4,7 +4,6 @@
 package com.tscience.usaidprojects.utils;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidConstants;
@@ -16,9 +15,6 @@ import com.tscience.usaidprojects.USAidConstants;
  *
  */
 public class USAidProjectsUtility {
-    
-    /** Log id of this class name. */
-    private static final String LOG_TAG = "USAidProjectsUtility";
 
 	/**
 	 * This class takes a parent region string and returns a parent region id.
@@ -130,6 +126,9 @@ public class USAidProjectsUtility {
 		
 		StringBuffer sb = new StringBuffer();
 		
+		sb.append(context.getString(R.string.usaid_server_url));
+        sb.append(context.getString(R.string.usaid_server_project_detail));
+        sb.append(projectId);
 		
 		return sb.toString();
 		

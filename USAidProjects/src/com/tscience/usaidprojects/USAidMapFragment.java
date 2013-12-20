@@ -3,11 +3,6 @@
  */
 package com.tscience.usaidprojects;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import android.annotation.SuppressLint;

@@ -7,6 +7,9 @@ import java.lang.ref.WeakReference;
 
 import org.json.JSONObject;
 
+import android.util.Log;
+
+import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidCountryProjectsListFragment;
 import com.tscience.usaidprojects.utils.USAidProjectsObject;
 
@@ -37,7 +40,35 @@ public class USAidProjectsDetailTask extends USAidProjectsBaseNetworkTask {
     protected void onPostExecute(JSONObject result) {
         super.onPostExecute(result);
         
+        if (workingData == null) {
+            
+            Log.d(LOG_TAG, "-----------------------------------------no working data");
+            
+            return;
+            
+        } // end no data
+        
+        Log.d(LOG_TAG, "----------------------------------------- we have working data");
+        
         USAidProjectsObject descriptionObject = null;
+        
+        // process this data
+        try {
+            
+            descriptionObject = new USAidProjectsObject();
+            
+            descriptionObject.projectName = workingData.getString(context.getString(R.string.usaid_projects_country_public_name_jason_array));
+            
+            descriptionObject.startDate = workingData.getString(context.getString(R.string.usaid_projects_detail_start_date_jason_array));
+            descriptionObject.stopDate = workingData.getString(context.getString(R.string.usaid_projects_detail_end_date_jason_array));
+            
+            descriptionObject.description = workingData.getString(context.getString(R.string.usaid_projects_detail_project_description_jason_array));
+        
+        }
+        catch (Exception ignore) {
+            Log.e(LOG_TAG, "------------------------------description " + ignore.toString());
+        }
+        
         
         // do something with the data
         if (usaidCountryProjectsListFragmentReference != null) {

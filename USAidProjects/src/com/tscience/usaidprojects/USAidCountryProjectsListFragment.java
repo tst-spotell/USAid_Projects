@@ -49,7 +49,7 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     @Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
     	
-		// TODO get the display data
+		// get the display data
     	USAidProjectsDetailTask usaidProjectsDetailTask = new USAidProjectsDetailTask(this);
     	usaidProjectsDetailTask.execute(USAidProjectsUtility.getUrlProjectDetail(getActivity(), serverData.get(position).projectID));
     	
@@ -93,10 +93,10 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     
     public void displayProject(USAidProjectsObject value) {
     	
-    	// TODO display the dialog with data
+    	// display the dialog with data
     	// make the new bundle
     	Bundle bundle = new Bundle();
- //   	bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, value);
+    	bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, value);
     	
     	USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
     	usaidProjectDialog.show(getChildFragmentManager(), "project");
