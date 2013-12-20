@@ -15,6 +15,7 @@ import android.os.Parcelable;
 public class USAidProjectsObject implements Parcelable {
     
     public String projectName;
+    public String sectorName;
     
     public String startDate;
     public String stopDate;
@@ -41,6 +42,7 @@ public class USAidProjectsObject implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         
         dest.writeString(projectName);
+        dest.writeString(sectorName);
         dest.writeString(startDate);
         dest.writeString(stopDate);
         dest.writeString(description);
@@ -63,6 +65,7 @@ public class USAidProjectsObject implements Parcelable {
     private USAidProjectsObject(Parcel in) {
         
         projectName = in.readString();
+        sectorName = in.readString();
         startDate = in.readString();
         stopDate = in.readString();
         description = in.readString();

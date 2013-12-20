@@ -67,8 +67,8 @@ public class USAidProjectDialog extends DialogFragment {
         TextView endDate = (TextView) projectView.findViewById(R.id.dialog_project_end_date);
         endDate.setText(currentdata.stopDate);
         
-//        TextView title = (TextView) projectView.findViewById(R.id.dialog_project_sector_data);
-//        title.setText(currentdata.projectName);
+        TextView sector = (TextView) projectView.findViewById(R.id.dialog_project_sector_data);
+        sector.setText(currentdata.sectorName);
         
         TextView partner = (TextView) projectView.findViewById(R.id.dialog_project_primary_partner_data);
         partner.setText(currentdata.partner);

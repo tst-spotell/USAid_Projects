@@ -28,7 +28,6 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
      * Listener interface to tell when the map is ready
      */
     public static interface OnMapReadyListener {
-
         void onMapReady();
     }
     

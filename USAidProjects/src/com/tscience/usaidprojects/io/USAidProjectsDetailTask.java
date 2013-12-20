@@ -5,6 +5,7 @@ package com.tscience.usaidprojects.io;
 
 import java.lang.ref.WeakReference;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -58,11 +59,22 @@ public class USAidProjectsDetailTask extends USAidProjectsBaseNetworkTask {
             descriptionObject = new USAidProjectsObject();
             
             descriptionObject.projectName = workingData.getString(context.getString(R.string.usaid_projects_country_public_name_jason_array));
+            descriptionObject.sectorName = workingData.getString(context.getString(R.string.usaid_projects_detail_sector_name_jason_array));
             
             descriptionObject.startDate = workingData.getString(context.getString(R.string.usaid_projects_detail_start_date_jason_array));
             descriptionObject.stopDate = workingData.getString(context.getString(R.string.usaid_projects_detail_end_date_jason_array));
             
             descriptionObject.description = workingData.getString(context.getString(R.string.usaid_projects_detail_project_description_jason_array));
+            
+            // get the object with partner and amount
+            JSONObject partnerObject = (JSONObject) workingData.get(context.getString(R.string.usaid_projects_detail_mechs_jason_array));
+            
+            JSONArray partnerArray = partnerObject.getJSONArray(context.getString(R.string.usaid_projects_detail_records_jason_array));
+            
+            JSONObject tempObject = partnerArray.getJSONObject(0).getJSONObject(context.getString(R.string.usaid_projects_detail_imn_jason_array));
+            
+            descriptionObject.awardAmount = tempObject.getString(context.getString(R.string.usaid_projects_detail_award_amount_jason_array));
+            descriptionObject.partner = tempObject.getString(context.getString(R.string.usaid_projects_detail_partner_name_jason_array));
         
         }
         catch (Exception ignore) {
