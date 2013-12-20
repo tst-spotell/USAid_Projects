@@ -16,7 +16,9 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.tscience.usaidprojects.io.USAidProjectsByCountryTask;
+import com.tscience.usaidprojects.io.USAidProjectsDetailTask;
 import com.tscience.usaidprojects.utils.USAidProjectsListObject;
+import com.tscience.usaidprojects.utils.USAidProjectsObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 /**
@@ -47,12 +49,12 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     @Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
     	
-		// TODO start the display data
+		// TODO get the display data
+    	USAidProjectsDetailTask usaidProjectsDetailTask = new USAidProjectsDetailTask(this);
+    	usaidProjectsDetailTask.execute(USAidProjectsUtility.getUrlProjectDetail(getActivity(), serverData.get(position).projectID));
     	
 		super.onListItemClick(l, v, position, id);
 	}
-
-
 
 	@Override
     public void onResume() {
@@ -88,6 +90,18 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
         usaidCountryProjectsListAdapter.notifyDataSetChanged();
         
     } // end prepareListData
+    
+    public void displayProject(USAidProjectsObject value) {
+    	
+    	// TODO display the dialog with data
+    	// make the new bundle
+    	Bundle bundle = new Bundle();
+ //   	bundle.putParcelable(USAidConstants.USAID_BUNDLE_DATA_OBJECT, value);
+    	
+    	USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
+    	usaidProjectDialog.show(getChildFragmentManager(), "project");
+    	
+    }
     
     /**
      * This is the array adapter class used to display our custom view.

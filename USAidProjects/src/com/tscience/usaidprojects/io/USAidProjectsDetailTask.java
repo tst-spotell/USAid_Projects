@@ -3,7 +3,12 @@
  */
 package com.tscience.usaidprojects.io;
 
+import java.lang.ref.WeakReference;
+
 import org.json.JSONObject;
+
+import com.tscience.usaidprojects.USAidCountryProjectsListFragment;
+import com.tscience.usaidprojects.utils.USAidProjectsObject;
 
 
 /**
@@ -16,11 +21,41 @@ public class USAidProjectsDetailTask extends USAidProjectsBaseNetworkTask {
 
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidProjectsDetailTask";
+    
+    // weak reference to check and make sure fragment is still there
+    private final WeakReference<USAidCountryProjectsListFragment> usaidCountryProjectsListFragmentReference;
+    
+    public USAidProjectsDetailTask(USAidCountryProjectsListFragment value) {
+    	
+    	usaidCountryProjectsListFragmentReference = new WeakReference<USAidCountryProjectsListFragment>(value);
+        
+        context = value.getActivity();
+        
+    }
 
     @Override
     protected void onPostExecute(JSONObject result) {
-        // TODO Auto-generated method stub
         super.onPostExecute(result);
+        
+        USAidProjectsObject descriptionObject = null;
+        
+        // do something with the data
+        if (usaidCountryProjectsListFragmentReference != null) {
+            
+            USAidCountryProjectsListFragment usaidCountryProjectsListFragment = usaidCountryProjectsListFragmentReference.get();
+            usaidCountryProjectsListFragment.displayProject(descriptionObject);
+            
+        }
+        
+        // turn the progress dialog off
+        try {
+            progressDialog.dismiss();
+        } catch (Exception ignore) {}
+        
+        // little cleanup
+        context = null;
+        
+        
     }
     
     

@@ -119,6 +119,23 @@ public class USAidProjectsUtility {
 	}
 	
 	/**
+	 * Convenience method to get the server url for details of a project.
+	 * 
+	 * @param context		The context requesting the url.
+	 * @param projectId		The id of the detail to retrieve.
+	 * 
+	 * @return	The string url to the server.
+	 */
+	public static String getUrlProjectDetail(Context context, String projectId) {
+		
+		StringBuffer sb = new StringBuffer();
+		
+		
+		return sb.toString();
+		
+	}
+	
+	/**
      * This replaces the space with %20 for search purposes.
      * 
      * @param value The string to convert.

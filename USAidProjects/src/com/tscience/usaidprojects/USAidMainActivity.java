@@ -109,6 +109,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             // TODO handle back within the stack
         	int numfragments = countryUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
         	
+        	Log.d(LOG_TAG, "-------------------------------------------numfragments: " + numfragments);
+        	
         	if (numfragments > 1) {
         		countryUSAidWrapperFragment.getChildFragmentManager().popBackStackImmediate();
         		Log.d(LOG_TAG, "-------------------------------------------popBackStackImmediate");
