@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -190,6 +189,12 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 }
                 
                 case 1: {
+                    
+                    if (mapUSAidWrapperFragment != null) {
+                        
+                        return mapUSAidWrapperFragment;
+                        
+                    }
                     
                     USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     

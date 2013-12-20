@@ -34,6 +34,8 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        this.setRetainInstance(true);
+        
         Bundle bundle = this.getArguments();
         int fragmentType = bundle.getInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, 1);
         
