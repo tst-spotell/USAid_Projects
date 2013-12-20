@@ -109,13 +109,13 @@
         android:layout_below="@id/dialog_project_obligated"
         android:layout_alignLeft="@id/dialog_project_obligated" />
     
-    <TextView
+    <WebView
         android:id="@+id/dialog_project_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/dialog_project_primary_partner_data"
         android:layout_alignLeft="@id/dialog_project_primary_partner_data"
         android:padding="8dp"
-        android:background="@color/white" />"
-    
+        android:background="@color/white" />
+  
 </RelativeLayout>

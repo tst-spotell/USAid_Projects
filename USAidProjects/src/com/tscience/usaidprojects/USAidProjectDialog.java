@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 /**
@@ -76,8 +77,9 @@ public class USAidProjectDialog extends DialogFragment {
         TextView obligation = (TextView) projectView.findViewById(R.id.dialog_project_obligated_data);
         obligation.setText(currentdata.awardAmount);
         
-        TextView description = (TextView) projectView.findViewById(R.id.dialog_project_description);
-        description.setText(currentdata.description);
+        WebView description = (WebView) projectView.findViewById(R.id.dialog_project_description);
+        description.getSettings().setBuiltInZoomControls(true);
+        description.loadData(currentdata.description, "text/html", null);
         
         builder.setView(projectView);
         
