@@ -3,8 +3,10 @@
  */
 package com.tscience.usaidprojects;
 
-import android.app.Activity;
+import java.lang.reflect.Field;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,6 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
 	
 	private USAidMapFragment usaidMapFragment;
 	
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,9 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
         int fragmentType = bundle.getInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, 1);
         
         if (fragmentType == USAidConstants.USAID_TYPE_MAP) {
+            
+            USAidMainActivity.mapUSAidWrapperFragment = this;
+
             
             // add the map fragment
         	usaidMapFragment = new USAidMapFragment();
@@ -49,6 +53,8 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
             
             
         } else if (fragmentType == USAidConstants.USAID_TYPE_LIST) {
+            
+            USAidMainActivity.countryUSAidWrapperFragment = this;
             
             // add the country list fragment
             USAidCountryListFragment usaidCountryListFragment = new USAidCountryListFragment();
@@ -77,7 +83,5 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
 		mMap = usaidMapFragment.getMap();
 		
 	}
-	
-	
 
 } // end USAidWrapperFragment

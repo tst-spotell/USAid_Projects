@@ -83,6 +83,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
         } else {
             
             Log.d(LOG_TAG, "-------------------------------- USAidMainActivity.countryQueryResults all ready loaded");
+            setTheListData();
             
         }
         

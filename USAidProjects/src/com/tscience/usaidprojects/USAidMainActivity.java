@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -44,7 +45,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
     public static ArrayList<USAidProjectsCountryObject> countryQueryResults;
     
-    private static USAidWrapperFragment mapUSAidWrapperFragment;
+    public static USAidWrapperFragment mapUSAidWrapperFragment;
     
     public static USAidWrapperFragment countryUSAidWrapperFragment;
     
@@ -94,8 +95,6 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         }
         
     } // end onCreate
-    
-    
 
     @Override
     public void onBackPressed() {
@@ -106,7 +105,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             
         } else if (mViewPager.getCurrentItem() == 2) {
             
-            // TODO handle back within the stack
+            // handle back within the stack
         	int numfragments = countryUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
         	
         	Log.d(LOG_TAG, "-------------------------------------------numfragments: " + numfragments);
@@ -192,25 +191,31 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-                	mapUSAidWrapperFragment = new USAidWrapperFragment();
+                    USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     
                     Bundle bundle = new Bundle();
                     bundle.putInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, USAidConstants.USAID_TYPE_MAP);
-                    mapUSAidWrapperFragment.setArguments(bundle);
+                    newUSAidWrapperFragment.setArguments(bundle);
                     
-                    return mapUSAidWrapperFragment;
+                    return newUSAidWrapperFragment;
                     
                 }
                 
                 case 2: {
                     
-                	countryUSAidWrapperFragment = new USAidWrapperFragment();
+                    if (countryUSAidWrapperFragment != null) {
+                        
+                        return countryUSAidWrapperFragment;
+                        
+                    }
+                    
+                    USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     
                     Bundle bundle = new Bundle();
                     bundle.putInt(USAidConstants.USAID_BUNDLE_FRAGMENT_TYPE, USAidConstants.USAID_TYPE_LIST);
-                    countryUSAidWrapperFragment.setArguments(bundle);
+                    newUSAidWrapperFragment.setArguments(bundle);
                     
-                    return countryUSAidWrapperFragment;
+                    return newUSAidWrapperFragment;
                     
                 }
                 

@@ -224,15 +224,6 @@ public class USAidFilterFragment extends SherlockFragment {
         return rootView;
     }
     
-//    public void makeQuery() {
-//        
-//        USAidMainActivity.countryQuery = makeFilterQuery();
-//        USAidMainActivity.countryQueryResults = null;
-//        
-//        Log.d(LOG_TAG, "---------------------------------------------- countryQuery: " + USAidMainActivity.countryQuery);
-//        
-//    }
-    
     /**
      * Called when there is no network or cached data to display.
      */
@@ -286,10 +277,6 @@ public class USAidFilterFragment extends SherlockFragment {
         // start getting the data
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);
         usaidProjectsSnapshotTask.execute(USAidProjectsUtility.getUrlSnapshot(this.getActivity(), null));
-        
-//        // get the count
-//        USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), getString(R.string.usaid_json_overview_cache_file));
-//        usaidProjectsOverviewTask.execute(USAidProjectsUtility.getUrlOverview(this.getActivity(), null));
         
     }
     
