@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +18,8 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
-import com.tscience.usaidprojects.io.USAidProjectsByCountryTask;
 import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
-import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 /**
  * This is the fragment for displaying country search results.

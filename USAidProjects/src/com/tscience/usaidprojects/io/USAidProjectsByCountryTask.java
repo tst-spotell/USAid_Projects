@@ -93,7 +93,7 @@ public class USAidProjectsByCountryTask extends USAidProjectsJSONArrayBaseTask {
         
         } // end for loop
         
-        // TODO do something with the data
+        // do something with the data
         if (usaidCountryProjectsListFragmentReference != null) {
             
             USAidCountryProjectsListFragment usaidCountryProjectsListFragment = usaidCountryProjectsListFragmentReference.get();

@@ -4,7 +4,6 @@
 package com.tscience.usaidprojects;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,11 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
-import com.tscience.usaidprojects.USAidCountryListFragment.USAidCountryHolder;
 import com.tscience.usaidprojects.io.USAidProjectsByCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsListObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
@@ -47,6 +45,16 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     
 
     @Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+    	
+		// TODO start the display data
+    	
+		super.onListItemClick(l, v, position, id);
+	}
+
+
+
+	@Override
     public void onResume() {
         super.onResume();
         
@@ -120,7 +128,6 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
             
             if (usaidProjectHolder.projectNameView == null) {
             	
-            	usaidProjectHolder.typeImageView = (ImageView) currentView.findViewById(R.id.usaid_project_item_type);
             	usaidProjectHolder.projectNameView = (TextView) currentView.findViewById(R.id.usaid_project_item_name);
             	
             }
@@ -138,7 +145,6 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     
     static class USAidProjectHolder {
     	
-    	ImageView typeImageView;
         TextView projectNameView;
     	
     }

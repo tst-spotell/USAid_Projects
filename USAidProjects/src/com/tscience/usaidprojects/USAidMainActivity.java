@@ -107,7 +107,14 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         } else if (mViewPager.getCurrentItem() == 2) {
             
             // TODO handle back within the stack
-            
+        	int numfragments = countryUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
+        	
+        	if (numfragments > 1) {
+        		countryUSAidWrapperFragment.getChildFragmentManager().popBackStackImmediate();
+        		Log.d(LOG_TAG, "-------------------------------------------popBackStackImmediate");
+        		return;
+        	}
+        	
         }
         
         super.onBackPressed();
@@ -153,7 +160,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             }
         }
         catch (Exception ignore) {
-            Log.d(LOG_TAG, "-------------------------------------------setCountryQueryResults: " + ignore.toString());
+            Log.e(LOG_TAG, "-------------------------------------------setCountryQueryResults: " + ignore.toString());
         }
         
     } // end setCountryQueryResults
