@@ -18,11 +18,7 @@ import com.actionbarsherlock.app.SherlockFragment;
  * @author spotell at t-sciences.com
  *
  */
-public class USAidWrapperFragment extends SherlockFragment {  //  implements OnMapReadyListener
-    
-//	private GoogleMap mMap;
-//	
-//	private USAidMapFragment usaidMapFragment;
+public class USAidWrapperFragment extends SherlockFragment {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +33,6 @@ public class USAidWrapperFragment extends SherlockFragment {  //  implements OnM
             
             USAidMainActivity.mapUSAidWrapperFragment = this;
 
-            
             // add the map fragment
             USAidMapFragment usaidMapFragment = new USAidMapFragment();
             
@@ -71,29 +66,20 @@ public class USAidWrapperFragment extends SherlockFragment {  //  implements OnM
         return inflater.inflate(R.layout.usaid_fragment_container, container, false);
     }
     
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this, null);
-
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-//	@Override
-//	public void onMapReady() {
-//		
-//		Log.d(LOG_TAG, "---------------------------------------- onMapReady");
-//		
-//		mMap = usaidMapFragment.getMap();
-//		
-//	}
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//
+//        try {
+//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+//            childFragmentManager.setAccessible(true);
+//            childFragmentManager.set(this, null);
+//
+//        } catch (NoSuchFieldException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 } // end USAidWrapperFragment

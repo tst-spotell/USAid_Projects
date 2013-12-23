@@ -3,10 +3,12 @@
  */
 package com.tscience.usaidprojects;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +103,22 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     	USAidProjectDialog usaidProjectDialog = USAidProjectDialog.newInstance(bundle);
     	usaidProjectDialog.show(getChildFragmentManager(), "project");
     	
+    }
+    
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        try {
+            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     /**

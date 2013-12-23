@@ -130,6 +130,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         	
         }
         
+        // TODO may need to kill fragments
+        
         super.onBackPressed();
     }
 
@@ -203,11 +205,11 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-                    if (mapUSAidWrapperFragment != null) {
-                        
-                        return mapUSAidWrapperFragment;
-                        
-                    }
+//                    if (mapUSAidWrapperFragment != null) {
+//                        
+//                        return mapUSAidWrapperFragment;
+//                        
+//                    }
                     
                     USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     
@@ -221,11 +223,11 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 2: {
                     
-                    if (countryUSAidWrapperFragment != null) {
-                        
-                        return countryUSAidWrapperFragment;
-                        
-                    }
+//                    if (countryUSAidWrapperFragment != null) {
+//                        
+//                        return countryUSAidWrapperFragment;
+//                        
+//                    }
                     
                     USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     

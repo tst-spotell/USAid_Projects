@@ -3,6 +3,8 @@
  */
 package com.tscience.usaidprojects.utils;
 
+import java.net.URLEncoder;
+
 import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -109,7 +111,12 @@ public class USAidProjectsUtility {
 	    sb.append(context.getString(R.string.usaid_server_url));
 	    sb.append(context.getString(R.string.usaid_server_projects));
 	    sb.append(context.getString(R.string.usaid_server_country_start));
-	    sb.append(countryName);
+	    try {
+	        sb.append(URLEncoder.encode(countryName, "UTF-8"));
+	    }
+	    catch (Exception ignore) {
+	        return null;
+	    }
 	    sb.append(context.getString(R.string.usaid_server_flag));
 	    
 	    return sb.toString();
