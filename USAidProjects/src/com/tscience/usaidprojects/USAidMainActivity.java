@@ -105,6 +105,15 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         if (mViewPager.getCurrentItem() == 1) {
             
             // TODO handle back within the stack
+            int numfragments = mapUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
+            
+            Log.d(LOG_TAG, "-------------------------------------------numfragments: " + numfragments);
+            
+            if (numfragments > 1) {
+                mapUSAidWrapperFragment.getChildFragmentManager().popBackStackImmediate();
+                Log.d(LOG_TAG, "-------------------------------------------popBackStackImmediate");
+                return;
+            }
             
         } else if (mViewPager.getCurrentItem() == 2) {
             

@@ -4,7 +4,9 @@
 package com.tscience.usaidprojects;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
@@ -140,6 +142,33 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
             
             GoogleMap mMap = this.getMap();
             
+            mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    
+                    // run the country list
+                    
+                    // Create new fragment and transaction
+                    USAidCountryProjectsListFragment newFragment = new USAidCountryProjectsListFragment();
+                    newFragment.countryName = marker.getTitle();
+                    
+                    USAidMainActivity.mapUSAidWrapperFragment.
+                    
+                    getChildFragmentManager().beginTransaction()
+                    
+                    // Replace whatever is in the fragment_container view with this fragment,
+                    // and add the transaction to the back stack
+                    .replace(R.id.fragment_container, newFragment, USAidConstants.USAID_FRAGMENT_NAME_PROJECTS)
+                    .addToBackStack(null)
+                
+                    // Commit the transaction
+                    .commit();
+                    
+                }
+                
+            });
+            
             USAidProjectsCountryObject data = null;
             
             // cycle through the results and make the pins
@@ -149,7 +178,8 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
                 
                 mMap.addMarker(new MarkerOptions()
                     .position(USAidMainActivity.usaidCenterHashMap.get(data.countryID).center)
-                    .title(data.countryID));
+                    .title(data.countryID)
+                    .snippet("Projects: " + data.totalProjects));
                 
             }
             
