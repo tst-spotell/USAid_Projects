@@ -3,7 +3,10 @@
  */
 package com.tscience.usaidprojects;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -130,6 +133,28 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
         
         Log.d(LOG_TAG, "---------------------------------------- updateData: ");
         
-    }
+        // make sure we have query results
+        if (USAidMainActivity.countryQueryResults != null) {
+            
+            int numResults = USAidMainActivity.countryQueryResults.size();
+            
+            GoogleMap mMap = this.getMap();
+            
+            USAidProjectsCountryObject data = null;
+            
+            // cycle through the results and make the pins
+            for (int i = 0; i < numResults; i++) {
+                
+                data = USAidMainActivity.countryQueryResults.get(i);
+                
+                mMap.addMarker(new MarkerOptions()
+                    .position(USAidMainActivity.usaidCenterHashMap.get(data.countryID).center)
+                    .title(data.countryID));
+                
+            }
+            
+        }
+        
+    } // end updateData
 
 } // end USAidMapFragment

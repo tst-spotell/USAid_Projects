@@ -4,28 +4,22 @@
 package com.tscience.usaidprojects;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.google.android.gms.maps.GoogleMap;
-import com.tscience.usaidprojects.USAidMapFragment.OnMapReadyListener;
 
 
 /**
  * @author spotell at t-sciences.com
  *
  */
-public class USAidWrapperFragment extends SherlockFragment implements OnMapReadyListener {
-
-	/** Log id of this class name. */
-    private static final String LOG_TAG = "USAidWrapperFragment";
+public class USAidWrapperFragment extends SherlockFragment {  //  implements OnMapReadyListener
     
-	private GoogleMap mMap;
-	
-	private USAidMapFragment usaidMapFragment;
+//	private GoogleMap mMap;
+//	
+//	private USAidMapFragment usaidMapFragment;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +36,7 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
 
             
             // add the map fragment
-        	usaidMapFragment = new USAidMapFragment();
+            USAidMapFragment usaidMapFragment = new USAidMapFragment();
             
             getChildFragmentManager()
                 .beginTransaction()
@@ -74,13 +68,13 @@ public class USAidWrapperFragment extends SherlockFragment implements OnMapReady
         return inflater.inflate(R.layout.usaid_fragment_container, container, false);
     }
 
-	@Override
-	public void onMapReady() {
-		
-		Log.d(LOG_TAG, "---------------------------------------- onMapReady");
-		
-		mMap = usaidMapFragment.getMap();
-		
-	}
+//	@Override
+//	public void onMapReady() {
+//		
+//		Log.d(LOG_TAG, "---------------------------------------- onMapReady");
+//		
+//		mMap = usaidMapFragment.getMap();
+//		
+//	}
 
 } // end USAidWrapperFragment
