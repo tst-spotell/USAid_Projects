@@ -1,5 +1,5 @@
 /**
- * 
+ * Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved.
  */
 package com.tscience.usaidprojects.utils;
 

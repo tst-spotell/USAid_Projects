@@ -144,6 +144,7 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
             
             mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
+                @SuppressWarnings("static-access")
                 @Override
                 public void onInfoWindowClick(Marker marker) {
                     

@@ -36,6 +36,8 @@ public class USAidCountryListFragment extends SherlockListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
+        Log.d(LOG_TAG, "-------------------------------- onCreateView");
+        
         // layout the view
         View listView = inflater.inflate(R.layout.usaid_country_layout, container, false);
         
@@ -44,6 +46,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
     } // end onCreateView
     
 
+    @SuppressWarnings("static-access")
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         
@@ -68,11 +71,11 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
     } // R.id.fragment_container
 
-
-
     @Override
     public void onResume() {
         super.onResume();
+        
+        Log.d(LOG_TAG, "-------------------------------- onResume");
         
         if (USAidMainActivity.countryQueryResults == null) {
             
@@ -87,7 +90,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
             
         }
         
-    }
+    } // end onResume
     
     /**
      * This method is called from a thread to update the query results.
