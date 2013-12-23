@@ -5,6 +5,8 @@ package com.tscience.usaidprojects.utils;
 
 import android.content.Context;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidConstants;
 
@@ -163,5 +165,60 @@ public class USAidProjectsUtility {
         return sb.toString();
         
     } // end convertName
+    
+    public static LatLng convertStringToLatLng(String value) {
+        
+        LatLng southWest = null;
+        LatLng northEast = null;
+        
+        // get the values separated by comma
+        int startHere = 0;
+        int currentComma = 0;
+        String tempString = null;
+        double lat = 0;
+        double lon = 0;
+        
+        // get southWest
+        currentComma = value.indexOf(",", startHere);
+        
+        tempString = value.substring(startHere, currentComma).trim();
+        
+        lat = Double.parseDouble(tempString);
+        
+        startHere = currentComma + 1;
+        
+        currentComma = value.indexOf(",", startHere);
+
+        tempString = value.substring(startHere, currentComma).trim();
+        
+        lon = Double.parseDouble(tempString);
+        
+        southWest = new LatLng(lat, lon);
+        
+        // get northEast
+        startHere = currentComma + 1;
+        
+        currentComma = value.indexOf(",", startHere);
+        
+        tempString = value.substring(startHere, currentComma).trim();
+        
+        lat = Double.parseDouble(tempString);
+        
+        startHere = currentComma + 1;
+        
+        tempString = value.substring(startHere).trim();
+        
+        lon = Double.parseDouble(tempString);
+        
+        northEast = new LatLng(lat, lon);
+        
+        LatLngBounds bounds = new LatLngBounds(southWest, northEast);
+        
+        LatLng centerPoint = bounds.getCenter();
+        
+        return centerPoint;
+        
+    } // end convertStringToGeoPoints
+
 
 } // end USAidProjectsUtility

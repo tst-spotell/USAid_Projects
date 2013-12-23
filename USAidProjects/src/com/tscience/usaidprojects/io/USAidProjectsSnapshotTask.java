@@ -16,7 +16,10 @@ import org.json.JSONObject;
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidConstants;
 import com.tscience.usaidprojects.USAidFilterFragment;
+import com.tscience.usaidprojects.USAidMainActivity;
+import com.tscience.usaidprojects.utils.USAidProjectsLatLngCenterObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 import android.util.Log;
 
@@ -241,6 +244,13 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         // sort the region names
         Collections.sort(regionArray, new DisplayNameComparator());
         
+        // set the hashmap
+        if (USAidMainActivity.usaidCenterHashMap == null) {
+            USAidMainActivity.usaidCenterHashMap = new HashMap<String, USAidProjectsLatLngCenterObject>();
+        } else {
+            // for reload
+            USAidMainActivity.usaidCenterHashMap.clear();
+        }
         
         JSONArray locationsData = null;
         
@@ -295,6 +305,14 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     
                     // add to the data array
                     countryMap.get(tempValue.parentRegion).add(tempValue);
+                    
+                    // get the bounds
+                    String boundString = jsonObject.getString(context.getString(R.string.usaid_projects_snapshot_bound));
+                    
+                    USAidProjectsLatLngCenterObject newObject = new USAidProjectsLatLngCenterObject();
+                    newObject.center = USAidProjectsUtility.convertStringToLatLng(boundString);
+                    
+                    USAidMainActivity.usaidCenterHashMap.put(tempValue.name, newObject);
                     
                 }
                 catch (Exception ignore) {

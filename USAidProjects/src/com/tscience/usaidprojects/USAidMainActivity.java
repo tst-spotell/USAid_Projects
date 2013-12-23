@@ -4,6 +4,7 @@
 package com.tscience.usaidprojects;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -21,6 +22,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
+import com.tscience.usaidprojects.utils.USAidProjectsLatLngCenterObject;
 
 @SuppressLint("NewApi")
 public class USAidMainActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
@@ -47,6 +49,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     public static USAidWrapperFragment mapUSAidWrapperFragment;
     
     public static USAidWrapperFragment countryUSAidWrapperFragment;
+    
+    public static HashMap<String, USAidProjectsLatLngCenterObject> usaidCenterHashMap;
     
     public interface OnCountryQueryUpdate {
         public void updateCountryData();

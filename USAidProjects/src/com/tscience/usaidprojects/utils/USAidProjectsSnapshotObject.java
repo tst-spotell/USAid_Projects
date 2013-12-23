@@ -39,6 +39,7 @@ public class USAidProjectsSnapshotObject implements Parcelable {
 		dest.writeString(countryUrl);
 		dest.writeString(parentRegion);
 		dest.writeString(countryCode);
+		
 		if (selected) {
 		    dest.writeInt(1);
 		} else {

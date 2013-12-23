@@ -37,6 +37,7 @@
     <string name="usaid_projects_overview_initiatives_jason_array">details</string>
     
     <!-- snapshot -->
+    <string name="usaid_projects_snapshot_bound">bound</string>
     <string name="usaid_projects_snapshot_initiatives_jason_array">initiatives</string>
     <string name="usaid_projects_snapshot_locations_jason_array">locations</string>
     <string name="usaid_projects_snapshot_regions_jason_array">regions</string>

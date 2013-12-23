@@ -108,6 +108,8 @@ public class USAidFilterFragment extends SherlockFragment {
                 Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
             }
             
+            // TODO usaidCenterHashMap
+            
         }
         
     } // end onCreate
@@ -157,6 +159,8 @@ public class USAidFilterFragment extends SherlockFragment {
                 Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
             }
         }
+        
+        // TODO usaidCenterHashMap
         
         super.onSaveInstanceState(outState);
     }
