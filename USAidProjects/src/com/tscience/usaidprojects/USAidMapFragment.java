@@ -3,8 +3,6 @@
  */
 package com.tscience.usaidprojects;
 
-import java.lang.reflect.Field;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -68,22 +66,6 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
 
     }
     
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//
-//        try {
-//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-//            childFragmentManager.setAccessible(true);
-//            childFragmentManager.set(this, null);
-//
-//        } catch (NoSuchFieldException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-    
     public void updateData() {
         
         Log.d(LOG_TAG, "---------------------------------------- updateData: ");
@@ -94,6 +76,9 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
             int numResults = USAidMainActivity.countryQueryResults.size();
             
             GoogleMap mMap = this.getMap();
+            
+            // clear any old data
+            mMap.clear();
             
             mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 

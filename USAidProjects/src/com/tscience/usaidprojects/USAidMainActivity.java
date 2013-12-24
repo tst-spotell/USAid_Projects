@@ -167,10 +167,14 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
             if (currentTabId == 1) {
                 
             	((USAidMapFragment)mapUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_MAP)).updateData();
+            	
+            	((USAidCountryListFragment)countryUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_COUNTRY)).setTheListData();
                 
             } else if (currentTabId == 2) {
                 
             	((USAidCountryListFragment)countryUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_COUNTRY)).setTheListData();
+            	
+            	((USAidMapFragment)mapUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_MAP)).updateData();
                 
             }
         }
@@ -205,12 +209,6 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 case 1: {
                     
-//                    if (mapUSAidWrapperFragment != null) {
-//                        
-//                        return mapUSAidWrapperFragment;
-//                        
-//                    }
-                    
                     USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     
                     Bundle bundle = new Bundle();
@@ -222,12 +220,6 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 }
                 
                 case 2: {
-                    
-//                    if (countryUSAidWrapperFragment != null) {
-//                        
-//                        return countryUSAidWrapperFragment;
-//                        
-//                    }
                     
                     USAidWrapperFragment newUSAidWrapperFragment = new USAidWrapperFragment();
                     

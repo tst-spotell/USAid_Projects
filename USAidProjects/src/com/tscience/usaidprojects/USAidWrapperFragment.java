@@ -1,12 +1,9 @@
 /**
- * 
+ * Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved.
  */
 package com.tscience.usaidprojects;
 
-import java.lang.reflect.Field;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,21 +62,5 @@ public class USAidWrapperFragment extends SherlockFragment {
         // There has to be a view with id `container` inside `wrapper.xml`
         return inflater.inflate(R.layout.usaid_fragment_container, container, false);
     }
-    
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//
-//        try {
-//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-//            childFragmentManager.setAccessible(true);
-//            childFragmentManager.set(this, null);
-//
-//        } catch (NoSuchFieldException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
 } // end USAidWrapperFragment

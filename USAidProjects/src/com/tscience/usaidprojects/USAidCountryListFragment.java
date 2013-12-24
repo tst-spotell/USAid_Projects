@@ -3,12 +3,10 @@
  */
 package com.tscience.usaidprojects;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +39,9 @@ public class USAidCountryListFragment extends SherlockListFragment {
         Log.d(LOG_TAG, "-------------------------------- onCreateView");
         
         // layout the view
-        View listView = inflater.inflate(R.layout.usaid_country_layout, container, false);
+        View mainView = inflater.inflate(R.layout.usaid_country_layout, container, false);
         
-        return listView;
+        return mainView;
         
     } // end onCreateView
     
@@ -113,22 +111,6 @@ public class USAidCountryListFragment extends SherlockListFragment {
         myCountryListAdapter.notifyDataSetChanged();
         
     } // end setTheListData
-    
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//
-//        try {
-//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-//            childFragmentManager.setAccessible(true);
-//            childFragmentManager.set(this, null);
-//
-//        } catch (NoSuchFieldException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
     
     /**
      * This is the array adapter class used to display our custom view.
