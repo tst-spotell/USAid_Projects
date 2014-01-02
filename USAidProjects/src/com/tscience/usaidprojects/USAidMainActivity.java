@@ -87,8 +87,33 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 actionBar.setSelectedNavigationItem(position);
                 Log.d(LOG_TAG, "-------------------------------------------SimpleOnPageChangeListener");
                 
+                if (position == 0) {
+                    
+                    // clear child back stacks if any
+                    int count = mapUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
+                    
+                    Log.d(LOG_TAG, "----------------------------------- map backstack count: " + count);
+                    
+                    if (count > 1) {
+                        for (int i = 1; i < count; i++) {
+                            mapUSAidWrapperFragment.getChildFragmentManager().popBackStackImmediate();
+                        }
+                    }
+                    
+                    count = countryUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
+                    
+                    Log.d(LOG_TAG, "----------------------------------- list backstack count: " + count);
+                    
+                    if (count > 1) {
+                        for (int i = 1; i < count; i++) {
+                            countryUSAidWrapperFragment.getChildFragmentManager().popBackStackImmediate();
+                        }
+                    }
+                    
+                }
+                
                 // find the fragment
-                if (position == 1) {
+                else if (position == 1) {
                     
                     ((USAidMapFragment)mapUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_MAP)).onResume();
                     
