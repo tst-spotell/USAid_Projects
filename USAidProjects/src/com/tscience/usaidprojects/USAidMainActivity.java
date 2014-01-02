@@ -73,6 +73,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        
+        mViewPager.setOffscreenPageLimit(2);
 
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -84,6 +86,17 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
                 
                 actionBar.setSelectedNavigationItem(position);
                 Log.d(LOG_TAG, "-------------------------------------------SimpleOnPageChangeListener");
+                
+                // find the fragment
+                if (position == 1) {
+                    
+                    ((USAidMapFragment)mapUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_MAP)).onResume();
+                    
+                } else if (position == 2) {
+                    
+                    ((USAidCountryListFragment)countryUSAidWrapperFragment.getChildFragmentManager().findFragmentByTag(USAidConstants.USAID_FRAGMENT_NAME_COUNTRY)).onResume();
+                    
+                }
                 
             }
         });

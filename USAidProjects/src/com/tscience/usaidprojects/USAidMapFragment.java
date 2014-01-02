@@ -8,6 +8,7 @@ import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 
 import android.annotation.SuppressLint;
@@ -50,6 +51,25 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        
+        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null)) {
+            
+            // get the count
+            USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), null);
+            usaidProjectsOverviewTask.execute(USAidMainActivity.countryQuery);
+            
+        } else {
+            
+            Log.d(LOG_TAG, "-------------------------------- USAidMainActivity.countryQueryResults all ready loaded");
+            updateData();
+            
+        }
+        
     }
 
     @Override

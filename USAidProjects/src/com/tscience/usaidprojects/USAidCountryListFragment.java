@@ -70,6 +70,8 @@ public class USAidCountryListFragment extends SherlockListFragment {
         .commit();
         
     } // R.id.fragment_container
+    
+    
 
     @Override
     public void onResume() {
@@ -77,7 +79,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
         Log.d(LOG_TAG, "-------------------------------- onResume");
         
-        if (USAidMainActivity.countryQueryResults == null) {
+        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null)) {
             
             // get the count
             USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), null);
@@ -101,14 +103,18 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
         Log.d(LOG_TAG, "-------------------------------- setTheListData");
         
-        // create a new list adapter
-        myCountryListAdapter = new USAidCountryListAdapter(getActivity(), R.layout.usaid_country_item, USAidMainActivity.countryQueryResults);
+        if (USAidMainActivity.countryQueryResults != null) {
+            
+            // create a new list adapter
+            myCountryListAdapter = new USAidCountryListAdapter(getActivity(), R.layout.usaid_country_item, USAidMainActivity.countryQueryResults);
+            
+            // set list adapter
+            this.setListAdapter(myCountryListAdapter);
+            
+            // update list data
+            myCountryListAdapter.notifyDataSetChanged();
         
-        // set list adapter
-        this.setListAdapter(myCountryListAdapter);
-        
-        // update list data
-        myCountryListAdapter.notifyDataSetChanged();
+        }
         
     } // end setTheListData
     
