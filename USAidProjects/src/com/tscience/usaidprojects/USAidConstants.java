@@ -12,6 +12,13 @@ package com.tscience.usaidprojects;
  */
 public class USAidConstants {
     
+    // button filter selected
+    public static final int USAID_BUTTON_LOCATION = 0;
+    public static final int USAID_BUTTON_SECTOR = 1;
+    public static final int USAID_BUTTON_INITIATIVE = 2;
+    public static final int USAID_BUTTON_TIME = 3;
+    
+    
     // bundle data
     public static final String USAID_BUNDLE_COUNTRY_DATA = "country";
     public static final String USAID_BUNDLE_DATA_OBJECT = "usaid_data";
@@ -44,7 +51,6 @@ public class USAidConstants {
     public static final int USAID_REGION_MIDDLE_EAST = 4;
     public static final int USAID_REGION_AFRICA = 5;
     public static final int USAID_REGION_OTHER = 6;
-    
     
     // type constants (for object type)
     public static final int USAID_TYPE_INITIATIVES = 0;

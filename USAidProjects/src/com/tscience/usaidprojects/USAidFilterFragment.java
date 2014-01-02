@@ -5,22 +5,32 @@ package com.tscience.usaidprojects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.tscience.usaidprojects.USAidCountryListFragment.USAidCountryHolder;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
+import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ListView;
 
@@ -35,9 +45,10 @@ public class USAidFilterFragment extends SherlockFragment {
 	/** Log id of this class name. */
     private static final String LOG_TAG = "USAidFilterFragment";
     
+    // the adapter for the expandable list view
     ExpandableListAdapter listAdapter;
     
-    /** the expandable list view we are using to display filter choices. */
+    /** The expandable list view we are using to display filter choices. */
     ExpandableListView expListView;
     
     /** This is the list of headers. */
@@ -45,6 +56,8 @@ public class USAidFilterFragment extends SherlockFragment {
     
     /** Contains the child drop down list items. */
     public static HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listDataChild;
+    
+    ListView sectorList;
     
     /** List of the sector headings. */
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
@@ -225,6 +238,64 @@ public class USAidFilterFragment extends SherlockFragment {
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.usaid_filter_locations);
         
+        sectorList = (ListView) rootView.findViewById(R.id.sector_list);
+        
+        // location
+        Button locationButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_locations);
+        
+        locationButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                displayFilterList(USAidConstants.USAID_BUTTON_LOCATION);
+                
+            }
+            
+        });
+        
+        // sector
+        Button sectorButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_sectors);
+        
+        sectorButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                displayFilterList(USAidConstants.USAID_BUTTON_SECTOR);
+                
+            }
+            
+        });
+        
+        // initiatives
+        Button initiativeButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_initiatives);
+        
+        initiativeButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                displayFilterList(USAidConstants.USAID_BUTTON_INITIATIVE);
+                
+            }
+            
+        });
+        
+        // time
+        Button timeButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_dates);
+        
+        timeButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                displayFilterList(USAidConstants.USAID_BUTTON_TIME);
+                
+            }
+            
+        });
+        
         return rootView;
     }
     
@@ -271,6 +342,12 @@ public class USAidFilterFragment extends SherlockFragment {
         
         sectorDataHeader = sectors;
         
+        sectorList.setAdapter(new USAidSectorListAdapter(getActivity(), R.layout.usaid_sector_item));
+        
+        sectorList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        
+        sectorList.invalidate();
+        
     } // end prepareListData
     
     /**
@@ -284,6 +361,11 @@ public class USAidFilterFragment extends SherlockFragment {
         
     }
     
+    /**
+     * Creates a filter query based on what was selected.
+     * 
+     * @return  The query string;
+     */
     public static String makeFilterQuery() {
         
         StringBuffer result = new StringBuffer();
@@ -296,6 +378,8 @@ public class USAidFilterFragment extends SherlockFragment {
         if ((listDataHeader != null) && (listDataChild != null)) {
             
             int numRegions = listDataHeader.size();
+            
+            boolean hasLocations = false;
             
             try {
                 
@@ -310,6 +394,8 @@ public class USAidFilterFragment extends SherlockFragment {
                     for (int j = 0; j < tempArraySize; j++) {
                         
                         if (temp.get(j).selected) {
+                            
+                            hasLocations = true;
                             
                             if (!firstTime) {
                                 
@@ -327,10 +413,9 @@ public class USAidFilterFragment extends SherlockFragment {
                             
                         }
                         
-                    }
+                    } // end for loop j
                     
-                    
-                }
+                } // end for loop i
             
             }
             catch (Exception ignore) {
@@ -340,9 +425,127 @@ public class USAidFilterFragment extends SherlockFragment {
         
         }
         
+        // TODO add the sectors into the query string
+        
+        // TODO add the initiatives into the query string
+        
+        // TODO add the time into the query string
+        
+        
         Log.e(LOG_TAG, "---------------------------------------------- makeFilterQuery complete");
         
         return result.toString();
+        
+    }
+    
+    /**
+     * Displays the views based on buttons selected.
+     * 
+     * @param value The id of the button selected.
+     */
+    private void displayFilterList(int value) {
+        
+        switch (value) {
+            
+            case USAidConstants.USAID_BUTTON_LOCATION: {
+                
+                expListView.setVisibility(View.VISIBLE);
+                sectorList.setVisibility(View.GONE);
+                
+                break;
+            }
+            
+            case USAidConstants.USAID_BUTTON_SECTOR: {
+                
+                sectorList.setVisibility(View.VISIBLE);
+                expListView.setVisibility(View.GONE);
+                
+                break;
+            }
+            
+            case USAidConstants.USAID_BUTTON_INITIATIVE: {
+                
+                break;
+            }
+            
+            case USAidConstants.USAID_BUTTON_TIME: {
+                
+                break;
+            }
+            
+        }
+        
+    } // end displayFilterList
+    
+    /**
+     * Tis is the adapter for displaying the sector data.
+     * 
+     * @author spotell at t-sciences.com
+     */
+    private class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotObject> {
+
+        private LayoutInflater inflater;
+        
+        /**
+         * @param context
+         * @param resource
+         */
+        public USAidSectorListAdapter(Context context, int resource) {
+            super(context, resource);
+            
+            inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            
+            View currentView = convertView;
+            
+            // if the view has not been created create it
+            if (currentView == null) {
+                
+                currentView = inflater.inflate(R.layout.usaid_sector_item, null);
+                
+                // create the tag we are using
+                currentView.setTag(new USAidSectorHolder());
+                
+            }
+            
+            USAidSectorHolder usaidSectorHolder = (USAidSectorHolder) currentView.getTag();
+            
+            // load the holder if empty
+            if (usaidSectorHolder.sectorNameView == null) {
+                
+//                usaidSectorHolder.typeImageView = (ImageView) currentView.findViewById(R.id.usaid_country_flag);
+                usaidSectorHolder.sectorNameView = (TextView) currentView.findViewById(R.id.sectorNameItem);
+                usaidSectorHolder.sectorCheckBox = (CheckBox) currentView.findViewById(R.id.sectorCheckbox);
+                
+            }
+            
+            // the usaid DataObject object we are working with
+            usaidSectorHolder.usaidDataObject = sectorDataHeader.get(position);
+            
+            // TODO set the image
+            
+            // set the name
+            usaidSectorHolder.sectorNameView.setText(usaidSectorHolder.usaidDataObject.name);
+            
+            usaidSectorHolder.sectorCheckBox.setSelected(usaidSectorHolder.usaidDataObject.selected);
+            
+            return currentView;
+            
+        }
+        
+    } // end USAidSectorListAdapter
+    
+    static class USAidSectorHolder {
+        
+        ImageView typeImageView;
+        TextView sectorNameView;
+        CheckBox sectorCheckBox;
+        
+        USAidProjectsSnapshotObject usaidDataObject;
         
     }
 

@@ -13,6 +13,16 @@
     <!-- countries -->
     <string name="usaid_server_country_start">&#38;c=</string>
     
+    <!-- initiatives -->
+    <string name="usaid_server_initiative_start">&#38;i=</string>
+    
+    <!-- sectors -->
+    <string name="usaid_server_sector_start">&#38;s=</string>
+    
+    <!-- time -->
+    <string name="usaid_server_time_start">&#38;t=</string>
+    <string name="usaid_server_time_end">&#38;f=</string>
+    
     <!-- use flags -->
     <string name="usaid_server_flag">&#38;v=flag</string>
     
