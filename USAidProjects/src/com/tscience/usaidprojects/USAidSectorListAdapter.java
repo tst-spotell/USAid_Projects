@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 
 /**
@@ -24,6 +27,9 @@ import android.widget.TextView;
  *
  */
 public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotObject> {
+    
+    /** Log id of this class name. */
+    private static final String LOG_TAG = "USAidSectorListAdapter";
 
     private ArrayList<USAidProjectsSnapshotObject> items;
     
@@ -47,7 +53,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         
         View currentView = convertView;
         
@@ -80,12 +86,59 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         // set the name
         usaidSectorHolder.sectorNameView.setText(usaidSectorHolder.usaidDataObject.label);
         
-        usaidSectorHolder.sectorCheckBox.setSelected(usaidSectorHolder.usaidDataObject.selected);
+        usaidSectorHolder.sectorCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+                Log.d(LOG_TAG, "-----------------------------------------onCheckedChanged: " + position);
+                
+                setChildChecked(position, isChecked);
+                
+            }
+            
+        });
+        
+        usaidSectorHolder.sectorCheckBox.setSelected(getChildChecked(position));
         
         return currentView;
         
     } // end getView
     
+    /**
+     * Get the checked value.
+     * 
+     * @param position  The position in the list.
+     * 
+     * @return The value of the onjects checked.
+     */
+    private boolean getChildChecked(int position) {
+        
+        return USAidFilterFragment.sectorDataHeader.get(position).selected;
+        
+    }
+    
+    /**
+     * This method sets the check value after the checkbox has been selected.
+     * 
+     * @param position  The position in the list.
+     * @param value     The new checked value.
+     */
+    private void setChildChecked(int position, boolean value) {
+        
+        USAidFilterFragment.sectorDataHeader.get(position).selected = value;
+        
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
+        USAidMainActivity.countryQueryResults = null;
+        
+    }
+    
+    /**
+     * Static class for view holder pattern.
+     * 
+     * @author spotell at t-sciences.com
+     *
+     */
     static class USAidSectorHolder {
         
         ImageView typeImageView;

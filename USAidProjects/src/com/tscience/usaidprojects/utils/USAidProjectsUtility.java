@@ -227,5 +227,39 @@ public class USAidProjectsUtility {
         
     } // end convertStringToGeoPoints
 
+    /**
+     * Convenience method to format the date as we want it.
+     * 
+     * @param year  The year.
+     * @param month The month of the year.
+     * @param day   The day of the month.
+     * 
+     * @return  The new string value of the date.
+     */
+    public static String formatTheDate(int year, int month, int day) {
+        
+        StringBuffer dateString = new StringBuffer();
+        dateString.append(year);
+        dateString.append(USAidConstants.USAID_DASH);
+        
+        // add the extra zero
+        int correctMonth = month + 1;
+        if (correctMonth < 10) {
+            dateString.append(0);
+        }
+        
+        dateString.append(correctMonth);
+        dateString.append(USAidConstants.USAID_DASH);
+        
+        // add the extra zero
+        if (day < 10) {
+            dateString.append(0);
+        }
+        
+        dateString.append(day);
+        
+        return dateString.toString();
+        
+    } // end getDateString
 
 } // end USAidProjectsUtility

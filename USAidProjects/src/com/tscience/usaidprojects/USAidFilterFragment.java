@@ -4,7 +4,9 @@
 package com.tscience.usaidprojects;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -25,6 +27,7 @@ import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ListView;
 
@@ -69,6 +72,9 @@ public class USAidFilterFragment extends SherlockFragment {
     public static HashMap<String, ArrayList<USAidProjectsSnapshotObject>> initiativeDataChild;
     
     RelativeLayout timeFilter;
+    
+    long startingDate = 0;
+    long endingDate = 0;
     
     public static USAidFilterFragment usaidFilterFragment;
     
@@ -217,6 +223,18 @@ public class USAidFilterFragment extends SherlockFragment {
         if (currentItemId == R.id.action_filter_reset) {
             
             // TODO
+            if (timeFilter.getVisibility() == View.VISIBLE) {
+                
+                TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
+                startDate.setText(R.string.usaid_filter_today_label);
+                
+                TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
+                endDate.setText(R.string.usaid_filter_today_label);
+                
+                startingDate = 0;
+                endingDate = 0;
+                
+            }
             
             return true;
             
@@ -405,12 +423,38 @@ public class USAidFilterFragment extends SherlockFragment {
         
     } // end prepareListData
     
+    /**
+     * This is the method called when the date picker returns.
+     * 
+     * @param year  The year selected.
+     * @param month The month selected.
+     * @param day   The day selected.
+     * @param dateToSet Zero start date and 1 end date.
+     */
     public void onUSAidDateSelected(int year, int month, int day, int dateToSet) {
         
-        Log.d(LOG_TAG, "----------------------------------------------  year: " + year);
-        Log.d(LOG_TAG, "---------------------------------------------- month: " + month);
-        Log.d(LOG_TAG, "----------------------------------------------   day: " + day);
-        Log.d(LOG_TAG, "---------------------------------------------- dateToSet: " + dateToSet);
+        // TODO save the time
+        final Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, day);
+        
+        // display the time
+        if (dateToSet == USAidConstants.USAID_SET_START_DATE) {
+            
+            TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
+            startDate.setText(USAidProjectsUtility.formatTheDate(year, month, day));
+            
+            startingDate = c.getTimeInMillis();
+            
+        } else if (dateToSet == USAidConstants.USAID_SET_END_DATE) {
+            
+            TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
+            endDate.setText(USAidProjectsUtility.formatTheDate(year, month, day));
+            
+            endingDate = c.getTimeInMillis();
+            
+        }
         
     }
     
