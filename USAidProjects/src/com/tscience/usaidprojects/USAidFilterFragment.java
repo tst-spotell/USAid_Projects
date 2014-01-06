@@ -6,6 +6,7 @@ package com.tscience.usaidprojects;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -14,20 +15,16 @@ import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ListView;
 
@@ -58,6 +55,8 @@ public class USAidFilterFragment extends SherlockFragment {
     
     /** List of the sector headings. */
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
+    
+    RelativeLayout timeFilter;
     
     public static USAidFilterFragment usaidFilterFragment;
     
@@ -237,6 +236,8 @@ public class USAidFilterFragment extends SherlockFragment {
         
         sectorList = (ListView) rootView.findViewById(R.id.sector_list);
         
+        timeFilter = (RelativeLayout) rootView.findViewById(R.id.time_select);
+        
         // location
         Button locationButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_locations);
         
@@ -288,6 +289,34 @@ public class USAidFilterFragment extends SherlockFragment {
             public void onClick(View v) {
                 
                 displayFilterList(USAidConstants.USAID_BUTTON_TIME);
+                
+            }
+            
+        });
+        
+        // select start date
+        Button startDateButton = (Button) rootView.findViewById(R.id.usaid_set_start_date_button);
+        
+        startDateButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                showDatePickerDialog(USAidConstants.USAID_SET_START_DATE);
+                
+            }
+            
+        });
+        
+        // select end date
+        Button endDateButton = (Button) rootView.findViewById(R.id.usaid_set_end_date_button);
+        
+        endDateButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+                showDatePickerDialog(USAidConstants.USAID_SET_END_DATE);
                 
             }
             
@@ -346,6 +375,15 @@ public class USAidFilterFragment extends SherlockFragment {
         sectorList.invalidate();
         
     } // end prepareListData
+    
+    public void onUSAidDateSelected(int year, int month, int day, int dateToSet) {
+        
+        Log.d(LOG_TAG, "----------------------------------------------  year: " + year);
+        Log.d(LOG_TAG, "---------------------------------------------- month: " + month);
+        Log.d(LOG_TAG, "----------------------------------------------   day: " + day);
+        Log.d(LOG_TAG, "---------------------------------------------- dateToSet: " + dateToSet);
+        
+    }
     
     /**
      * Used to load the initial data and reload the data.
@@ -448,6 +486,7 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 expListView.setVisibility(View.VISIBLE);
                 sectorList.setVisibility(View.GONE);
+                timeFilter.setVisibility(View.GONE);
                 
                 break;
             }
@@ -456,6 +495,7 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 sectorList.setVisibility(View.VISIBLE);
                 expListView.setVisibility(View.GONE);
+                timeFilter.setVisibility(View.GONE);
                 
                 break;
             }
@@ -467,11 +507,35 @@ public class USAidFilterFragment extends SherlockFragment {
             
             case USAidConstants.USAID_BUTTON_TIME: {
                 
+                timeFilter.setVisibility(View.VISIBLE);
+                sectorList.setVisibility(View.GONE);
+                expListView.setVisibility(View.GONE);
+                
                 break;
             }
             
         }
         
     } // end displayFilterList
+    
+    /**
+     * Called to show the date picker.
+     * 
+     * @param value Zero is start date and one is end date.
+     */
+    private void showDatePickerDialog(int value) {
+        
+        SherlockDialogFragment newFragment = new USAidDatePicketFragment();
+        
+        Bundle newBundle = new Bundle();
+        newBundle.putInt(USAidConstants.USAID_SET_DATE, value);
+        
+        newFragment.setArguments(newBundle);
+        
+        newFragment.setTargetFragment(this, 1);
+        
+        newFragment.show(getSherlockActivity().getSupportFragmentManager(), "datePicker");
+        
+    } // end showDatePickerDialog
 
 } // end USAidFilterFragment

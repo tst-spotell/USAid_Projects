@@ -63,6 +63,57 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/usaid_filter_buttons_holder"
         android:layout_below="@id/initiative_list"
-        android:visibility="gone" />
+        android:visibility="gone" >
+        
+        <TextView
+            style="@style/usaid_small_text"
+            android:id="@+id/usaid_start_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/usaid_filter_start_date_label" />
+        
+        <TextView
+            style="@style/usaid_medium_text"
+            android:id="@+id/usaid_start_date"
+            android:layout_width="128dp"
+            android:layout_height="48dp"
+            android:layout_below="@id/usaid_start_date_label"
+            android:text="@string/usaid_filter_today_label" />
+        
+        <Button
+            style="@style/usaid_medium_text"
+            android:id="@+id/usaid_set_start_date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/usaid_start_date"
+            android:layout_alignTop="@id/usaid_start_date"
+            android:text="@string/usaid_filter_date_label" />
+        
+        <TextView
+            style="@style/usaid_small_text"
+            android:id="@+id/usaid_end_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usaid_start_date"
+            android:text="@string/usaid_filter_end_date_label" />
+        
+        <TextView
+            style="@style/usaid_medium_text"
+            android:id="@+id/usaid_end_date"
+            android:layout_width="128dp"
+            android:layout_height="48dp"
+            android:layout_below="@id/usaid_end_date_label"
+            android:text="@string/usaid_filter_today_label" />
+        
+        <Button
+            style="@style/usaid_medium_text"
+            android:id="@+id/usaid_set_end_date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/usaid_end_date"
+            android:layout_alignTop="@id/usaid_end_date"
+            android:text="@string/usaid_filter_date_label" />
+        
+    </RelativeLayout>
     
 </RelativeLayout>

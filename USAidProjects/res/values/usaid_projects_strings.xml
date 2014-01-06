@@ -79,8 +79,11 @@
     <string name="usaid_action_filter_country_gaza">WB Gaza</string>
     <string name="usaid_action_filter_country_zimbabwe">Zimbabwe</string>
     
-    <!-- no data -->
-    <string name="usaid_no_data">No data available.</string>
+    <!-- filter strings -->
+    <string name="usaid_filter_start_date_label">Start Date</string>
+    <string name="usaid_filter_end_date_label">End Date</string>
+    <string name="usaid_filter_today_label">Today</string>
+    <string name="usaid_filter_date_label">Set</string>
     
     <!-- json file -->
     <string name="usaid_json_snapshot_cache_file">jsonSnapshotCacheFile</string>
@@ -91,6 +94,9 @@
     <string name="action_about">About</string>
     <string name="usaid_action_filter_reload">Reload</string>
     <string name="usaid_action_filter_reset">Reset</string>
+    
+    <!-- no data -->
+    <string name="usaid_no_data">No data available.</string>
     
     <!-- project -->
     <string name="project_dialog_start_date">Start:</string>

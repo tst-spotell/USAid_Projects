@@ -18,6 +18,9 @@ public class USAidConstants {
     public static final int USAID_BUTTON_INITIATIVE = 2;
     public static final int USAID_BUTTON_TIME = 3;
     
+    public static final String USAID_SET_DATE = "setdate";
+    public static final int USAID_SET_START_DATE = 0;
+    public static final int USAID_SET_END_DATE = 1;
     
     // bundle data
     public static final String USAID_BUNDLE_COUNTRY_DATA = "country";
