@@ -39,10 +39,10 @@ public class USAidFilterFragment extends SherlockFragment {
 	/** Log id of this class name. */
     private static final String LOG_TAG = "USAidFilterFragment";
     
-    // the adapter for the expandable list view
+    // the adapter for the expandable location list view
     ExpandableListAdapter listAdapter;
     
-    /** The expandable list view we are using to display filter choices. */
+    /** The expandable list view we are using to display location filter choices. */
     ExpandableListView expListView;
     
     /** This is the list of headers. */
@@ -55,6 +55,12 @@ public class USAidFilterFragment extends SherlockFragment {
     
     /** List of the sector headings. */
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
+    
+    // the adapter for the expandable initiative list view
+    ExpandableListAdapter initiativeAdapter;
+    
+    /** The expandable list view we are using to display initiative filter choices. */
+    ExpandableListView initiativeListView;
     
     /** This is the list of initiative headers. */
     public static ArrayList<USAidProjectsSnapshotObject> initiativeDataHeader;
@@ -242,6 +248,8 @@ public class USAidFilterFragment extends SherlockFragment {
         
         sectorList = (ListView) rootView.findViewById(R.id.sector_list);
         
+        initiativeListView = (ExpandableListView) rootView.findViewById(R.id.initiative_list);
+        
         timeFilter = (RelativeLayout) rootView.findViewById(R.id.time_select);
         
         // location
@@ -384,6 +392,17 @@ public class USAidFilterFragment extends SherlockFragment {
         initiativeDataHeader = initiatives;
         initiativeDataChild =  initiativeMap;
         
+        // create the adapter with the data
+        initiativeAdapter = new USAidInitiativesAdapter(getActivity());
+        
+        // setting list adapter
+        initiativeListView.setAdapter(initiativeAdapter);
+        
+        initiativeListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        
+        // redraw with the new data
+        initiativeListView.invalidate();
+        
     } // end prepareListData
     
     public void onUSAidDateSelected(int year, int month, int day, int dateToSet) {
@@ -496,6 +515,7 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 expListView.setVisibility(View.VISIBLE);
                 sectorList.setVisibility(View.GONE);
+                initiativeListView.setVisibility(View.GONE);
                 timeFilter.setVisibility(View.GONE);
                 
                 break;
@@ -505,12 +525,18 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 sectorList.setVisibility(View.VISIBLE);
                 expListView.setVisibility(View.GONE);
+                initiativeListView.setVisibility(View.GONE);
                 timeFilter.setVisibility(View.GONE);
                 
                 break;
             }
             
             case USAidConstants.USAID_BUTTON_INITIATIVE: {
+                
+                initiativeListView.setVisibility(View.VISIBLE);
+                sectorList.setVisibility(View.GONE);
+                expListView.setVisibility(View.GONE);
+                timeFilter.setVisibility(View.GONE);
                 
                 break;
             }
@@ -519,6 +545,7 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 timeFilter.setVisibility(View.VISIBLE);
                 sectorList.setVisibility(View.GONE);
+                initiativeListView.setVisibility(View.GONE);
                 expListView.setVisibility(View.GONE);
                 
                 break;

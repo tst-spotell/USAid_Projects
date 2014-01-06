@@ -179,10 +179,10 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-            String headerTitle = (String) getGroup(groupPosition);
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.usaid_list_group, null);
-            }
+        String headerTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.usaid_list_group, null);
+        }
      
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);

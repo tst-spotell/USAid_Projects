@@ -3,11 +3,19 @@
  */
 package com.tscience.usaidprojects;
 
+import com.tscience.usaidprojects.USAidExpandableListAdapter.USAidProjectsFilterViewHolder;
+
 import android.content.Context;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 
 /**
@@ -33,8 +41,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
-        return null;
+        return USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(groupPosition).name).get(childPosition).label;
     }
 
     /* (non-Javadoc)
@@ -42,17 +49,89 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
-        return 0;
+        return childPosition;
     }
 
     /* (non-Javadoc)
      * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, android.view.View, android.view.ViewGroup)
      */
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        return null;
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        
+        View currentView = convertView;
+        
+        // if the view has not been created create it
+        if (currentView == null) {
+            
+            currentView = inflater.inflate(R.layout.usaid_list_item, null);
+            
+            // create the tag we are using
+            currentView.setTag(new USAidProjectsFilterViewHolder());
+            
+        }
+        
+        USAidProjectsFilterViewHolder usaidViewHolder = (USAidProjectsFilterViewHolder) currentView.getTag();
+        
+        // load the holder if empty
+        if (usaidViewHolder.textView == null) {
+            
+            usaidViewHolder.textView = (TextView) currentView.findViewById(R.id.lblListItem);
+            usaidViewHolder.checkBox = (CheckBox) currentView.findViewById(R.id.lblCheckbox);
+            
+        }
+        
+        final String childText = (String) getChild(groupPosition, childPosition);
+        
+        usaidViewHolder.textView.setText(childText);
+        
+        // add the check change listener to update the objects
+        usaidViewHolder.checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+                Log.d(LOG_TAG, "-----------------------------------------onCheckedChanged: " + groupPosition + "  " + childPosition);
+                
+                setChildChecked(groupPosition, childPosition, isChecked);
+                
+            }
+            
+        });
+        
+        usaidViewHolder.checkBox.setChecked(getChildChecked(groupPosition, childPosition));
+        
+        return currentView;
+        
+    }
+    
+    /**
+     * Get the checked value.
+     * 
+     * @param groupPosition The group position name in the list.
+     * @param childPosition The child position in the list.
+     * 
+     * @return The value of the onjects checked.
+     */
+    private boolean getChildChecked(int groupPosition, int childPosition) {
+        
+        return USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(groupPosition).name).get(childPosition).selected;
+        
+    }
+    
+    /**
+     * This method sets the check value after the checkbox has been selected.
+     * 
+     * @param groupPosition The group position name in the list.
+     * @param childPosition The child position in the list.
+     * @param value         The new checked value.
+     */
+    private void setChildChecked(int groupPosition, int childPosition, boolean value) {
+        
+        USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(groupPosition).name).get(childPosition).selected = value;
+        
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
+        USAidMainActivity.countryQueryResults = null;
+        
     }
 
     /* (non-Javadoc)
@@ -60,7 +139,10 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getChildrenCount(int groupPosition) {
-        // TODO Auto-generated method stub
+        if (groupPosition == 0) {
+            return USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(groupPosition).name).size();
+        }
+        
         return 0;
     }
 
@@ -69,8 +151,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getGroup(int groupPosition) {
-        // TODO Auto-generated method stub
-        return null;
+        return USAidFilterFragment.initiativeDataHeader.get(groupPosition).label;
     }
 
     /* (non-Javadoc)
@@ -78,7 +159,11 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getGroupCount() {
-        // TODO Auto-generated method stub
+        
+        if (USAidFilterFragment.initiativeDataHeader != null) {
+            return USAidFilterFragment.initiativeDataHeader.size();
+        }
+        
         return 0;
     }
 
@@ -87,8 +172,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public long getGroupId(int groupPosition) {
-        // TODO Auto-generated method stub
-        return 0;
+        return groupPosition;
     }
 
     /* (non-Javadoc)
@@ -96,8 +180,19 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        return null;
+        
+        String headerTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.usaid_list_group, null);
+        }
+     
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
+ 
+        return convertView;
+        
     }
 
     /* (non-Javadoc)
@@ -105,7 +200,6 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public boolean hasStableIds() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -114,7 +208,6 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         return false;
     }
 
