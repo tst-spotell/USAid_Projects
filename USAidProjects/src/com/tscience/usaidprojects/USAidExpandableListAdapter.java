@@ -17,8 +17,9 @@ import android.widget.TextView;
 
 
 /**
+ * This is the adapter for displaying the location selections.
+ * 
  * @author spotell at t-sciences.com
- *
  */
 public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     

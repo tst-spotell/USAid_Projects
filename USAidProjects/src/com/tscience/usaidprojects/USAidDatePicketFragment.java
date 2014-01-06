@@ -6,7 +6,6 @@ package com.tscience.usaidprojects;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;

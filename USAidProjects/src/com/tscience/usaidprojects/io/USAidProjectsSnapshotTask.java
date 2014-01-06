@@ -72,8 +72,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         } // end no data
         
-        // create the array of data objects
-        ArrayList<USAidProjectsSnapshotObject> items = new ArrayList<USAidProjectsSnapshotObject>();
+        // create the array of data objects for subinitiatives
+        ArrayList<USAidProjectsSnapshotObject> subInitiatives = new ArrayList<USAidProjectsSnapshotObject>();
         
         // now parse the json use workingData
         JSONArray subinitiativesData = null;
@@ -114,7 +114,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     
                     // add to the data array
-                    items.add(tempValue);
+                    subInitiatives.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -343,6 +343,8 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        ArrayList<USAidProjectsSnapshotObject> initiatives = new ArrayList<USAidProjectsSnapshotObject>();
+        
         // get initiatives   -- name   -- label
         if (initiativesData != null) {
             
@@ -369,7 +371,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     
                     // add to the data array
-                    items.add(tempValue);
+                    initiatives.add(tempValue);
                     
                 }
                 catch (Exception ignore) {
@@ -383,11 +385,27 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // create the initiatives map
+        HashMap<String, ArrayList<USAidProjectsSnapshotObject>> initiativeMap = new HashMap<String, ArrayList<USAidProjectsSnapshotObject>>();
+        
+        initiativeMap.put(initiatives.get(0).name, subInitiatives);
+        
+//        int numInitiatives = initiatives.size();
+//        
+//        
+//        
+//        for (int i = 0; i < numInitiatives; i++) {
+//            
+//            if (i)
+//            initiativeMap.put(initiatives.get(i).name, new ArrayList<USAidProjectsSnapshotObject>());
+//            
+//        }
+        
         // send data to fragment
         if (usaidFilterFragmentReference != null) {
             
         	USAidFilterFragment usaidFilterFragment = usaidFilterFragmentReference.get();
-        	usaidFilterFragment.prepareListData(items, regionArray, countryMap, sectorArray, usingChachedData);
+        	usaidFilterFragment.prepareListData(initiatives, initiativeMap, regionArray, countryMap, sectorArray, usingChachedData);
             
         }
         

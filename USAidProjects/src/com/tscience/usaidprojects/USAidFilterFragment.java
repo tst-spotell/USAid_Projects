@@ -56,6 +56,12 @@ public class USAidFilterFragment extends SherlockFragment {
     /** List of the sector headings. */
     public static ArrayList<USAidProjectsSnapshotObject> sectorDataHeader;
     
+    /** This is the list of initiative headers. */
+    public static ArrayList<USAidProjectsSnapshotObject> initiativeDataHeader;
+    
+    /** Contains the child drop down sub initiative list items. */
+    public static HashMap<String, ArrayList<USAidProjectsSnapshotObject>> initiativeDataChild;
+    
     RelativeLayout timeFilter;
     
     public static USAidFilterFragment usaidFilterFragment;
@@ -184,7 +190,7 @@ public class USAidFilterFragment extends SherlockFragment {
             
         } else {
             // load the list
-            prepareListData(new ArrayList<USAidProjectsSnapshotObject>(), listDataHeader, listDataChild, sectorDataHeader, false);
+            prepareListData(initiativeDataHeader, initiativeDataChild, listDataHeader, listDataChild, sectorDataHeader, false);
         }
         
     }
@@ -343,11 +349,12 @@ public class USAidFilterFragment extends SherlockFragment {
      * @param sectors       The list of sector data.
      * @param cachedData    False this is live data or True this is cached data.
      */
-    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> value, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String,
+    public void prepareListData(ArrayList<USAidProjectsSnapshotObject> initiatives, HashMap<String,
+            ArrayList<USAidProjectsSnapshotObject>> initiativeMap, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String,
             ArrayList<USAidProjectsSnapshotObject>> countryMap, ArrayList<USAidProjectsSnapshotObject> sectors, boolean cachedData) {
         
         // there was nothing to display
-        if ((value == null) && !cachedData) {
+        if ((initiatives == null) && !cachedData) {
             noCachedData();
             return;
         }
@@ -373,6 +380,9 @@ public class USAidFilterFragment extends SherlockFragment {
         sectorList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         
         sectorList.invalidate();
+        
+        initiativeDataHeader = initiatives;
+        initiativeDataChild =  initiativeMap;
         
     } // end prepareListData
     
