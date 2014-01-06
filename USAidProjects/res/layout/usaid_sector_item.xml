@@ -18,6 +18,7 @@
         android:id="@+id/sectorCheckbox"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
         android:gravity="center_vertical"
         android:layout_alignParentRight="true" />
     

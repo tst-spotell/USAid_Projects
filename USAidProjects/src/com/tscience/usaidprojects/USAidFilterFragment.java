@@ -5,15 +5,12 @@ package com.tscience.usaidprojects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.tscience.usaidprojects.USAidCountryListFragment.USAidCountryHolder;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
-import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
@@ -342,7 +339,7 @@ public class USAidFilterFragment extends SherlockFragment {
         
         sectorDataHeader = sectors;
         
-        sectorList.setAdapter(new USAidSectorListAdapter(getActivity(), R.layout.usaid_sector_item));
+        sectorList.setAdapter(new USAidSectorListAdapter(getActivity(), R.layout.usaid_sector_item, sectorDataHeader));
         
         sectorList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         
@@ -484,14 +481,18 @@ public class USAidFilterFragment extends SherlockFragment {
      */
     private class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotObject> {
 
+        private ArrayList<USAidProjectsSnapshotObject> items;
+        
         private LayoutInflater inflater;
         
         /**
          * @param context
          * @param resource
          */
-        public USAidSectorListAdapter(Context context, int resource) {
-            super(context, resource);
+        public USAidSectorListAdapter(Context context, int resource, ArrayList<USAidProjectsSnapshotObject> value) {
+            super(context, resource, value);
+            
+            items = value;
             
             inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             
@@ -524,12 +525,12 @@ public class USAidFilterFragment extends SherlockFragment {
             }
             
             // the usaid DataObject object we are working with
-            usaidSectorHolder.usaidDataObject = sectorDataHeader.get(position);
+            usaidSectorHolder.usaidDataObject = items.get(position);
             
             // TODO set the image
             
             // set the name
-            usaidSectorHolder.sectorNameView.setText(usaidSectorHolder.usaidDataObject.name);
+            usaidSectorHolder.sectorNameView.setText(usaidSectorHolder.usaidDataObject.label);
             
             usaidSectorHolder.sectorCheckBox.setSelected(usaidSectorHolder.usaidDataObject.selected);
             
