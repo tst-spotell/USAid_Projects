@@ -558,7 +558,7 @@ public class USAidFilterFragment extends SherlockFragment {
      */
     public void onUSAidDateSelected(int year, int month, int day, int dateToSet) {
         
-        // TODO save the time
+        // save the time
         final Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
