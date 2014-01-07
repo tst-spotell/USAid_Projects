@@ -44,23 +44,6 @@ public class USAidConstants {
     public static final int USAID_TYPE_MAP = 1;
     public static final int USAID_TYPE_LIST = 2;
     
-	// regions
-//	public static final String USAID_REGION_TEXT_AFPAK = "AFPAK"; 	// AFGHANISTAN & PAKISTAN
-//	public static final String USAID_REGION_TEXT_EEA = "EEA";		// EUROPE & EURASIA
-//	public static final String USAID_REGION_TEXT_AFR = "AFR";		// SUB SAHARAN AFRICA
-//	public static final String USAID_REGION_TEXT_ASIA = "ASIA";		// ASIA
-//	public static final String USAID_REGION_TEXT_LAC = "LAC";		// LATIN AMERICA & THE CARRIBEAN
-//	public static final String USAID_REGION_TEXT_ME = "ME";			// MIDDLE EAST
-    
-    // Regional constants
-//    public static final int USAID_REGION_AFPAK = 0;
-//    public static final int USAID_REGION_ASIA = 1;
-//    public static final int USAID_REGION_EUROPE = 2;
-//    public static final int USAID_REGION_LATIN_AMERICA = 3;
-//    public static final int USAID_REGION_MIDDLE_EAST = 4;
-//    public static final int USAID_REGION_AFRICA = 5;
-//    public static final int USAID_REGION_OTHER = 6;
-    
     // type constants (for object type)
     public static final int USAID_TYPE_INITIATIVES = 0;
     public static final int USAID_TYPE_LOCATIONS = 1;

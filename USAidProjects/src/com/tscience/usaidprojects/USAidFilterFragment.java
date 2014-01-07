@@ -371,7 +371,9 @@ public class USAidFilterFragment extends SherlockFragment {
             
         }  else if (currentItemId == R.id.action_about) {
             
-            // TODO
+            // create the view
+            USAidAboutFragment usaidAboutFragment = new USAidAboutFragment();
+            usaidAboutFragment.show(getActivity().getSupportFragmentManager(), "about");
             
             return true;
             

@@ -19,38 +19,6 @@ import com.tscience.usaidprojects.USAidConstants;
  *
  */
 public class USAidProjectsUtility {
-
-//	/**
-//	 * This class takes a parent region string and returns a parent region id.
-//	 * 
-//	 * @param value	The string value of the parent region.
-//	 * 
-//	 * @return	The ID value for this parent region.
-//	 */
-//	public static int setParentRegion (String value) {
-//	    
-//	    if (value == null) {
-//	        return USAidConstants.USAID_REGION_OTHER;
-//	    }
-//	    
-//	    if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_AFPAK)) {
-//	        return USAidConstants.USAID_REGION_AFPAK;
-//	    } else if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_EEA)) {
-//            return USAidConstants.USAID_REGION_EUROPE;
-//        } else if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_AFR)) {
-//            return USAidConstants.USAID_REGION_AFRICA;
-//        } else if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_ASIA)) {
-//            return USAidConstants.USAID_REGION_ASIA;
-//        } else if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_LAC)) {
-//            return USAidConstants.USAID_REGION_LATIN_AMERICA;
-//        } else if (value.equalsIgnoreCase(USAidConstants.USAID_REGION_TEXT_ME)) {
-//            return USAidConstants.USAID_REGION_MIDDLE_EAST;
-//        }
-//		
-//	    // not defined
-//		return USAidConstants.USAID_REGION_OTHER;
-//		
-//	} // end setParentRegion
 	
 	/**
 	 * Convenience method to get the server url for snapshot.
