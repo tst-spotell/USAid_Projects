@@ -17,14 +17,14 @@
     <string name="usaid_connection_server">Connecting To Server ...</string>
     <string name="usaid_cache_nodata">Currently, there is no cached data.</string>
     
-    <!-- countries -->
+    <!-- countries 
     <string name="usaid_action_filter_country">Country</string>
     <string name="usaid_action_filter_country_afghanistan">Afghanistan</string>
     <string name="usaid_action_filter_country_albania">Albania</string>
     <string name="usaid_action_filter_country_angola">Angola</string>
     <string name="usaid_action_filter_country_armenia">Armenia</string>
     <string name="usaid_action_filter_country_bangladesh">Bangladesh</string>
-    <string name="usaid_action_filter_country_belarus">Belarus</string>         <!-- new -->
+    <string name="usaid_action_filter_country_belarus">Belarus</string>
     <string name="usaid_action_filter_country_brazil">Brazil</string>
     <string name="usaid_action_filter_country_burma">Burma</string>
     <string name="usaid_action_filter_country_cambodia">Cambodia</string>
@@ -77,12 +77,12 @@
     <string name="usaid_action_filter_country_uzbekistan">Uzbekistan</string>
     <string name="usaid_action_filter_country_vietnam">Vietnam</string>
     <string name="usaid_action_filter_country_gaza">WB Gaza</string>
-    <string name="usaid_action_filter_country_zimbabwe">Zimbabwe</string>
+    <string name="usaid_action_filter_country_zimbabwe">Zimbabwe</string>  -->
     
     <!-- filter strings -->
     <string name="usaid_filter_start_date_label">Start Date</string>
     <string name="usaid_filter_end_date_label">End Date</string>
-    <string name="usaid_filter_today_label">Today</string>
+    <string name="usaid_filter_today_label">Not Set</string>
     <string name="usaid_filter_date_label">Set</string>
     
     <!-- json file -->
@@ -105,7 +105,7 @@
     <string name="project_dialog_primary_partner">Primary Partner</string>
     <string name="project_dialog_obligated">Obligated</string>
     
-    <!-- regions -->
+    <!-- regions
     <string name="usaid_action_filter_region">Region</string>
     <string name="usaid_action_filter_region_afganistan_pakistan">AFGHANISTAN AND PAKISTAN</string>
     <string name="usaid_action_filter_region_asia">ASIA</string>
@@ -113,7 +113,7 @@
     <string name="usaid_action_filter_region_latin_america">LATIN AMERICA AND THE CARIBBEAN</string>
     <string name="usaid_action_filter_region_middle_east">MIDDLE EAST</string>
     <string name="usaid_action_filter_region_africa">SUB SAHARAN AFRICA</string>
-    
+ -->    
     <!-- section titles -->
     <string name="title_section1">Home</string>
     <string name="title_section2">Map</string>

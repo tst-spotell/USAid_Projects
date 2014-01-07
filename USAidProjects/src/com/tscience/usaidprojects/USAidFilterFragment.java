@@ -14,6 +14,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask;
+import com.tscience.usaidprojects.utils.USAidProjectsLatLngCenterObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
@@ -78,6 +79,7 @@ public class USAidFilterFragment extends SherlockFragment {
     
     public static USAidFilterFragment usaidFilterFragment;
     
+    @SuppressWarnings("unchecked")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +137,69 @@ public class USAidFilterFragment extends SherlockFragment {
                 Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
             }
             
-            // TODO usaidCenterHashMap
+            // initiatives
+            try {
+                initiativeDataHeader = savedInstanceState.getParcelableArrayList(USAidConstants.USAID_BUNDLE_INIT_DATA);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no initiativeDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            // get the sub initiative arrays
+            if (initiativeDataHeader != null) {
+                
+                int numInit = 1;
+                
+                try {
+                    
+                    if (initiativeDataChild == null) {
+                        initiativeDataChild = new HashMap<String, ArrayList<USAidProjectsSnapshotObject>>();
+                    }
+                
+                    for (int i = 0; i < numInit; i++) {
+                        
+                        ArrayList<USAidProjectsSnapshotObject> temp = savedInstanceState.getParcelableArrayList(initiativeDataHeader.get(i).name);
+                        
+                        initiativeDataChild.put(initiativeDataHeader.get(i).name, temp);
+                        
+                    }
+                
+                }
+                catch (Exception ignore) {
+                    Log.e(LOG_TAG, "---------------------------------------------- saveinstance initiativeDataChild");
+                    Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+                }
+            
+            }
+            
+            // time set data
+            try {
+                startingDate = savedInstanceState.getLong(USAidConstants.USAID_BUNDLE_START_DATA);
+            }
+            catch (Exception ignore) {
+                startingDate = 0;
+                Log.e(LOG_TAG, "---------------------------------------------- no startingDate");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            try {
+                endingDate = savedInstanceState.getLong(USAidConstants.USAID_BUNDLE_END_DATA);
+            }
+            catch (Exception ignore) {
+                endingDate = 0;
+                Log.e(LOG_TAG, "---------------------------------------------- no endingDate");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            // usaidCenterHashMap
+            try {
+                USAidMainActivity.usaidCenterHashMap = (HashMap<String, USAidProjectsLatLngCenterObject>) savedInstanceState.getSerializable(USAidConstants.USAID_BUNDLE_CENTER_DATA);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no usaidCenterHashMap");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
             
         }
         
@@ -176,7 +240,6 @@ public class USAidFilterFragment extends SherlockFragment {
         
         }
         
-        
         if (sectorDataHeader != null) {
             try {
                 outState.putParcelableArrayList(USAidConstants.USAID_BUNDLE_SECTOR_DATA, sectorDataHeader);
@@ -187,8 +250,69 @@ public class USAidFilterFragment extends SherlockFragment {
             }
         }
         
-        // TODO usaidCenterHashMap
+        // initiatives
+        if (initiativeDataHeader != null) {
+            try {
+                outState.putParcelableArrayList(USAidConstants.USAID_BUNDLE_INIT_DATA, initiativeDataHeader);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance initiativeDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
         
+        if (initiativeDataChild != null) {
+            
+            int numInitiatives = 1;
+            
+            try {
+            
+                for (int i = 0; i < numInitiatives; i++) {
+                    outState.putParcelableArrayList(initiativeDataHeader.get(i).name, initiativeDataChild.get(initiativeDataHeader.get(i).name));
+                }
+            
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance initiativeDataChild");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        
+        }
+        
+        // time set data
+        if (startingDate > 0) {
+            try {
+                outState.putLong(USAidConstants.USAID_BUNDLE_START_DATA, startingDate);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance startingDate");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
+        
+        if (endingDate > 0) {
+            try {
+                outState.putLong(USAidConstants.USAID_BUNDLE_END_DATA, endingDate);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance endingDate");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
+        
+        // usaidCenterHashMap
+        if (USAidMainActivity.usaidCenterHashMap != null) {
+            
+            try {
+                outState.putSerializable(USAidConstants.USAID_BUNDLE_CENTER_DATA, USAidMainActivity.usaidCenterHashMap);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- saveinstance usaidCenterHashMap");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+        }
+
         super.onSaveInstanceState(outState);
     }
     
@@ -222,19 +346,20 @@ public class USAidFilterFragment extends SherlockFragment {
         
         if (currentItemId == R.id.action_filter_reset) {
             
-            // TODO
-            if (timeFilter.getVisibility() == View.VISIBLE) {
-                
-                TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
-                startDate.setText(R.string.usaid_filter_today_label);
-                
-                TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
-                endDate.setText(R.string.usaid_filter_today_label);
-                
-                startingDate = 0;
-                endingDate = 0;
-                
-            }
+            // TODO reset data
+            
+            // reset time filter
+            TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
+            startDate.setText(R.string.usaid_filter_today_label);
+            
+            TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
+            endDate.setText(R.string.usaid_filter_today_label);
+            
+            startingDate = 0;
+            endingDate = 0;
+
+            // reset query
+            
             
             return true;
             
