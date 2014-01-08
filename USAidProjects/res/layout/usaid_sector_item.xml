@@ -3,23 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="55dip" >
     
-    <TextView
-        android:id="@+id/sectorNameItem"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:gravity="center_vertical"
-        android:paddingBottom="5dp"
-        android:paddingLeft="30dp"
-        android:paddingTop="5dp"
-        android:textSize="17sp" />
-    
     <CheckBox
         android:id="@+id/sectorCheckbox"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:paddingLeft="4dp"
-        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true" />
+    
+    <TextView
+        android:id="@+id/sectorNameItem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/sectorCheckbox"
+        android:paddingBottom="5dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:textSize="17sp" />
     
 </RelativeLayout>

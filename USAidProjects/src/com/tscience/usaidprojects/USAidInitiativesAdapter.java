@@ -179,19 +179,52 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      * @see android.widget.ExpandableListAdapter#getGroupView(int, boolean, android.view.View, android.view.ViewGroup)
      */
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.usaid_list_group, null);
         }
      
-        TextView lblListHeader = (TextView) convertView
-                .findViewById(R.id.lblListHeader);
+        TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+        
+        CheckBox lblHeaderCheckbox = (CheckBox) convertView.findViewById(R.id.lblHeaderCheckbox);
+        lblHeaderCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+                Log.d(LOG_TAG, "-----------------------------------------onHeaderCheckedChanged: " + groupPosition);
+                
+                setHeaderChecked(groupPosition, isChecked);
+                
+            }
+            
+        });
+        
+        lblHeaderCheckbox.setChecked(USAidFilterFragment.initiativeDataHeader.get(groupPosition).selected);
  
         return convertView;
+        
+    } // end getGroupView
+    
+    /**
+     * Called when a header is checked.
+     * 
+     * @param position  The header position selected.
+     * @param checked   True is checked and false if not checked.
+     */
+    private void setHeaderChecked(int position, boolean checked) {
+        
+        USAidFilterFragment.initiativeDataHeader.get(position).selected = checked;
+        
+        if (position == 0) {
+            
+            // TODO check or uncheck all children
+            
+        }
         
     }
 
@@ -200,7 +233,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     /* (non-Javadoc)
@@ -208,7 +241,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
 } // end USAidInitiativesAdapter

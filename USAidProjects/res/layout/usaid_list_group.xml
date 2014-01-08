@@ -1,18 +1,30 @@
 <!-- Copyright (c) 2013 Thermopylae Sciences and Technology. All rights reserved. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="8dp"
     android:background="#000000">
- 
- 
+
+    <CheckBox
+        android:id="@+id/lblHeaderCheckbox"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:focusable="false" />
+    
     <TextView
         android:id="@+id/lblListHeader"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="17sp"
-        android:textColor="#f9f93d" />
+        android:textColor="#f9f93d"
+        android:layout_toLeftOf="@id/lblHeaderCheckbox"
+        android:layout_alignParentLeft="true" />
+    
+    
  
-</LinearLayout>
+</RelativeLayout>
+
+<!--         android:gravity="center_vertical" -->
