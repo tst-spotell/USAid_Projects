@@ -348,7 +348,8 @@ public class USAidFilterFragment extends SherlockFragment {
             // reset data
             if (expListView.getVisibility() == View.VISIBLE) {
                 
-                // TODO cycle through sectors and check all
+                // TODO cycle through regions and check all
+                // TODO cycle through countries and check all
                 
             }
             else if (sectorList.getVisibility() == View.VISIBLE) {

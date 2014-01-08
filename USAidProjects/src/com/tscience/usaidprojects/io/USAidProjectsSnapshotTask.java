@@ -223,6 +223,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     USAidProjectsSnapshotObject tempValue = new USAidProjectsSnapshotObject();
                     
                     tempValue.objectType = USAidConstants.USAID_TYPE_REGIONS;
+                    tempValue.selected = true;  // start selected
                     tempValue.name = jsonObject.getString(context.getString(R.string.usaid_projects_name_jason_array));
                     tempValue.label = jsonObject.getString(context.getString(R.string.usaid_projects_label_jason_array));
                     
@@ -297,6 +298,7 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
                     USAidProjectsSnapshotObject tempValue = new USAidProjectsSnapshotObject();
                     
                     tempValue.objectType = USAidConstants.USAID_TYPE_LOCATIONS;
+                    tempValue.selected = true;  // start selected
                     tempValue.countryUrl = jsonObject.getString(context.getString(R.string.usaid_projects_url_jason_array));
                     tempValue.parentRegion = jsonObject.getString(context.getString(R.string.usaid_projects_parent_jason_array));
                     tempValue.name = jsonObject.getString(context.getString(R.string.usaid_projects_name_jason_array));

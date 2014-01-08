@@ -28,11 +28,9 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidExpandableListAdapter";
     
-//    private ArrayList<USAidProjectsSnapshotObject> _listDataHeader; // header titles
-    // child data in format of header title, child title
-//    private HashMap<String, ArrayList<USAidProjectsSnapshotObject>> _listDataChild;
-    
     private LayoutInflater inflater;
+    
+    private boolean headerChange = false;
     
     public USAidExpandableListAdapter(Context context) {
     	
@@ -133,8 +131,10 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         
         USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).selected = value;
         
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()), true);
-        USAidMainActivity.countryQueryResults = null;
+        if (!headerChange) {
+            USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()), true);
+            USAidMainActivity.countryQueryResults = null;
+        }
         
     }
 
@@ -179,7 +179,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
      * @see android.widget.ExpandableListAdapter#getGroupView(int, boolean, android.view.View, android.view.ViewGroup)
      */
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
@@ -190,8 +190,55 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+        
+        CheckBox lblHeaderCheckbox = (CheckBox) convertView.findViewById(R.id.lblHeaderCheckbox);
+        lblHeaderCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+                Log.d(LOG_TAG, "-----------------------------------------onHeaderCheckedChanged: " + groupPosition);
+                
+                setHeaderChecked(groupPosition, isChecked);
+                
+            }
+            
+        });
+        
+        lblHeaderCheckbox.setChecked(USAidFilterFragment.listDataHeader.get(groupPosition).selected);
  
         return convertView;
+    }
+    
+    /**
+     * Called when a header is checked.
+     * 
+     * @param position  The header position selected.
+     * @param checked   True is checked and false if not checked.
+     */
+    private void setHeaderChecked(int position, boolean checked) {
+        
+        headerChange = true;
+        
+        USAidFilterFragment.listDataHeader.get(position).selected = checked;
+        
+         // check or uncheck all children
+         int numberChild = USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(position).name).size();
+         
+         for (int i = 0; i < numberChild; i++) {
+             
+             USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(position).name).get(i).selected = checked;
+             
+         }
+         
+         this.notifyDataSetChanged();
+        
+        // update the filter query
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()), true);
+        USAidMainActivity.countryQueryResults = null;
+        
+        headerChange = false;
+        
     }
 
     /* (non-Javadoc)
