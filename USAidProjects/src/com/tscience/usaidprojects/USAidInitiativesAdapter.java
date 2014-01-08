@@ -223,6 +223,15 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
         if (position == 0) {
             
             // TODO check or uncheck all children
+             int numberChild = USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(position).name).size();
+             
+             for (int i = 0; i < numberChild; i++) {
+                 
+                 USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(position).name).get(i).selected = checked;
+                 
+             }
+             
+             this.notifyDataSetChanged();
             
         }
         
