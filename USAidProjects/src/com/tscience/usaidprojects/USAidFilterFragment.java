@@ -353,7 +353,20 @@ public class USAidFilterFragment extends SherlockFragment {
             }
             else if (sectorList.getVisibility() == View.VISIBLE) {
                 
-                // TODO cycle through sectors and uncheck
+                // cycle through sectors and uncheck
+                if (sectorDataHeader != null) {
+                    
+                    int numSectors = sectorDataHeader.size();
+                    
+                    for (int i = 0; i < numSectors; i++) {
+                        
+                        sectorDataHeader.get(i).selected = false;
+                        
+                    }
+                    
+                }
+                
+                sectorAdapter.notifyDataSetChanged();
                 
             }
             else if (initiativeListView.getVisibility() == View.VISIBLE) {
