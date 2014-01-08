@@ -345,20 +345,40 @@ public class USAidFilterFragment extends SherlockFragment {
         
         if (currentItemId == R.id.action_filter_reset) {
             
-            // TODO reset data
-            
-            // reset time filter
-            TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
-            startDate.setText(R.string.usaid_filter_today_label);
-            
-            TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
-            endDate.setText(R.string.usaid_filter_today_label);
-            
-            startingDate = 0;
-            endingDate = 0;
+            // reset data
+            if (expListView.getVisibility() == View.VISIBLE) {
+                
+                // TODO cycle through sectors and check all
+                
+            }
+            else if (sectorList.getVisibility() == View.VISIBLE) {
+                
+                // TODO cycle through sectors and uncheck
+                
+            }
+            else if (initiativeListView.getVisibility() == View.VISIBLE) {
+                
+                // TODO cycle through initiatives and uncheck
+                
+            }
+            else if (timeFilter.getVisibility() == View.VISIBLE) {
+                
+                // reset time filter
+                TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
+                startDate.setText(R.string.usaid_filter_today_label);
+                
+                TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
+                endDate.setText(R.string.usaid_filter_today_label);
+                
+                startingDate = 0;
+                endingDate = 0;
+                
+            }
 
-            // reset query
             
+            // rebuild the query
+            USAidMainActivity.countryQuery = makeFilterQuery();
+            USAidMainActivity.countryQueryResults = null;
             
             return true;
             
@@ -760,7 +780,6 @@ public class USAidFilterFragment extends SherlockFragment {
             result.append(endingDate);
             
         } // end endingDate
-        
         
         Log.e(LOG_TAG, "---------------------------------------------- makeFilterQuery complete");
         
