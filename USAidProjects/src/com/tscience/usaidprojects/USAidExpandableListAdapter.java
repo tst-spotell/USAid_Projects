@@ -3,6 +3,8 @@
  */
 package com.tscience.usaidprojects;
 
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -131,7 +133,7 @@ public class USAidExpandableListAdapter extends BaseExpandableListAdapter {
         
         USAidFilterFragment.listDataChild.get(USAidFilterFragment.listDataHeader.get(groupPosition).name).get(childPosition).selected = value;
         
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()));
         USAidMainActivity.countryQueryResults = null;
         
     }

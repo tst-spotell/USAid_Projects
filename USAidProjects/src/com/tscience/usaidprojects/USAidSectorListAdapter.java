@@ -6,6 +6,7 @@ package com.tscience.usaidprojects;
 import java.util.ArrayList;
 
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 import android.content.Context;
 import android.util.Log;
@@ -112,7 +113,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         
         USAidFilterFragment.sectorDataHeader.get(position).selected = value;
         
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.getContext()));
         USAidMainActivity.countryQueryResults = null;
         
     }

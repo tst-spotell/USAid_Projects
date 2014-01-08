@@ -4,6 +4,7 @@
 package com.tscience.usaidprojects;
 
 import com.tscience.usaidprojects.USAidExpandableListAdapter.USAidProjectsFilterViewHolder;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -29,6 +30,8 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
     private static final String LOG_TAG = "USAidInitiativesAdapter";
     
     private LayoutInflater inflater;
+    
+    private boolean headerChange = false;
     
     public USAidInitiativesAdapter(Context context) {
         
@@ -129,8 +132,11 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
         
         USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(groupPosition).name).get(childPosition).selected = value;
         
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
-        USAidMainActivity.countryQueryResults = null;
+        // individual checked
+        if (!headerChange) {
+            USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()));
+            USAidMainActivity.countryQueryResults = null;
+        }
         
     }
 
@@ -218,11 +224,13 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
      */
     private void setHeaderChecked(int position, boolean checked) {
         
+        headerChange = true;
+        
         USAidFilterFragment.initiativeDataHeader.get(position).selected = checked;
         
         if (position == 0) {
             
-            // TODO check or uncheck all children
+             // check or uncheck all children
              int numberChild = USAidFilterFragment.initiativeDataChild.get(USAidFilterFragment.initiativeDataHeader.get(position).name).size();
              
              for (int i = 0; i < numberChild; i++) {
@@ -234,6 +242,12 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
              this.notifyDataSetChanged();
             
         }
+        
+        // update the filter query
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()));
+        USAidMainActivity.countryQueryResults = null;
+        
+        headerChange = false;
         
     }
 

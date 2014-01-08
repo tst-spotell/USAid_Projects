@@ -377,7 +377,7 @@ public class USAidFilterFragment extends SherlockFragment {
 
             
             // rebuild the query
-            USAidMainActivity.countryQuery = makeFilterQuery();
+            USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()));
             USAidMainActivity.countryQueryResults = null;
             
             return true;
@@ -622,7 +622,7 @@ public class USAidFilterFragment extends SherlockFragment {
         }
         
         // rebuild the query
-        USAidMainActivity.countryQuery = makeFilterQuery();
+        USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()));
         USAidMainActivity.countryQueryResults = null;
         
     } // end onUSAidDateSelected
@@ -663,14 +663,14 @@ public class USAidFilterFragment extends SherlockFragment {
     /**
      * Creates a filter query based on what was selected.
      * 
+     * @param value The initial string to build on.
+     * 
      * @return  The query string;
      */
-    public static String makeFilterQuery() {
+    public static String makeFilterQuery(String value) {
         
         StringBuffer result = new StringBuffer();
-        result.append(usaidFilterFragment.getString(R.string.usaid_server_url));
-        result.append(usaidFilterFragment.getString(R.string.usaid_server_overview));
-        result.append(usaidFilterFragment.getString(R.string.usaid_server_flag));
+        result.append(value);
         
         // get the countries
         if ((listDataHeader != null) && (listDataChild != null)) {
