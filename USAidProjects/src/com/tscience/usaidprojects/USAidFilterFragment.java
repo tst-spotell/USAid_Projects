@@ -622,14 +622,11 @@ public class USAidFilterFragment extends SherlockFragment {
         result.append(usaidFilterFragment.getString(R.string.usaid_server_url));
         result.append(usaidFilterFragment.getString(R.string.usaid_server_overview));
         result.append(usaidFilterFragment.getString(R.string.usaid_server_flag));
-        result.append(usaidFilterFragment.getString(R.string.usaid_server_country_start));
         
         // get the countries
         if ((listDataHeader != null) && (listDataChild != null)) {
             
             int numRegions = listDataHeader.size();
-            
-            boolean hasLocations = false;
             
             try {
                 
@@ -645,14 +642,14 @@ public class USAidFilterFragment extends SherlockFragment {
                         
                         if (temp.get(j).selected) {
                             
-                            hasLocations = true;
-                            
                             if (!firstTime) {
                                 
                                 // add the spacer between items
                                 result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
                                 
                             } else {
+                                
+                                result.append(usaidFilterFragment.getString(R.string.usaid_server_country_start));
                                 
                                 firstTime = false;
                                 
@@ -669,13 +666,52 @@ public class USAidFilterFragment extends SherlockFragment {
             
             }
             catch (Exception ignore) {
-                Log.e(LOG_TAG, "---------------------------------------------- saveinstance listDataChild");
+                Log.e(LOG_TAG, "---------------------------------------------- make query listDataChild");
                 Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
             }
         
-        }
+        } // end listDataHeader
         
-        // TODO add the sectors into the query string
+        // add the sectors into the query string
+        if (sectorDataHeader != null) {
+            
+            try {
+                
+                boolean firstTime = true;
+                
+                int numberSectors = sectorDataHeader.size();
+                
+                for (int i = 0; i < numberSectors; i++) {
+                    
+                    if (sectorDataHeader.get(i).selected) {
+                        
+                        if (!firstTime) {
+                            
+                            // add the spacer between items
+                            result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                            
+                        } else {
+                            
+                            result.append(usaidFilterFragment.getString(R.string.usaid_server_sector_start));
+                            
+                            firstTime = false;
+                            
+                        }
+                        
+                        // if checked add the country name
+                        result.append(USAidProjectsUtility.convertName(sectorDataHeader.get(i).name));
+                        
+                    }
+                    
+                }
+                
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- make query sectorDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        
+        } // end sectorDataHeader
         
         // TODO add the initiatives into the query string
         

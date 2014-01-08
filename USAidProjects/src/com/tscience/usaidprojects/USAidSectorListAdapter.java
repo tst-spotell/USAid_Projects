@@ -30,8 +30,6 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
     
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidSectorListAdapter";
-
-//    private ArrayList<USAidProjectsSnapshotObject> items;
     
     // the view inflater used by this adapter
     private LayoutInflater inflater;
@@ -44,8 +42,6 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
      */
     public USAidSectorListAdapter(Context context, int resource, ArrayList<USAidProjectsSnapshotObject> value) {
         super(context, resource, value);
-        
- //       items = value;
         
         // create the inflater
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -78,12 +74,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             usaidSectorHolder.sectorNameView = (TextView) currentView.findViewById(R.id.sectorNameItem);
             usaidSectorHolder.sectorCheckBox = (CheckBox) currentView.findViewById(R.id.sectorCheckbox);
             
-//            usaidSectorHolder.usaidDataObject = items.get(position);
-            
         }
-        
-        // the usaid DataObject object we are working with
-//       USAidProjectsSnapshotObject thisData = items.get(position);
         
         // TODO set the image
         
@@ -111,19 +102,6 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         
     } // end getView
     
-//    /**
-//     * Get the checked value.
-//     * 
-//     * @param position  The position in the list.
-//     * 
-//     * @return The value of the onjects checked.
-//     */
-//    private boolean getChildChecked(int position) {
-//        
-//        return USAidFilterFragment.sectorDataHeader.get(position).selected;  // USAidFilterFragment.sectorDataHeader.
-//        
-//    }
-    
     /**
      * This method sets the check value after the checkbox has been selected.
      * 
@@ -150,8 +128,6 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         ImageView typeImageView;
         TextView sectorNameView;
         CheckBox sectorCheckBox;
-        
-//        USAidProjectsSnapshotObject usaidDataObject;
         
     }
 
