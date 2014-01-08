@@ -390,16 +390,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         
         initiativeMap.put(initiatives.get(0).name, subInitiatives);
         
-//        int numInitiatives = initiatives.size();
-//        
-//        
-//        
-//        for (int i = 0; i < numInitiatives; i++) {
-//            
-//            if (i)
-//            initiativeMap.put(initiatives.get(i).name, new ArrayList<USAidProjectsSnapshotObject>());
-//            
-//        }
         
         // send data to fragment
         if (usaidFilterFragmentReference != null) {

@@ -43,7 +43,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
      * @param resource
      */
     public USAidSectorListAdapter(Context context, int resource, ArrayList<USAidProjectsSnapshotObject> value) {
-        super(context, resource, value);
+        super(context, 0);  // , resource, value
         
         items = value;
         
@@ -54,6 +54,8 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        
+        Log.d(LOG_TAG, "-----------------------------------------getView: " + position);
         
         View currentView = convertView;
         
@@ -79,12 +81,12 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         }
         
         // the usaid DataObject object we are working with
-        usaidSectorHolder.usaidDataObject = items.get(position);
+        USAidProjectsSnapshotObject thisData = USAidFilterFragment.sectorDataHeader.get(position);
         
         // TODO set the image
         
         // set the name
-        usaidSectorHolder.sectorNameView.setText(usaidSectorHolder.usaidDataObject.label);
+        usaidSectorHolder.sectorNameView.setText(thisData.label);
         
         usaidSectorHolder.sectorCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -99,24 +101,24 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             
         });
         
-        usaidSectorHolder.sectorCheckBox.setSelected(getChildChecked(position));
+        usaidSectorHolder.sectorCheckBox.setSelected(thisData.selected);
         
         return currentView;
         
     } // end getView
     
-    /**
-     * Get the checked value.
-     * 
-     * @param position  The position in the list.
-     * 
-     * @return The value of the onjects checked.
-     */
-    private boolean getChildChecked(int position) {
-        
-        return USAidFilterFragment.sectorDataHeader.get(position).selected;
-        
-    }
+//    /**
+//     * Get the checked value.
+//     * 
+//     * @param position  The position in the list.
+//     * 
+//     * @return The value of the onjects checked.
+//     */
+//    private boolean getChildChecked(int position) {
+//        
+//        return items.get(position).selected;
+//        
+//    }
     
     /**
      * This method sets the check value after the checkbox has been selected.
@@ -145,7 +147,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         TextView sectorNameView;
         CheckBox sectorCheckBox;
         
-        USAidProjectsSnapshotObject usaidDataObject;
+//        USAidProjectsSnapshotObject usaidDataObject;
         
     }
 
