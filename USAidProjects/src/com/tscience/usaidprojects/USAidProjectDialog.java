@@ -86,6 +86,11 @@ public class USAidProjectDialog extends DialogFragment {
         Dialog d = builder.create();
         d.setCanceledOnTouchOutside(false);
         
+        // TODO make whole screen
+        // TODO rebalance
+        // TODO check amount
+        // TODO check partner might be null
+        
         return d;
         
 	} // end onCreateDialog

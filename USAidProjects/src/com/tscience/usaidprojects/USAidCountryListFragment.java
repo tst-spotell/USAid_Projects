@@ -103,6 +103,8 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
         Log.d(LOG_TAG, "-------------------------------- setTheListData");
         
+        // TODO show num countries header
+        
         if (USAidMainActivity.countryQueryResults != null) {
             
             // create a new list adapter

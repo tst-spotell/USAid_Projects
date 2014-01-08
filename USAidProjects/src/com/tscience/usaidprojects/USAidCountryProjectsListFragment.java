@@ -84,6 +84,8 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
      */
     public void prepareListData(ArrayList<USAidProjectsListObject> value) {
         
+        // TODO show num projects header
+        
         serverData = value;
         
         usaidCountryProjectsListAdapter = new USAidCountryProjectsListAdapter(getActivity(), R.layout.usaid_project_item, value);
