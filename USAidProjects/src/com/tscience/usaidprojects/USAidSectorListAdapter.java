@@ -43,7 +43,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
      * @param resource
      */
     public USAidSectorListAdapter(Context context, int resource, ArrayList<USAidProjectsSnapshotObject> value) {
-        super(context, 0);  // , resource, value
+        super(context, resource, value);
         
         items = value;
         
@@ -81,7 +81,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         }
         
         // the usaid DataObject object we are working with
-        USAidProjectsSnapshotObject thisData = USAidFilterFragment.sectorDataHeader.get(position);
+        USAidProjectsSnapshotObject thisData = items.get(position);
         
         // TODO set the image
         
@@ -101,24 +101,24 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             
         });
         
-        usaidSectorHolder.sectorCheckBox.setSelected(thisData.selected);
+        usaidSectorHolder.sectorCheckBox.setSelected(getChildChecked(position));
         
         return currentView;
         
     } // end getView
     
-//    /**
-//     * Get the checked value.
-//     * 
-//     * @param position  The position in the list.
-//     * 
-//     * @return The value of the onjects checked.
-//     */
-//    private boolean getChildChecked(int position) {
-//        
-//        return items.get(position).selected;
-//        
-//    }
+    /**
+     * Get the checked value.
+     * 
+     * @param position  The position in the list.
+     * 
+     * @return The value of the onjects checked.
+     */
+    private boolean getChildChecked(int position) {
+        
+        return items.get(position).selected;  // USAidFilterFragment.sectorDataHeader.
+        
+    }
     
     /**
      * This method sets the check value after the checkbox has been selected.
@@ -128,7 +128,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
      */
     private void setChildChecked(int position, boolean value) {
         
-        USAidFilterFragment.sectorDataHeader.get(position).selected = value;
+        items.get(position).selected = value;
         
         USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
         USAidMainActivity.countryQueryResults = null;
@@ -147,7 +147,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         TextView sectorNameView;
         CheckBox sectorCheckBox;
         
-//        USAidProjectsSnapshotObject usaidDataObject;
+        USAidProjectsSnapshotObject usaidDataObject;
         
     }
 

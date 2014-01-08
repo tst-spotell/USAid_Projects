@@ -52,6 +52,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
     
     public static HashMap<String, USAidProjectsLatLngCenterObject> usaidCenterHashMap;
     
+    public static int currentPage = 0;
+    
     public interface OnCountryQueryUpdate {
         public void updateCountryData();
     }
@@ -83,6 +85,8 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
 
             @Override
             public void onPageSelected(int position) {
+                
+                currentPage = position;
                 
                 actionBar.setSelectedNavigationItem(position);
                 Log.d(LOG_TAG, "-------------------------------------------SimpleOnPageChangeListener");

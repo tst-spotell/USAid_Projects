@@ -79,7 +79,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
         Log.d(LOG_TAG, "-------------------------------- onResume");
         
-        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null)) {
+        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null) && (USAidMainActivity.currentPage == 2)) {
             
             // get the count
             USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), null);

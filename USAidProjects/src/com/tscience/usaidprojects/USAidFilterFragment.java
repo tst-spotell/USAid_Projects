@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -54,6 +55,8 @@ public class USAidFilterFragment extends SherlockFragment {
     
     /** Contains the child drop down list items. */
     public static HashMap<String, ArrayList<USAidProjectsSnapshotObject>> listDataChild;
+    
+    ArrayAdapter<USAidProjectsSnapshotObject> sectorAdapter;
     
     ListView sectorList;
     
@@ -506,6 +509,8 @@ public class USAidFilterFragment extends SherlockFragment {
             ArrayList<USAidProjectsSnapshotObject>> initiativeMap, ArrayList<USAidProjectsSnapshotObject> regions, HashMap<String,
             ArrayList<USAidProjectsSnapshotObject>> countryMap, ArrayList<USAidProjectsSnapshotObject> sectors, boolean cachedData) {
         
+        Log.d(LOG_TAG, "---------------------------------------- prepareListData");
+        
         // there was nothing to display
         if ((initiatives == null) && !cachedData) {
             noCachedData();
@@ -528,11 +533,19 @@ public class USAidFilterFragment extends SherlockFragment {
         
         sectorDataHeader = sectors;
         
-        sectorList.setAdapter(new USAidSectorListAdapter(getActivity(), R.layout.usaid_sector_item, sectorDataHeader));
+        for (int i = 0; i < sectorDataHeader.size(); i++) {
+            
+            Log.d(LOG_TAG, "---------------------------------------- sector i: " + sectorDataHeader.get(i).selected);
+            
+        }
+        
+        sectorAdapter = new USAidSectorListAdapter(getActivity(), R.layout.usaid_sector_item, sectorDataHeader);
+        
+        sectorList.setAdapter(sectorAdapter);
         
         sectorList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         
-        sectorList.invalidate();
+        sectorAdapter.notifyDataSetChanged();
         
         initiativeDataHeader = initiatives;
         initiativeDataChild =  initiativeMap;
@@ -589,6 +602,8 @@ public class USAidFilterFragment extends SherlockFragment {
      * Used to load the initial data and reload the data.
      */
     private void loadTheData() {
+        
+        Log.d(LOG_TAG, "---------------------------------------------- loadTheData");
         
         // start getting the data
         USAidProjectsSnapshotTask usaidProjectsSnapshotTask = new USAidProjectsSnapshotTask(this);

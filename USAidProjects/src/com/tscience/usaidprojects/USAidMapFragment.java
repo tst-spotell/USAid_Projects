@@ -57,7 +57,7 @@ public class USAidMapFragment extends SupportMapFragment {  // SherlockFragment
     public void onResume() {
         super.onResume();
         
-        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null)) {
+        if ((USAidMainActivity.countryQueryResults == null) && (USAidMainActivity.countryQuery != null) && (USAidMainActivity.currentPage == 1)) {
             
             // get the count
             USAidProjectsCountryTask usaidProjectsOverviewTask = new USAidProjectsCountryTask(getActivity(), null);
