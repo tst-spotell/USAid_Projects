@@ -31,7 +31,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
     /** Log id of this class name. */
     private static final String LOG_TAG = "USAidSectorListAdapter";
 
-    private ArrayList<USAidProjectsSnapshotObject> items;
+//    private ArrayList<USAidProjectsSnapshotObject> items;
     
     // the view inflater used by this adapter
     private LayoutInflater inflater;
@@ -45,7 +45,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
     public USAidSectorListAdapter(Context context, int resource, ArrayList<USAidProjectsSnapshotObject> value) {
         super(context, resource, value);
         
-        items = value;
+ //       items = value;
         
         // create the inflater
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -78,15 +78,17 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             usaidSectorHolder.sectorNameView = (TextView) currentView.findViewById(R.id.sectorNameItem);
             usaidSectorHolder.sectorCheckBox = (CheckBox) currentView.findViewById(R.id.sectorCheckbox);
             
+//            usaidSectorHolder.usaidDataObject = items.get(position);
+            
         }
         
         // the usaid DataObject object we are working with
-        USAidProjectsSnapshotObject thisData = items.get(position);
+//       USAidProjectsSnapshotObject thisData = items.get(position);
         
         // TODO set the image
         
         // set the name
-        usaidSectorHolder.sectorNameView.setText(thisData.label);
+        usaidSectorHolder.sectorNameView.setText(USAidFilterFragment.sectorDataHeader.get(position).label);
         
         usaidSectorHolder.sectorCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -94,6 +96,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 
                 Log.d(LOG_TAG, "-----------------------------------------onCheckedChanged: " + position);
+                Log.d(LOG_TAG, "-----------------------------------------isChecked: " + isChecked);
                 
                 setChildChecked(position, isChecked);
                 
@@ -101,24 +104,25 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             
         });
         
-        usaidSectorHolder.sectorCheckBox.setSelected(getChildChecked(position));
+        
+        usaidSectorHolder.sectorCheckBox.setChecked(USAidFilterFragment.sectorDataHeader.get(position).selected);
         
         return currentView;
         
     } // end getView
     
-    /**
-     * Get the checked value.
-     * 
-     * @param position  The position in the list.
-     * 
-     * @return The value of the onjects checked.
-     */
-    private boolean getChildChecked(int position) {
-        
-        return items.get(position).selected;  // USAidFilterFragment.sectorDataHeader.
-        
-    }
+//    /**
+//     * Get the checked value.
+//     * 
+//     * @param position  The position in the list.
+//     * 
+//     * @return The value of the onjects checked.
+//     */
+//    private boolean getChildChecked(int position) {
+//        
+//        return USAidFilterFragment.sectorDataHeader.get(position).selected;  // USAidFilterFragment.sectorDataHeader.
+//        
+//    }
     
     /**
      * This method sets the check value after the checkbox has been selected.
@@ -128,7 +132,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
      */
     private void setChildChecked(int position, boolean value) {
         
-        items.get(position).selected = value;
+        USAidFilterFragment.sectorDataHeader.get(position).selected = value;
         
         USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery();
         USAidMainActivity.countryQueryResults = null;
@@ -147,7 +151,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         TextView sectorNameView;
         CheckBox sectorCheckBox;
         
-        USAidProjectsSnapshotObject usaidDataObject;
+//        USAidProjectsSnapshotObject usaidDataObject;
         
     }
 
