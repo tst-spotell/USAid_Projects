@@ -752,7 +752,7 @@ public class USAidFilterFragment extends SherlockFragment {
                             
                         }
                         
-                        // if checked add the country name
+                        // if checked add the sector name
                         result.append(USAidProjectsUtility.convertName(sectorDataHeader.get(i).name));
                         
                     }
@@ -767,7 +767,87 @@ public class USAidFilterFragment extends SherlockFragment {
         
         } // end sectorDataHeader
         
-        // TODO add the initiatives into the query string
+        // add the initiatives into the query string
+        if (initiativeDataHeader != null) {
+
+            try {
+                
+                boolean firstTime = true;
+                
+                int numHeaders = initiativeDataHeader.size();
+                
+                // skip the first one
+                for (int i = 1; i < numHeaders; i++) {
+                    
+                    if (initiativeDataHeader.get(i).selected) {
+                        
+                        if (!firstTime) {
+                            
+                            // add the spacer between items
+                            result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                            
+                        } else {
+                            
+                            result.append(usaidFilterFragment.getString(R.string.usaid_server_initiative_start));
+                            
+                            firstTime = false;
+                            
+                        }
+                        
+                        // if checked add the initiative name
+                        result.append(USAidProjectsUtility.convertName(initiativeDataHeader.get(i).name));
+                        
+                    }
+                    
+                }
+                
+                ArrayList<USAidProjectsSnapshotObject> subInits = initiativeDataChild.get(initiativeDataHeader.get(0).name);
+                
+                if (subInits != null) {
+                    
+                    try {
+                        
+                        int numSubs = subInits.size();
+                        
+                        for (int i = 0; i < numSubs; i++) {
+                            
+                            if (subInits.get(i).selected) {
+                                
+                                if (!firstTime) {
+                                    
+                                    // add the spacer between items
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                                    
+                                } else {
+                                    
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_initiative_start));
+                                    
+                                    firstTime = false;
+                                    
+                                }
+                                
+                                // if checked add the sub initiative name
+                                result.append(USAidProjectsUtility.convertName(subInits.get(i).name));
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    catch (Exception ignore) {
+                        Log.e(LOG_TAG, "---------------------------------------------- make query subInits");
+                        Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+                    }
+                    
+                }
+                
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- make query initiativeDataHeader");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+        } // end initiativeDataHeader
         
         // add the time into the query string
         if (startingDate > 0) {
