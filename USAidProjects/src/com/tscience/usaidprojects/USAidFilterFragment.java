@@ -283,24 +283,20 @@ public class USAidFilterFragment extends SherlockFragment {
         }
         
         // time set data
-        if (startingDate > 0) {
-            try {
-                outState.putLong(USAidConstants.USAID_BUNDLE_START_DATA, startingDate);
-            }
-            catch (Exception ignore) {
-                Log.e(LOG_TAG, "---------------------------------------------- saveinstance startingDate");
-                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
-            }
+        try {
+            outState.putLong(USAidConstants.USAID_BUNDLE_START_DATA, startingDate);
+        }
+        catch (Exception ignore) {
+            Log.e(LOG_TAG, "---------------------------------------------- saveinstance startingDate");
+            Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
         }
         
-        if (endingDate > 0) {
-            try {
-                outState.putLong(USAidConstants.USAID_BUNDLE_END_DATA, endingDate);
-            }
-            catch (Exception ignore) {
-                Log.e(LOG_TAG, "---------------------------------------------- saveinstance endingDate");
-                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
-            }
+        try {
+            outState.putLong(USAidConstants.USAID_BUNDLE_END_DATA, endingDate);
+        }
+        catch (Exception ignore) {
+            Log.e(LOG_TAG, "---------------------------------------------- saveinstance endingDate");
+            Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
         }
         
         // usaidCenterHashMap
@@ -561,6 +557,15 @@ public class USAidFilterFragment extends SherlockFragment {
         // redraw with the new data
         initiativeListView.invalidate();
         
+        // set the start and end time
+        if (startingDate > 0) {
+            setUSAidDateSelect(startingDate, USAidConstants.USAID_SET_START_DATE);
+        }
+        
+        if (endingDate > 0) {
+            setUSAidDateSelect(endingDate, USAidConstants.USAID_SET_END_DATE);
+        }
+        
     } // end prepareListData
     
     /**
@@ -600,7 +605,27 @@ public class USAidFilterFragment extends SherlockFragment {
         USAidMainActivity.countryQuery = makeFilterQuery();
         USAidMainActivity.countryQueryResults = null;
         
-    }
+    } // end onUSAidDateSelected
+    
+    private void setUSAidDateSelect(long value, int dateToSet) {
+        
+        final Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        c.setTimeInMillis(value);
+        
+        // display the time
+        if (dateToSet == USAidConstants.USAID_SET_START_DATE) {
+            
+            TextView startDate = (TextView) timeFilter.findViewById(R.id.usaid_start_date);
+            startDate.setText(USAidProjectsUtility.formatTheDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)));
+            
+        } else if (dateToSet == USAidConstants.USAID_SET_END_DATE) {
+            
+            TextView endDate = (TextView) timeFilter.findViewById(R.id.usaid_end_date);
+            endDate.setText(USAidProjectsUtility.formatTheDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)));
+            
+        }
+        
+    } // end setUSAidDateSelect
     
     /**
      * Used to load the initial data and reload the data.
@@ -719,7 +744,7 @@ public class USAidFilterFragment extends SherlockFragment {
         
         // TODO add the initiatives into the query string
         
-        // TODO add the time into the query string
+        // add the time into the query string
         if (startingDate > 0) {
             
             // starting time
