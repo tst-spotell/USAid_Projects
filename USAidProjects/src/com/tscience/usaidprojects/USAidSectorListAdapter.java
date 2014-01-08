@@ -113,7 +113,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         
         USAidFilterFragment.sectorDataHeader.get(position).selected = value;
         
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.getContext()));
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.getContext()), true);
         USAidMainActivity.countryQueryResults = null;
         
     }

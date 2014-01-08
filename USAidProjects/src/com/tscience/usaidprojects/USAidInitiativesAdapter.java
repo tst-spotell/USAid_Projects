@@ -134,7 +134,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
         
         // individual checked
         if (!headerChange) {
-            USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()));
+            USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()), true);
             USAidMainActivity.countryQueryResults = null;
         }
         
@@ -244,7 +244,7 @@ public class USAidInitiativesAdapter extends BaseExpandableListAdapter {
         }
         
         // update the filter query
-        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()));
+        USAidMainActivity.countryQuery = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlOverview(this.inflater.getContext()), true);
         USAidMainActivity.countryQueryResults = null;
         
         headerChange = false;

@@ -66,7 +66,8 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
             
             // get a list of projects by country
             USAidProjectsByCountryTask usaidProjectsByCountryTask = new USAidProjectsByCountryTask(this);
-            usaidProjectsByCountryTask.execute(USAidProjectsUtility.getUrlProjectsByCountry(getActivity(), countryName));
+            String queryString = USAidFilterFragment.makeFilterQuery(USAidProjectsUtility.getUrlProjectsByCountry(getActivity(), countryName), false);
+            usaidProjectsByCountryTask.execute(queryString);
             
             return;
             

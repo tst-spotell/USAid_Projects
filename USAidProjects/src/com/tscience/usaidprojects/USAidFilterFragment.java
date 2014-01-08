@@ -377,7 +377,7 @@ public class USAidFilterFragment extends SherlockFragment {
 
             
             // rebuild the query
-            USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()));
+            USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()), true);
             USAidMainActivity.countryQueryResults = null;
             
             return true;
@@ -622,7 +622,7 @@ public class USAidFilterFragment extends SherlockFragment {
         }
         
         // rebuild the query
-        USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()));
+        USAidMainActivity.countryQuery = makeFilterQuery(USAidProjectsUtility.getUrlOverview(getActivity()), true);
         USAidMainActivity.countryQueryResults = null;
         
     } // end onUSAidDateSelected
@@ -664,62 +664,67 @@ public class USAidFilterFragment extends SherlockFragment {
      * Creates a filter query based on what was selected.
      * 
      * @param value The initial string to build on.
+     * @param queryCountries    True if add countries to query.
      * 
      * @return  The query string;
      */
-    public static String makeFilterQuery(String value) {
+    public static String makeFilterQuery(String value, boolean queryCountries) {
         
         StringBuffer result = new StringBuffer();
         result.append(value);
         
-        // get the countries
-        if ((listDataHeader != null) && (listDataChild != null)) {
+        if (queryCountries) {
             
-            int numRegions = listDataHeader.size();
-            
-            try {
+            // get the countries
+            if ((listDataHeader != null) && (listDataChild != null)) {
                 
-                boolean firstTime = true;
-            
-                for (int i = 0; i < numRegions; i++) {
+                int numRegions = listDataHeader.size();
+                
+                try {
                     
-                    ArrayList<USAidProjectsSnapshotObject> temp = listDataChild.get(listDataHeader.get(i).name);
-                    
-                    int tempArraySize = temp.size();
-                    
-                    for (int j = 0; j < tempArraySize; j++) {
+                    boolean firstTime = true;
+                
+                    for (int i = 0; i < numRegions; i++) {
                         
-                        if (temp.get(j).selected) {
+                        ArrayList<USAidProjectsSnapshotObject> temp = listDataChild.get(listDataHeader.get(i).name);
+                        
+                        int tempArraySize = temp.size();
+                        
+                        for (int j = 0; j < tempArraySize; j++) {
                             
-                            if (!firstTime) {
+                            if (temp.get(j).selected) {
                                 
-                                // add the spacer between items
-                                result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                                if (!firstTime) {
+                                    
+                                    // add the spacer between items
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                                    
+                                } else {
+                                    
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_country_start));
+                                    
+                                    firstTime = false;
+                                    
+                                }
                                 
-                            } else {
-                                
-                                result.append(usaidFilterFragment.getString(R.string.usaid_server_country_start));
-                                
-                                firstTime = false;
+                                // if checked add the country name
+                                result.append(USAidProjectsUtility.convertName(temp.get(j).name));
                                 
                             }
                             
-                            // if checked add the country name
-                            result.append(USAidProjectsUtility.convertName(temp.get(j).name));
-                            
-                        }
+                        } // end for loop j
                         
-                    } // end for loop j
-                    
-                } // end for loop i
+                    } // end for loop i
+                
+                }
+                catch (Exception ignore) {
+                    Log.e(LOG_TAG, "---------------------------------------------- make query listDataChild");
+                    Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+                }
             
-            }
-            catch (Exception ignore) {
-                Log.e(LOG_TAG, "---------------------------------------------- make query listDataChild");
-                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
-            }
+            } // end listDataHeader
         
-        } // end listDataHeader
+        }
         
         // add the sectors into the query string
         if (sectorDataHeader != null) {
