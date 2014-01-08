@@ -77,8 +77,8 @@ public class USAidFilterFragment extends SherlockFragment {
     
     RelativeLayout timeFilter;
     
-    long startingDate = 0;
-    long endingDate = 0;
+    static long startingDate = 0;
+    static long endingDate = 0;
     
     public static USAidFilterFragment usaidFilterFragment;
     
@@ -596,6 +596,10 @@ public class USAidFilterFragment extends SherlockFragment {
             
         }
         
+        // rebuild the query
+        USAidMainActivity.countryQuery = makeFilterQuery();
+        USAidMainActivity.countryQueryResults = null;
+        
     }
     
     /**
@@ -716,6 +720,21 @@ public class USAidFilterFragment extends SherlockFragment {
         // TODO add the initiatives into the query string
         
         // TODO add the time into the query string
+        if (startingDate > 0) {
+            
+            // starting time
+            result.append(usaidFilterFragment.getString(R.string.usaid_server_time_start));
+            result.append(startingDate);
+            
+        } // end startingDate
+        
+        if (endingDate > 0) {
+            
+            // ending time
+            result.append(usaidFilterFragment.getString(R.string.usaid_server_time_end));
+            result.append(endingDate);
+            
+        } // end endingDate
         
         
         Log.e(LOG_TAG, "---------------------------------------------- makeFilterQuery complete");
