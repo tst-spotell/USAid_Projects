@@ -77,7 +77,7 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
             
         }
         
-        // TODO set the image
+        // set the image
         try {
             usaidSectorHolder.typeImageView.setBackgroundResource(this.getContext().getResources().getIdentifier(USAidProjectsUtility.makeSectorResourceName(USAidFilterFragment.sectorDataHeader.get(position).label.toLowerCase()), "drawable", this.getContext().getPackageName()));
         }

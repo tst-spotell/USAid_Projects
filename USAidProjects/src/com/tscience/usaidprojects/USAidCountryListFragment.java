@@ -108,6 +108,11 @@ public class USAidCountryListFragment extends SherlockListFragment {
             TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);
             title.setVisibility(View.GONE);
             
+            try {
+                myCountryListAdapter.clear();
+            }
+            catch (Exception ignore) {}
+             
         } else {
             
             TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);

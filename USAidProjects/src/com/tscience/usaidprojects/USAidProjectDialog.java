@@ -3,6 +3,8 @@
  */
 package com.tscience.usaidprojects;
 
+import java.math.BigDecimal;
+
 import com.tscience.usaidprojects.utils.USAidProjectsObject;
 
 import android.app.AlertDialog;
@@ -63,19 +65,34 @@ public class USAidProjectDialog extends DialogFragment {
         title.setText(currentdata.projectName);
         
         TextView startDate = (TextView) projectView.findViewById(R.id.dialog_project_start_date);
-        startDate.setText(currentdata.startDate);
+        startDate.setText(" " + currentdata.startDate);
         
         TextView endDate = (TextView) projectView.findViewById(R.id.dialog_project_end_date);
-        endDate.setText(currentdata.stopDate);
+        endDate.setText("   " + currentdata.stopDate);
         
         TextView sector = (TextView) projectView.findViewById(R.id.dialog_project_sector_data);
         sector.setText(currentdata.sectorName);
         
         TextView partner = (TextView) projectView.findViewById(R.id.dialog_project_primary_partner_data);
-        partner.setText(currentdata.partner);
+        
+        if (currentdata.partner != null) {
+        
+            partner.setText(currentdata.partner);
+            
+        }
         
         TextView obligation = (TextView) projectView.findViewById(R.id.dialog_project_obligated_data);
-        obligation.setText(currentdata.awardAmount);
+        
+        double value = 0;
+        
+        try {
+            value = Double.parseDouble(currentdata.awardAmount);
+        }
+        catch (Exception ignore) {}
+        
+        if (value > 0) {
+            obligation.setText(BigDecimal.valueOf(value).toPlainString());
+        }
         
         WebView description = (WebView) projectView.findViewById(R.id.dialog_project_description);
         description.getSettings().setBuiltInZoomControls(true);
