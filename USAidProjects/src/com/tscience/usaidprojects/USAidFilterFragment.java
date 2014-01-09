@@ -18,6 +18,7 @@ import com.tscience.usaidprojects.utils.USAidProjectsLatLngCenterObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -431,7 +433,20 @@ public class USAidFilterFragment extends SherlockFragment {
         timeFilter = (RelativeLayout) rootView.findViewById(R.id.time_select);
         
         // location
-        Button locationButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_locations);
+        ImageButton locationButton = (ImageButton) rootView.findViewById(R.id.usaid_filter_buttons_locations);
+        
+        locationButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                
+                if (hasFocus) {
+                    v.performClick();
+                }
+                
+            }
+            
+        });
         
         locationButton.setOnClickListener(new OnClickListener() {
 
@@ -445,7 +460,20 @@ public class USAidFilterFragment extends SherlockFragment {
         });
         
         // sector
-        Button sectorButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_sectors);
+        ImageButton sectorButton = (ImageButton) rootView.findViewById(R.id.usaid_filter_buttons_sectors);
+        
+        sectorButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                
+                if (hasFocus) {
+                    v.performClick();
+                }
+                
+            }
+            
+        });
         
         sectorButton.setOnClickListener(new OnClickListener() {
 
@@ -459,7 +487,20 @@ public class USAidFilterFragment extends SherlockFragment {
         });
         
         // initiatives
-        Button initiativeButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_initiatives);
+        ImageButton initiativeButton = (ImageButton) rootView.findViewById(R.id.usaid_filter_buttons_initiatives);
+        
+        initiativeButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                
+                if (hasFocus) {
+                    v.performClick();
+                }
+                
+            }
+            
+        });
         
         initiativeButton.setOnClickListener(new OnClickListener() {
 
@@ -473,7 +514,20 @@ public class USAidFilterFragment extends SherlockFragment {
         });
         
         // time
-        Button timeButton = (Button) rootView.findViewById(R.id.usaid_filter_buttons_dates);
+        ImageButton timeButton = (ImageButton) rootView.findViewById(R.id.usaid_filter_buttons_dates);
+        
+        timeButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                
+                if (hasFocus) {
+                    v.performClick();
+                }
+                
+            }
+            
+        });
         
         timeButton.setOnClickListener(new OnClickListener() {
 

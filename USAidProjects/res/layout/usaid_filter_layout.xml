@@ -3,37 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-    <LinearLayout
+    <ScrollView
         android:id="@+id/usaid_filter_buttons_holder"
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
         
-        <Button
-            android:id="@+id/usaid_filter_buttons_locations"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="@string/usaid_button_title_locations" />
-        
-        <Button
-            android:id="@+id/usaid_filter_buttons_sectors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usaid_button_title_sectors" />
-        
-        <Button
-            android:id="@+id/usaid_filter_buttons_initiatives"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usaid_button_title_initiatives" />
-        
-        <Button
-            android:id="@+id/usaid_filter_buttons_dates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usaid_button_title_dates" />
-        
-    </LinearLayout>
+            android:orientation="vertical" >
+            
+            <ImageButton
+                android:id="@+id/usaid_filter_buttons_locations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/locations"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:contentDescription="@string/usaid_image" />
+            
+            <ImageButton
+                android:id="@+id/usaid_filter_buttons_sectors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sectors"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:contentDescription="@string/usaid_image" />
+            
+            <ImageButton
+                android:id="@+id/usaid_filter_buttons_initiatives"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/initiatives"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:contentDescription="@string/usaid_image" />
+            
+            <ImageButton
+                android:id="@+id/usaid_filter_buttons_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dates"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:contentDescription="@string/usaid_image" />
+            
+        </LinearLayout>
+    
+    </ScrollView>
     
     <ExpandableListView
         android:id="@+id/usaid_filter_locations"
