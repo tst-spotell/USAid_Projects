@@ -4,6 +4,8 @@
 package com.tscience.usaidprojects.io;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +16,9 @@ import android.util.Log;
 
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidMainActivity;
+import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask.DisplayNameComparator;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
+import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 
 
 /**
@@ -123,6 +127,9 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
             
         }
         
+        // sort the sector names
+        Collections.sort(items, new CountryNameComparator());
+        
         // send to activity
         USAidMainActivity.setCountryQueryResults(items);
         
@@ -135,6 +142,18 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
         context = null;
         
     } // end onPostExecute
+    
+    /**
+     * This class sorts data by published date.
+     * 
+     * @author spotell at t-sciences.com
+     *
+     */
+    class CountryNameComparator implements Comparator<USAidProjectsCountryObject> {
+        public int compare(USAidProjectsCountryObject object1, USAidProjectsCountryObject object2) {
+            return ((object1.countryID).compareTo(object2.countryID));
+        }
+    }
     
     // get total
     // details  -- loop for total and country to get total for a country
