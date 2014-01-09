@@ -195,7 +195,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
             // set the name
             usaidCountryHolder.countryNameView.setText(usaidCountryHolder.usaidDataObject.countryID);
             
-            // TODO set the flag
+            // set the flag
             try {
                 usaidCountryHolder.flagImageView.setBackgroundResource(getActivity().getResources().getIdentifier(USAidProjectsUtility.makeResourceName(usaidCountryHolder.usaidDataObject.countryID.toLowerCase()), "drawable", getActivity().getPackageName()));
             }
