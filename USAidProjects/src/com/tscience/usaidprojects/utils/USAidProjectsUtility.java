@@ -6,6 +6,7 @@ package com.tscience.usaidprojects.utils;
 import java.net.URLEncoder;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -169,6 +170,41 @@ public class USAidProjectsUtility {
         return sb.toString();
         
     } // end makeResourceName
+    
+    /**
+     * Makes a resource friendly name.
+     * 
+     * @param value The string to check.
+     * 
+     * @return  The updated string.
+     */
+    public static String makeSectorResourceName(String value) {
+        
+        Log.d("makeSectorResourceName", "----------------------- start: " + value);
+        
+        StringBuffer sb = new StringBuffer(value.length());
+        
+        int len = value.length();
+        
+        char c;
+        
+        for (int i = 0; i < len; i++) {
+            
+            c = value.charAt(i);
+            
+            if ((c == ' ') || (c == '\'') || (c == ',')) {
+                // do nothing
+            }  else {
+                sb.append(c);
+            }
+            
+        }
+        
+        Log.d("makeSectorResourceName", "----------------------- end: " + sb.toString());
+        
+        return sb.toString();
+        
+    } // end makeSectorResourceName
     
     public static LatLng convertStringToLatLng(String value) {
         

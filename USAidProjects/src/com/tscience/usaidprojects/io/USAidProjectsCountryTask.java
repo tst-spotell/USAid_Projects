@@ -16,9 +16,7 @@ import android.util.Log;
 
 import com.tscience.usaidprojects.R;
 import com.tscience.usaidprojects.USAidMainActivity;
-import com.tscience.usaidprojects.io.USAidProjectsSnapshotTask.DisplayNameComparator;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
-import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 
 
 /**

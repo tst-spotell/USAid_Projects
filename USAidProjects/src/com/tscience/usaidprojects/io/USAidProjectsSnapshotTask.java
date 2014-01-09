@@ -83,9 +83,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         }
         catch (JSONException e1) {
             e1.printStackTrace();
-            
-            // TODO error here is fatal 
-            
         }
         
         // get subinitiatives  -- name   -- label
@@ -138,9 +135,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         }
         catch (JSONException e1) {
             e1.printStackTrace();
-            
-            // TODO error here is fatal 
-            
         }
         
         // get sectors  -- name   -- label
@@ -196,9 +190,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         }
         catch (JSONException e1) {
             e1.printStackTrace();
-            
-            // TODO error here is fatal 
-            
         }
         
         // get regions  -- name   -- label
@@ -272,8 +263,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         catch (JSONException e1) {
             e1.printStackTrace();
             
-            // TODO error here is fatal 
-            
         }
         
         // get locations (countries) -- url (to country site)  -- parent  (region name) -- name -- label -- code (country code)
@@ -340,9 +329,6 @@ public class USAidProjectsSnapshotTask extends USAidProjectsBaseNetworkTask {
         }
         catch (JSONException e1) {
             e1.printStackTrace();
-            
-            // TODO error here is fatal 
-            
         }
         
         ArrayList<USAidProjectsSnapshotObject> initiatives = new ArrayList<USAidProjectsSnapshotObject>();

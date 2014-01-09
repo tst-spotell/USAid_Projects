@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="55dip" >
     
+    <ImageView
+        android:id="@+id/usaid_sector_image"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/usaid_image" />
+    
     <CheckBox
         android:id="@+id/sectorCheckbox"
         android:layout_width="30dp"
@@ -15,10 +23,10 @@
         android:id="@+id/sectorNameItem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/usaid_sector_image"
         android:layout_toLeftOf="@id/sectorCheckbox"
         android:paddingBottom="5dp"
-        android:paddingLeft="30dp"
+        android:paddingLeft="4dp"
         android:paddingTop="5dp"
         android:textSize="17sp" />
     

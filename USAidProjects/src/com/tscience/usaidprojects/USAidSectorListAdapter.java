@@ -71,13 +71,19 @@ public class USAidSectorListAdapter extends ArrayAdapter<USAidProjectsSnapshotOb
         // load the holder if empty
         if (usaidSectorHolder.sectorNameView == null) {
             
-//            usaidSectorHolder.typeImageView = (ImageView) currentView.findViewById(R.id.usaid_country_flag);
+            usaidSectorHolder.typeImageView = (ImageView) currentView.findViewById(R.id.usaid_sector_image);
             usaidSectorHolder.sectorNameView = (TextView) currentView.findViewById(R.id.sectorNameItem);
             usaidSectorHolder.sectorCheckBox = (CheckBox) currentView.findViewById(R.id.sectorCheckbox);
             
         }
         
         // TODO set the image
+        try {
+            usaidSectorHolder.typeImageView.setBackgroundResource(this.getContext().getResources().getIdentifier(USAidProjectsUtility.makeSectorResourceName(USAidFilterFragment.sectorDataHeader.get(position).label.toLowerCase()), "drawable", this.getContext().getPackageName()));
+        }
+        catch(Exception ignore) {
+            Log.e(LOG_TAG, "---------------------------------------------- bad image name: " + USAidFilterFragment.sectorDataHeader.get(position).label.toLowerCase());
+        }
         
         // set the name
         usaidSectorHolder.sectorNameView.setText(USAidFilterFragment.sectorDataHeader.get(position).label);
