@@ -85,6 +85,18 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
     public void prepareListData(ArrayList<USAidProjectsListObject> value) {
         
         // TODO show num projects header
+        if ((value == null) || (value.size() == 0)) {
+            
+            TextView title = (TextView) getActivity().findViewById(R.id.project_title);
+            title.setVisibility(View.GONE);
+            
+        } else {
+            
+            TextView title = (TextView) getActivity().findViewById(R.id.project_title);
+            title.setVisibility(View.VISIBLE);
+            title.setText(value.size() + " projects in " + countryName);
+            
+        }
         
         serverData = value;
         
