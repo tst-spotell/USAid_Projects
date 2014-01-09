@@ -103,7 +103,30 @@ public class USAidCountryListFragment extends SherlockListFragment {
         
         Log.d(LOG_TAG, "-------------------------------- setTheListData");
         
-        // TODO show num countries header
+        // show num countries header
+        if ((USAidMainActivity.countryQueryResults == null) || (USAidMainActivity.countryQueryResults.size() == 0)) {
+            
+            TextView title = (TextView) getActivity().findViewById(R.id.country_list_title);
+            title.setVisibility(View.GONE);
+            
+        } else {
+            
+            TextView title = (TextView) getActivity().findViewById(R.id.country_list_title);
+            title.setVisibility(View.VISIBLE);
+            
+            int numCountries = USAidMainActivity.countryQueryResults.size();
+            
+            int numProjects = 0;
+            
+            for (int i = 0; i < numCountries; i++) {
+                
+                numProjects += USAidMainActivity.countryQueryResults.get(i).totalProjects;
+                
+            }
+            
+            title.setText(numProjects + " projects in " + numCountries + " countries");
+            
+        }
         
         if (USAidMainActivity.countryQueryResults != null) {
             

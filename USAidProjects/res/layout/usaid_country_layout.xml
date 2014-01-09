@@ -4,15 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
     
+    <TextView
+        android:id="@+id/country_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/country_list_title" />
     
     <TextView android:id="@android:id/empty"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_centerInParent="true"
+               android:layout_below="@id/country_list_title"
                android:textSize="16sp"
                android:textStyle="bold"
                android:text="@string/usaid_no_data"/>

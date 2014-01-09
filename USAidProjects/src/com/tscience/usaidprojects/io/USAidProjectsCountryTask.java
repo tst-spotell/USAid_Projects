@@ -50,7 +50,6 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
         if (workingData == null) {
             
             Log.d(LOG_TAG, "-----------------------------------------no working data");
-            // TODO no cached data
             
             return;
             
@@ -72,8 +71,6 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
             e1.printStackTrace();
             
             Log.e(LOG_TAG, "----------------------------------------- " + e1.toString());
-            
-            // TODO error here is fatal 
             
         }
         
@@ -98,50 +95,17 @@ public class USAidProjectsCountryTask extends USAidProjectsBaseNetworkTask {
                     
                     jsonObject = overviewData.getJSONObject(i);
                     
-//                    if (currentValue.countryID != null) {
-//                    	
-//                    	// get the cuntry id for evaluation
-//                    	String tempCountry = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
-//                    	int tempCount = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
-//                    	
-//                    	// is this the country we are currently counting
-//                    	if (currentValue.countryID.equalsIgnoreCase(tempCountry)) {
-//                    		
-//                    		// add the projects to the count
-//                    		currentValue.totalProjects += tempCount;
-//                    		
-//                    	} else {
-//                    		
-//                    		// save the current value
-//                    		// add to the data array
-//                            items.add(currentValue);
-//                            Log.d(LOG_TAG, "----------------------------country: " + currentValue.countryID + " count: " + currentValue.totalProjects);
-//                    		
-//                    		// create a new current value
-//                            currentValue = new USAidProjectsCountryObject();
-//                    		
-//                    		// set the values
-//                            currentValue.countryID = tempCountry;
-//                            currentValue.totalProjects = tempCount;
-//                            // TODO
-//                        	currentValue.countryCode = 0;
-//                    		
-//                    	}
-//                    	
-//                    	
-//                    } else {
                     
-                    	// set the first value
-                    	currentValue.totalProjects = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
-                    	currentValue.countryID = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
-	                    // TODO
-                    	currentValue.countryCode = 0;
-                    	
-                    	Log.d(LOG_TAG, "----------------------------country: " + currentValue.countryID + " count: " + currentValue.totalProjects);
-                    	
-                    	items.add(currentValue);
+                	// set the first value
+                	currentValue.totalProjects = jsonObject.getInt(context.getString(R.string.usaid_projects_total_jason_array));
+                	currentValue.countryID = jsonObject.getString(context.getString(R.string.usaid_projects_country_jason_array));
                     
-//                    }
+                	// TODO do I need this not currently used
+                	currentValue.countryCode = 0;
+                	
+                	Log.d(LOG_TAG, "----------------------------country: " + currentValue.countryID + " count: " + currentValue.totalProjects);
+                	
+                	items.add(currentValue);
                     
                 }
                 catch (Exception ignore) {

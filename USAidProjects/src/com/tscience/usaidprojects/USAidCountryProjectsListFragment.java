@@ -84,7 +84,7 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
      */
     public void prepareListData(ArrayList<USAidProjectsListObject> value) {
         
-        // TODO show num projects header
+        // show num projects header
         if ((value == null) || (value.size() == 0)) {
             
             TextView title = (TextView) getActivity().findViewById(R.id.project_title);
@@ -178,8 +178,6 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
             	usaidProjectHolder.projectNameView = (TextView) currentView.findViewById(R.id.usaid_project_item_name);
             	
             }
-            
-            // TODO the DataObject object we are working with
             
             // set the name
             usaidProjectHolder.projectNameView.setText(items.get(position).projectName);
