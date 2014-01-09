@@ -71,8 +71,6 @@ public class USAidCountryListFragment extends SherlockListFragment {
         .commit();
         
     } // R.id.fragment_container
-    
-    
 
     @Override
     public void onResume() {
@@ -107,12 +105,13 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // show num countries header
         if ((USAidMainActivity.countryQueryResults == null) || (USAidMainActivity.countryQueryResults.size() == 0)) {
             
-            TextView title = (TextView) getActivity().findViewById(R.id.country_list_title);
+            TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);
             title.setVisibility(View.GONE);
             
         } else {
             
-            TextView title = (TextView) getActivity().findViewById(R.id.country_list_title);
+            TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);
+            
             title.setVisibility(View.VISIBLE);
             
             int numCountries = USAidMainActivity.countryQueryResults.size();
@@ -127,10 +126,6 @@ public class USAidCountryListFragment extends SherlockListFragment {
             
             title.setText(numProjects + " projects in " + numCountries + " countries");
             
-        }
-        
-        if (USAidMainActivity.countryQueryResults != null) {
-            
             // create a new list adapter
             myCountryListAdapter = new USAidCountryListAdapter(getActivity(), R.layout.usaid_country_item, USAidMainActivity.countryQueryResults);
             
@@ -139,7 +134,7 @@ public class USAidCountryListFragment extends SherlockListFragment {
             
             // update list data
             myCountryListAdapter.notifyDataSetChanged();
-        
+            
         }
         
     } // end setTheListData

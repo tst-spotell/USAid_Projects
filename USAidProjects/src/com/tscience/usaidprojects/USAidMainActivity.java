@@ -176,8 +176,14 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         super.onBackPressed();
     }
+    
+    
 
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // was getting lost with all the fragments
+ //       super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onResume() {

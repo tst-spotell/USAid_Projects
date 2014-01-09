@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:background="#000000">
+    android:background="#C0C0C0">
 
     <CheckBox
         android:id="@+id/lblHeaderCheckbox"

@@ -46,8 +46,6 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
         
     } // end onCreateView
 
-    
-
     @Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
     	
@@ -58,7 +56,7 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
 		super.onListItemClick(l, v, position, id);
 	}
 
-	@Override
+    @Override
     public void onResume() {
         super.onResume();
         
@@ -87,24 +85,24 @@ public class USAidCountryProjectsListFragment extends SherlockListFragment {
         // show num projects header
         if ((value == null) || (value.size() == 0)) {
             
-            TextView title = (TextView) getActivity().findViewById(R.id.project_title);
+            TextView title = (TextView) this.getView().findViewById(R.id.project_title);
             title.setVisibility(View.GONE);
             
         } else {
             
-            TextView title = (TextView) getActivity().findViewById(R.id.project_title);
+            TextView title = (TextView) this.getView().findViewById(R.id.project_title);
             title.setVisibility(View.VISIBLE);
             title.setText(value.size() + " projects in " + countryName);
             
+            serverData = value;
+            
+            usaidCountryProjectsListAdapter = new USAidCountryProjectsListAdapter(getActivity(), R.layout.usaid_project_item, value);
+            
+            this.setListAdapter(usaidCountryProjectsListAdapter);
+            
+            usaidCountryProjectsListAdapter.notifyDataSetChanged();
+            
         }
-        
-        serverData = value;
-        
-        usaidCountryProjectsListAdapter = new USAidCountryProjectsListAdapter(getActivity(), R.layout.usaid_project_item, value);
-        
-        this.setListAdapter(usaidCountryProjectsListAdapter);
-        
-        usaidCountryProjectsListAdapter.notifyDataSetChanged();
         
     } // end prepareListData
     
