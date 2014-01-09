@@ -18,7 +18,6 @@ import com.tscience.usaidprojects.utils.USAidProjectsLatLngCenterObject;
 import com.tscience.usaidprojects.utils.USAidProjectsSnapshotObject;
 import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -351,7 +351,20 @@ public class USAidFilterFragment extends SherlockFragment {
             if (expListView.getVisibility() == View.VISIBLE) {
                 
                 // TODO cycle through regions and check all
-                // TODO cycle through countries and check all
+                if (listDataHeader != null) {
+                    
+                    int numInitiatives = listDataHeader.size();
+                    
+                    for (int i = 0; i < numInitiatives; i++) {
+                        
+                        listDataHeader.get(i).selected = true;
+                        
+                    }
+                    
+                }
+                
+                ((BaseExpandableListAdapter) listAdapter).notifyDataSetChanged();
+                
                 
             }
             else if (sectorList.getVisibility() == View.VISIBLE) {
@@ -374,7 +387,20 @@ public class USAidFilterFragment extends SherlockFragment {
             }
             else if (initiativeListView.getVisibility() == View.VISIBLE) {
                 
-                // TODO cycle through initiatives and uncheck
+                // cycle through initiatives and uncheck
+                if (initiativeDataHeader != null) {
+                    
+                    int numInitiatives = initiativeDataHeader.size();
+                    
+                    for (int i = 0; i < numInitiatives; i++) {
+                        
+                        initiativeDataHeader.get(i).selected = false;
+                        
+                    }
+                    
+                }
+                
+                ((BaseExpandableListAdapter) initiativeAdapter).notifyDataSetChanged();
                 
             }
             else if (timeFilter.getVisibility() == View.VISIBLE) {
