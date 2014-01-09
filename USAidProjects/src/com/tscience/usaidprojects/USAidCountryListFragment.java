@@ -20,6 +20,7 @@ import com.actionbarsherlock.app.SherlockListFragment;
 
 import com.tscience.usaidprojects.io.USAidProjectsCountryTask;
 import com.tscience.usaidprojects.utils.USAidProjectsCountryObject;
+import com.tscience.usaidprojects.utils.USAidProjectsUtility;
 
 /**
  * This is the fragment for displaying country search results.
@@ -195,6 +196,12 @@ public class USAidCountryListFragment extends SherlockListFragment {
             usaidCountryHolder.countryNameView.setText(usaidCountryHolder.usaidDataObject.countryID);
             
             // TODO set the flag
+            try {
+                usaidCountryHolder.flagImageView.setBackgroundResource(getActivity().getResources().getIdentifier(USAidProjectsUtility.makeResourceName(usaidCountryHolder.usaidDataObject.countryID.toLowerCase()), "drawable", getActivity().getPackageName()));
+            }
+            catch(Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- bad image name: " + usaidCountryHolder.usaidDataObject.countryID.toLowerCase());
+            }
             
             return currentView;
             

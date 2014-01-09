@@ -137,6 +137,39 @@ public class USAidProjectsUtility {
         
     } // end convertName
     
+    /**
+     * Makes a resource friendly name.
+     * 
+     * @param value The string to check.
+     * 
+     * @return  The updated string.
+     */
+    public static String makeResourceName(String value) {
+        
+        StringBuffer sb = new StringBuffer(value.length());
+        
+        int len = value.length();
+        
+        char c;
+        
+        for (int i = 0; i < len; i++) {
+            
+            c = value.charAt(i);
+            
+            if (c == ' ') {
+                sb.append("_");
+            } else if (c == '-') {
+                sb.append("_");
+            } else {
+                sb.append(c);
+            }
+            
+        }
+        
+        return sb.toString();
+        
+    } // end makeResourceName
+    
     public static LatLng convertStringToLatLng(String value) {
         
         LatLng southWest = null;
