@@ -37,7 +37,7 @@
         <!-- this is the dev debug key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyC9-kzJMmJeesSp3ZGd9339BQsCAshKyMs"/>
+            android:value="AIzaSyCkeJWnQ-8U_hnI81jz98BpoxMnu_XsEo0"/>
         
         <!-- work debug  "AIzaSyC9-kzJMmJeesSp3ZGd9339BQsCAshKyMs" -->
         <!-- distribute  "AIzaSyCkeJWnQ-8U_hnI81jz98BpoxMnu_XsEo0" -->

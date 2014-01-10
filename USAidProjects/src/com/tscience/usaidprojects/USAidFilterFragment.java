@@ -954,6 +954,11 @@ public class USAidFilterFragment extends SherlockFragment {
                                     
                                     result.append(usaidFilterFragment.getString(R.string.usaid_server_initiative_start));
                                     
+                                    // add the division title
+                                    result.append(USAidProjectsUtility.convertName(initiativeDataHeader.get(0).name));
+                                    
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                                    
                                     firstTime = false;
                                     
                                 }
