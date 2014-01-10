@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import com.tscience.usaidprojects.utils.USAidProjectsObject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -50,10 +51,11 @@ public class USAidProjectDialog extends DialogFragment {
 		
 	}
 
-	@Override
+	@SuppressLint("NewApi")
+    @Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Light);
     	
     	// Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray" >"
+    android:background="@color/gray" >
     
     <HorizontalScrollView
         android:id="@+id/scroll_view"
@@ -92,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_project_primary_partner"
         android:paddingLeft="8dp"
+        android:paddingBottom="8dp"
         android:layout_alignLeft="@id/dialog_project_primary_partner"
         android:layout_toLeftOf="@+id/dialog_project_obligated_data" />
     
