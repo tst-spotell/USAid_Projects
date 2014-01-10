@@ -15,6 +15,7 @@
     
     <!-- initiatives -->
     <string name="usaid_server_initiative_start">&#38;i=</string>
+    <string name="usaid_server_subinitiative_start">&#38;u=</string>
     
     <!-- sectors -->
     <string name="usaid_server_sector_start">&#38;s=</string>

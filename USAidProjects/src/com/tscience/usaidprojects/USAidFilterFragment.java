@@ -909,7 +909,7 @@ public class USAidFilterFragment extends SherlockFragment {
                 int numHeaders = initiativeDataHeader.size();
                 
                 // skip the first one
-                for (int i = 1; i < numHeaders; i++) {
+                for (int i = 0; i < numHeaders; i++) {
                     
                     if (initiativeDataHeader.get(i).selected) {
                         
@@ -952,12 +952,7 @@ public class USAidFilterFragment extends SherlockFragment {
                                     
                                 } else {
                                     
-                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_initiative_start));
-                                    
-                                    // add the division title
-                                    result.append(USAidProjectsUtility.convertName(initiativeDataHeader.get(0).name));
-                                    
-                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_spacer));
+                                    result.append(usaidFilterFragment.getString(R.string.usaid_server_subinitiative_start));
                                     
                                     firstTime = false;
                                     
