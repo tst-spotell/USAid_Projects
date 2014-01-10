@@ -937,6 +937,8 @@ public class USAidFilterFragment extends SherlockFragment {
                 
                 if (subInits != null) {
                     
+                    firstTime = true;
+                    
                     try {
                         
                         int numSubs = subInits.size();
