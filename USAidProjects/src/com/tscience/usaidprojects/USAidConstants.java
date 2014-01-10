@@ -24,6 +24,8 @@ public class USAidConstants {
     public static final String USAID_DASH = "-";
     
     // bundle data
+    public static final String USAID_BUNDLE_QUERY_STRING = "query_string";
+    public static final String USAID_BUNDLE_QUERY_RESULTS = "query_results";
     public static final String USAID_BUNDLE_COUNTRY_DATA = "country";
     public static final String USAID_BUNDLE_DATA_OBJECT = "usaid_data";
     public static final String USAID_BUNDLE_HEADER_DATA = "header";

@@ -146,7 +146,7 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         if (mViewPager.getCurrentItem() == 1) {
             
-            // TODO handle back within the stack
+            // handle back within the stack
             int numfragments = mapUSAidWrapperFragment.getChildFragmentManager().getBackStackEntryCount();
             
             Log.d(LOG_TAG, "-------------------------------------------numfragments: " + numfragments);
@@ -176,14 +176,12 @@ public class USAidMainActivity extends SherlockFragmentActivity implements Actio
         
         super.onBackPressed();
     }
-    
-    
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // was getting lost with all the fragments
- //       super.onSaveInstanceState(outState);
-    }
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        // was getting lost with all the fragments
+// //       super.onSaveInstanceState(outState);
+//    }
 
     @Override
     protected void onResume() {

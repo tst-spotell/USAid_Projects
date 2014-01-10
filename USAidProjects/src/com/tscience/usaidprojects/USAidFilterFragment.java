@@ -100,6 +100,23 @@ public class USAidFilterFragment extends SherlockFragment {
             Log.d(LOG_TAG, "---------------------------------------------- savedInstanceState not null");
             
             try {
+                
+                USAidMainActivity.countryQuery = savedInstanceState.getString(USAidConstants.USAID_BUNDLE_QUERY_STRING);
+                
+            }catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no countryQuery");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            try {
+                USAidMainActivity.countryQueryResults = savedInstanceState.getParcelableArrayList(USAidConstants.USAID_BUNDLE_QUERY_RESULTS);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no countryQueryResults");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+            
+            try {
                 listDataHeader = savedInstanceState.getParcelableArrayList(USAidConstants.USAID_BUNDLE_HEADER_DATA);
             }
             catch (Exception ignore) {
@@ -214,6 +231,27 @@ public class USAidFilterFragment extends SherlockFragment {
     public void onSaveInstanceState(Bundle outState) {
         
         Log.d(LOG_TAG, "---------------------------------------------- onSaveInstanceState");
+        
+        if (USAidMainActivity.countryQuery != null) {
+            try {
+                
+                outState.putString(USAidConstants.USAID_BUNDLE_QUERY_STRING, USAidMainActivity.countryQuery);
+                
+            }catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no countryQuery");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
+        
+        if (USAidMainActivity.countryQueryResults != null) {
+            try {
+                outState.putParcelableArrayList(USAidConstants.USAID_BUNDLE_QUERY_RESULTS, USAidMainActivity.countryQueryResults);
+            }
+            catch (Exception ignore) {
+                Log.e(LOG_TAG, "---------------------------------------------- no countryQueryResults");
+                Log.e(LOG_TAG, "---------------------------------------------- " + ignore.toString());
+            }
+        }
         
         // save the data
         if (listDataHeader != null) {

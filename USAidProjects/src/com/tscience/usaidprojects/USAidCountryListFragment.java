@@ -105,7 +105,17 @@ public class USAidCountryListFragment extends SherlockListFragment {
         // show num countries header
         if ((USAidMainActivity.countryQueryResults == null) || (USAidMainActivity.countryQueryResults.size() == 0)) {
             
-            TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);
+            TextView title = null;
+            
+            try {
+                title = (TextView) this.getView().findViewById(R.id.country_list_title);
+            }
+            catch (Exception ignore) {}
+            
+            if (title == null) {
+                return;
+            }
+            
             title.setVisibility(View.GONE);
             
             try {
@@ -115,7 +125,16 @@ public class USAidCountryListFragment extends SherlockListFragment {
              
         } else {
             
-            TextView title = (TextView) this.getView().findViewById(R.id.country_list_title);
+            TextView title = null;
+            
+            try {
+                title = (TextView) this.getView().findViewById(R.id.country_list_title);
+            }
+            catch (Exception ignore) {}
+            
+            if (title == null) {
+                return;
+            }
             
             title.setVisibility(View.VISIBLE);
             
